@@ -10,12 +10,7 @@ export const navItems: NavItem[] = [
     route: '/dashboards/dashboard1',
   },
   {
-    displayName: 'eCommerce',
-    iconName: 'basket',
-    route: '/dashboards/dashboard2',
-  },
-  {
-    displayName: 'Modern',
+    displayName: 'Dashboard',
     iconName: 'inbox',
     route: '/dashboards/dashboard3',
   },
@@ -23,29 +18,9 @@ export const navItems: NavItem[] = [
     navCap: 'Apps',
   },
   {
-    displayName: 'Chat',
-    iconName: 'message-2',
-    route: 'apps/chat',
-  },
-  {
-    displayName: 'Calendar',
-    iconName: 'calendar-event',
-    route: 'apps/calendar',
-  },
-  {
-    displayName: 'Email',
-    iconName: 'mail',
-    route: 'apps/email/inbox',
-  },
-  {
     displayName: 'Contacts',
     iconName: 'phone',
     route: 'apps/contacts',
-  },
-  {
-    displayName: 'Courses',
-    iconName: 'certificate',
-    route: 'apps/courses',
   },
   {
     displayName: 'Employee',
@@ -68,49 +43,12 @@ export const navItems: NavItem[] = [
     route: 'apps/invoice',
   },
   {
-    displayName: 'ToDo',
-    iconName: 'edit',
-    route: 'apps/todo',
-  },
-  {
-    displayName: 'Taskboard',
-    iconName: 'checklist',
-    route: 'apps/taskboard',
-  },
-  {
-    displayName: 'Blog',
-    iconName: 'chart-donut-3',
-    route: 'apps/blog',
-    children: [
-      {
-        displayName: 'Post',
-        iconName: 'point',
-        route: 'apps/blog/post',
-      },
-      {
-        displayName: 'Detail',
-        iconName: 'point',
-        route: 'apps/blog/detail/Early Black Friday Amazon deals: cheap TVs, headphones, laptops',
-      },
-    ],
-  },
-  {
     navCap: 'Pages',
   },
   {
     displayName: 'Roll Base Access',
     iconName: 'lock-access',
     route: 'apps/permission',
-  },
-  {
-    displayName: 'Treeview',
-    iconName: 'git-merge',
-    route: 'theme-pages/treeview',
-  },
-  {
-    displayName: 'Pricing',
-    iconName: 'currency-dollar',
-    route: 'theme-pages/pricing',
   },
   {
     displayName: 'Account Setting',
@@ -127,16 +65,6 @@ export const navItems: NavItem[] = [
     iconName: 'layout',
     route: 'widgets',
     children: [
-      {
-        displayName: 'Cards',
-        iconName: 'point',
-        route: 'widgets/cards',
-      },
-      {
-        displayName: 'Banners',
-        iconName: 'point',
-        route: 'widgets/banners',
-      },
       {
         displayName: 'Charts',
         iconName: 'point',
@@ -298,11 +226,6 @@ export const navItems: NavItem[] = [
     route: '/charts/area',
   },
   {
-    displayName: 'Candlestick',
-    iconName: 'chart-candle',
-    route: '/charts/candlestick',
-  },
-  {
     displayName: 'Column',
     iconName: 'chart-dots',
     route: '/charts/column',
@@ -312,11 +235,9 @@ export const navItems: NavItem[] = [
     iconName: 'chart-donut-3',
     route: '/charts/doughnut-pie',
   },
-  {
-    displayName: 'Radialbar & Radar',
-    iconName: 'chart-radar',
-    route: '/charts/radial-radar',
-  },
+
+
+
   {
     navCap: 'UI',
   },
@@ -421,11 +342,6 @@ export const navItems: NavItem[] = [
     route: '/authentication/login',
   },
   {
-    displayName: 'Register',
-    iconName: 'user-plus',
-    route: '/authentication/register',
-  },
-  {
     displayName: 'Forgot Password',
     iconName: 'rotate',
     route: '/authentication/forgot',
@@ -439,39 +355,5 @@ export const navItems: NavItem[] = [
     displayName: 'Maintenance',
     iconName: 'settings',
     route: '/authentication/maintenance',
-  },
-  {
-    navCap: 'Other',
-  },
-  {
-    displayName: 'Menu Level',
-    iconName: 'box-multiple',
-    route: '/menu-level',
-    children: [
-      {
-        displayName: 'Menu 1',
-        iconName: 'point',
-        route: '/menu-1',
-        children: [
-          {
-            displayName: 'Menu 1',
-            iconName: 'point',
-            route: '/menu-1',
-          },
-
-          {
-            displayName: 'Menu 2',
-            iconName: 'point',
-            route: '/menu-2',
-          },
-        ],
-      },
-
-      {
-        displayName: 'Menu 2',
-        iconName: 'point',
-        route: '/menu-2',
-      },
-    ],
   },
 ];
