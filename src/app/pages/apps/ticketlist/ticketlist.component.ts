@@ -12,7 +12,6 @@ export interface TicketElement {
   title: string;
   subtext: string;
   assignee: string;
-  imgSrc: string;
   status: string;
   date: string;
 }
@@ -23,7 +22,6 @@ const tickets: TicketElement[] = [
     title: 'Sed ut perspiciatis unde omnis iste',
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    imgSrc: '/assets/images/profile/user-1.jpg',
     assignee: 'Alice',
     status: 'inprogress',
     date: '2023-05-01',
@@ -34,7 +32,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Jonathan',
-    imgSrc: '/assets/images/profile/user-2.jpg',
     status: 'open',
     date: '2023-05-03',
   },
@@ -44,7 +41,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Smith',
-    imgSrc: '/assets/images/profile/user-3.jpg',
     status: 'closed',
     date: '2023-05-02',
   },
@@ -54,7 +50,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Vincent',
-    imgSrc: '/assets/images/profile/user-4.jpg',
     status: 'inprogress',
     date: '2023-05-06',
   },
@@ -64,7 +59,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Chris',
-    imgSrc: '/assets/images/profile/user-5.jpg',
     status: 'open',
     date: '2023-05-04',
   },
@@ -74,7 +68,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'James',
-    imgSrc: '/assets/images/profile/user-6.jpg',
     status: 'closed',
     date: '2023-05-03',
   },
@@ -84,7 +77,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Jonathan',
-    imgSrc: '/assets/images/profile/user-7.jpg',
     status: 'inprogress',
     date: '2023-05-05',
   },
@@ -94,7 +86,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Smith',
-    imgSrc: '/assets/images/profile/user-8.jpg',
     status: 'open',
     date: '2023-05-04',
   },
@@ -104,7 +95,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Markus',
-    imgSrc: '/assets/images/profile/user-9.jpg',
     status: 'closed',
     date: '2023-05-02',
   },
@@ -114,7 +104,6 @@ const tickets: TicketElement[] = [
     subtext:
       'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
     assignee: 'Jane',
-    imgSrc: '/assets/images/profile/user-10.jpg',
     status: 'closed',
     date: '2023-05-03',
   },
@@ -191,7 +180,6 @@ export class AppTicketlistComponent implements OnInit {
       title: row_obj.title,
       subtext: row_obj.subtext,
       assignee: row_obj.assignee,
-      imgSrc: '/assets/images/profile/user-1.jpg',
       status: row_obj.status,
       date: row_obj.date,
     });

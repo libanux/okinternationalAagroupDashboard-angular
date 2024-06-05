@@ -17,11 +17,11 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Apps',
   },
-  {
-    displayName: 'Contacts',
-    iconName: 'phone',
-    route: 'apps/contacts',
-  },
+  // {
+  //   displayName: 'Contacts',
+  //   iconName: 'phone',
+  //   route: 'apps/contacts',
+  // },
   {
     displayName: 'Employee',
     iconName: 'brand-ctemplar',
