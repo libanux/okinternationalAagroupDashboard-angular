@@ -104,6 +104,12 @@ export const AppsRoutes: Routes = [
         path: 'editinvoice/:id',
         component: AppEditInvoiceComponent,
       },
+      {
+        path: 'viewTicket/:id',
+        component: AppEditInvoiceComponent,
+      },
+      // {
+      // },
     ],
   },
 ];
