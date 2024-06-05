@@ -19,6 +19,7 @@ import { AppInvoiceViewComponent } from './invoice/invoice-view/invoice-view.com
 import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.component';
 import { AppBlogsComponent } from './blogs/blogs.component';
 import { AppBlogDetailsComponent } from './blogs/details/details.component';
+import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 
 export const AppsRoutes: Routes = [
   {
@@ -106,7 +107,7 @@ export const AppsRoutes: Routes = [
       },
       {
         path: 'viewTicket/:id',
-        component: AppEditInvoiceComponent,
+        component:ViewticketComponent
       },
       // {
       // },
