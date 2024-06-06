@@ -74,9 +74,9 @@ import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-d
 // blog
 import { AppBlogsComponent } from './blogs/blogs.component';
 import { AppBlogDetailsComponent } from './blogs/details/details.component';
-import { VisaComponentComponent } from './visa-component/visa-component.component';
 
 // visa
+import { VisaComponentComponent } from './visa-component/visa-component.component';
 
 @NgModule({
   imports: [

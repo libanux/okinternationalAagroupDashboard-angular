@@ -1,10 +1,9 @@
-import { TicketList } from "./visa";
+import { VisaClass } from "./visa-class";
 
-
-export const ticketLists: TicketList[] = [
+export const VisaArray: VisaClass[] = [
   {
     id: 1,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Paris',
     duration: '7 days',
     hotels: 'Hotel Paris',
@@ -15,7 +14,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 2,
-    name: 'Package',
+    name: 'Visa',
     destination: 'London',
     duration: '5 days',
     hotels: 'Hotel London',
@@ -26,7 +25,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 3,
-    name: 'Package',
+    name: 'Visa',
     destination: 'New York',
     duration: '10 days',
     hotels: 'Hotel New York',
@@ -37,7 +36,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 4,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Tokyo',
     duration: '6 days',
     hotels: 'Hotel Tokyo',
@@ -48,7 +47,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 5,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Sydney',
     duration: '8 days',
     hotels: 'Hotel Sydney',
@@ -59,7 +58,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 6,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Rome',
     duration: '4 days',
     hotels: 'Hotel Rome',
@@ -70,7 +69,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 7,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Berlin',
     duration: '9 days',
     hotels: 'Hotel Berlin',
@@ -81,7 +80,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 8,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Moscow',
     duration: '12 days',
     hotels: 'Hotel Moscow',
@@ -92,7 +91,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 9,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Dubai',
     duration: '7 days',
     hotels: 'Hotel Dubai',
@@ -103,7 +102,7 @@ export const ticketLists: TicketList[] = [
   },
   {
     id: 10,
-    name: 'Package',
+    name: 'Visa',
     destination: 'Barcelona',
     duration: '5 days',
     hotels: 'Hotel Barcelona',

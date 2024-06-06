@@ -1,4 +1,4 @@
-export class TicketList {
+export class VisaClass {
     constructor(
       public id: number = 0,
       public name: string = '',
