@@ -75,6 +75,8 @@ import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-d
 import { AppBlogsComponent } from './blogs/blogs.component';
 import { AppBlogDetailsComponent } from './blogs/details/details.component';
 import { VisaComponentComponent } from './visa-component/visa-component.component';
+import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
+import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
 
 // visa
 
@@ -134,8 +136,10 @@ import { VisaComponentComponent } from './visa-component/visa-component.componen
     OkDialogComponent,
     AppBlogsComponent,
     AppBlogDetailsComponent,
-    VisaComponentComponent
-
+    VisaComponentComponent,
+    LaborMainComponent,
+    ViewLaborComponent
+    
   ],
   providers: [DatePipe],
 })
