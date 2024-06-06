@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VisaServiceService } from './visa-service.service';
+import { VisaserviceService } from './visaservice.service';
 
-describe('VisaServiceService', () => {
-  let service: VisaServiceService;
+describe('VisaserviceService', () => {
+  let service: VisaserviceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VisaServiceService);
+    service = TestBed.inject(VisaserviceService);
   });
 
   it('should be created', () => {
