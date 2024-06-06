@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceinvoiceService } from '../../invoice/serviceinvoice.service';
-// import { TicketElement } from '../ticketlist.component';
-
-import { TicketList } from '../visa';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VisaClass } from '../visa-class';
 import { MatCardModule } from '@angular/material/card';
 import { VisaserviceService } from '../visaservice.service';
 
@@ -17,13 +13,13 @@ import { VisaserviceService } from '../visaservice.service';
 })
 export class ViewVisaComponent {
   id: any;
-  ticketDetail: TicketList;
+  ticketDetail: VisaClass;
   displayedColumns: string[] = ['itemName', 'unitPrice', 'unit', 'total'];
 
   constructor(activatedRouter: ActivatedRoute, private visaservice: VisaserviceService) {
     this.id = activatedRouter.snapshot.paramMap.get('id');
     console.log("id",this.id)
-    this.ticketDetail = this.visaservice.getTicketList().filter((x) => x?.id === +this.id)[0];
+    this.ticketDetail = this.visaservice.getVisaArray().filter((x) => x?.id === +this.id)[0];
     console.log("Ticket",this.ticketDetail)
   }
 }
