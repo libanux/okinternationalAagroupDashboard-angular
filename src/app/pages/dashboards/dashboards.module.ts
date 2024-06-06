@@ -10,8 +10,6 @@ import { AppDashboard3Component } from './dashboard3/dashboard3.component';
 @NgModule({
   imports: [
     RouterModule.forChild(DashboardsRoutes),
-    AppDashboard1Component,
-    AppDashboard2Component,
     AppDashboard3Component
   ],
 })
