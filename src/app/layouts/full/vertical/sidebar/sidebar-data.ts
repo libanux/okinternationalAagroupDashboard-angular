@@ -12,7 +12,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Dashboard',
     iconName: 'inbox',
-    route: '/dashboards/dashboard3',
+    route: '/',
   },
   {
     navCap: 'Apps',

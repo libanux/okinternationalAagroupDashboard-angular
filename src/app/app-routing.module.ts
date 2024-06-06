@@ -11,20 +11,23 @@ const routes: Routes = [
       {
         path: 'starter',
         loadChildren: () =>
-          import('./pages/pages.module').then((m) => m.PagesModule),
+          import('./pages/pages.module').then(
+            (m) => m.PagesModule),
       },
       {
         path: 'visa',
         loadChildren: () =>
-          import('./pages/apps/visa/visa.module').then((m) => m.VisaModule),
+          import('./pages/apps/visa/visa.module').then(
+            (m) => m.VisaModule),
       },
       {
         path: 'labor',
         loadChildren: () =>
-          import('./pages/apps/labor-rec/labor-rec.module').then((m) => m.LaborRecModule),
+          import('./pages/apps/labor-rec/labor-rec.module').then(
+            (m) => m.LaborRecModule),
       },
       {
-        path: 'dashboards',
+        path: '',
         loadChildren: () =>
           import('./pages/dashboards/dashboards.module').then(
             (m) => m.DashboardsModule
