@@ -9,18 +9,18 @@ export const DashboardsRoutes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'dashboard1',
-        component: AppDashboard1Component,
+      // {
+      //   path: 'dashboard1',
+      //   component: AppDashboard1Component,
         
-      },
-      {
-        path: 'dashboard2',
-        component: AppDashboard2Component,
+      // },
+      // {
+      //   path: 'dashboard2',
+      //   component: AppDashboard2Component,
         
-      },
+      // },
       {
-        path: 'dashboard3',
+        path: '',
         component: AppDashboard3Component,
        
       },
