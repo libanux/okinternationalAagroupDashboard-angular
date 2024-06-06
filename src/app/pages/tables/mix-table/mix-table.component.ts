@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MaterialModule } from '../../../material.module';
 
+import { MaterialModule } from '../../../material.module';
 /** Constants used to fill up our data base. */
 const COLORS = [
   'maroon',

@@ -1,4 +1,4 @@
-import { VisaClass } from "./visa-class";
+import { VisaClass } from "./visaClass";
 
 export const VisaArray: VisaClass[] = [
   {

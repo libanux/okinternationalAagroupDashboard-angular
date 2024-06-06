@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MaterialModule } from '../../../material.module';
 
+import { MaterialModule } from '../../../material.module';
 @Component({
   selector: 'app-form-wizard',
   standalone: true,

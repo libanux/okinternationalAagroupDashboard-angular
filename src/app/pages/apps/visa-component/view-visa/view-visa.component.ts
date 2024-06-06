@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { VisaClass } from '../visa-class';
+import { VisaClass } from '../visaClass';
 import { MatCardModule } from '@angular/material/card';
 import { VisaserviceService } from '../visaservice.service';
 

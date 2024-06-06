@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { MaterialModule } from '../../../material.module';
 
+import { MaterialModule } from '../../../material.module';
 @Component({
   selector: 'app-lockscreen',
   standalone: true,

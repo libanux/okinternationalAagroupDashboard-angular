@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VisaClass } from './visa-class';
+import { VisaClass } from './visaClass';
 import { from } from 'rxjs';
 import { VisaArray } from './visa-data';
 

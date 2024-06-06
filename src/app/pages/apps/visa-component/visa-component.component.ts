@@ -7,7 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { VisaArray } from './visa-data';
-import { VisaClass } from './visa-class';
+import { VisaClass } from './visaClass';
 
 @Component({
   selector: 'app-visa-component',
