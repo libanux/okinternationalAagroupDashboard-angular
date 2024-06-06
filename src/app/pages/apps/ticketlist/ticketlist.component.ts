@@ -28,7 +28,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Paris',
     date: '2023-05-01',
     nbOfSeats: 10,
-    note: 'Lorem ipsum dolor sit amet',
+    note: 'Note',
     status: 'inprogress'
   },
   {
@@ -39,7 +39,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel London',
     date: '2023-06-15',
     nbOfSeats: 8,
-    note: 'Consectetur adipiscing elit',
+    note: 'Note',
     status: 'completed'
   },
   {
@@ -50,7 +50,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel New York',
     date: '2023-07-22',
     nbOfSeats: 12,
-    note: 'Sed do eiusmod tempor incididunt',
+    note: 'Note',
     status: 'completed'
   },
   {
@@ -61,7 +61,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Tokyo',
     date: '2023-08-10',
     nbOfSeats: 15,
-    note: 'Ut labore et dolore magna aliqua',
+    note: 'Note',
     status: 'inprogress'
   },
   {
@@ -72,7 +72,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Sydney',
     date: '2023-09-01',
     nbOfSeats: 20,
-    note: 'Duis aute irure dolor in reprehenderit',
+    note: 'Note',
     status: 'cancelled'
   },
   {
@@ -83,7 +83,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Rome',
     date: '2023-10-15',
     nbOfSeats: 5,
-    note: 'Excepteur sint occaecat cupidatat',
+    note: 'Note',
     status: 'completed'
   },
   {
@@ -94,7 +94,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Berlin',
     date: '2023-11-05',
     nbOfSeats: 7,
-    note: 'Nemo enim ipsam voluptatem quia voluptas',
+    note: 'Note',
     status: 'completed'
   },
   {
@@ -105,7 +105,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Moscow',
     date: '2023-12-20',
     nbOfSeats: 10,
-    note: 'Velit esse cillum dolore eu fugiat',
+    note: 'Note',
     status: 'completed'
   },
   {
@@ -116,7 +116,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Dubai',
     date: '2024-01-14',
     nbOfSeats: 18,
-    note: 'Quis nostrud exercitation ullamco laboris',
+    note: 'Note',
     status: 'inprogress'
   },
   {
@@ -127,7 +127,7 @@ const tickets: TicketElement[] = [
     hotels: 'Hotel Barcelona',
     date: '2024-02-18',
     nbOfSeats: 12,
-    note: 'Ut enim ad minima veniam',
+    note: 'Note',
     status: 'cancelled'
   }
 ];
@@ -142,9 +142,9 @@ export class AppTicketlistComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
   searchText: any;
   totalCount = -1;
-  Closed = -1;
+  Cancelled = -1;
   Inprogress = -1;
-  Open = -1;
+  Completed = -1;
 
   displayedColumns: string[] = [
     'id',
@@ -165,8 +165,8 @@ export class AppTicketlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.totalCount = this.dataSource.data.length;
-    this.Open = this.btnCategoryClick('Open');
-    this.Closed = this.btnCategoryClick('Closed');
+    this.Completed = this.btnCategoryClick('Completed');
+    this.Cancelled = this.btnCategoryClick('Cancelled');
     this.Inprogress = this.btnCategoryClick('InProgress');
     this.dataSource = new MatTableDataSource(tickets);
   }
