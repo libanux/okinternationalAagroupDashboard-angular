@@ -14,8 +14,8 @@ import {
   ApexFill,
   NgApexchartsModule,
 } from 'ng-apexcharts';
-import { MaterialModule } from '../../../material.module';
 
+import { MaterialModule } from '../../../material.module';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;

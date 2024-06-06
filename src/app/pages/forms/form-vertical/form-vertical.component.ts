@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../material.module';
-import { TablerIconsModule } from 'angular-tabler-icons';
+
+import { MaterialModule } from '../../../material.module';import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
   selector: 'app-form-vertical',

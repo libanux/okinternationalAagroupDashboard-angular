@@ -19,8 +19,8 @@ import {
 } from '@angular/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { MaterialModule } from 'src/app/material.module';
-import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../../../../../material.module';import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-item',

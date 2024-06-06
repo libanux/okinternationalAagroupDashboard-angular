@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MaterialModule } from '../../../material.module';
-import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../../../material.module';import { CommonModule } from '@angular/common';
 
 const PRODUCT_DATA: Element[] = [
   {

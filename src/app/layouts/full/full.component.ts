@@ -9,8 +9,8 @@ import { NavService } from '../../services/nav.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { AppSearchDialogComponent, HeaderComponent } from './vertical/header/header.component';
 import { SidebarComponent } from './vertical/sidebar/sidebar.component';
-import { MaterialModule } from 'src/app/material.module';
-import { RouterModule } from '@angular/router';
+
+import { MaterialModule } from '../../material.module';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppNavItemComponent } from './vertical/sidebar/nav-item/nav-item.component';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MaterialModule } from '../../../material.module';
-import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../../../material.module';import { CommonModule } from '@angular/common';
 export interface Transaction {
   item: string;
   img: string;

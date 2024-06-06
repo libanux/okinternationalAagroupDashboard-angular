@@ -6,8 +6,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { MaterialModule } from '../../../material.module';
-import { CommonModule } from '@angular/common';
+
+import { MaterialModule } from '../../../material.module';import { CommonModule } from '@angular/common';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {
