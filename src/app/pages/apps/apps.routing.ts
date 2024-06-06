@@ -26,6 +26,10 @@ export const AppsRoutes: Routes = [
     path: '',
     children: [
       {
+        path: 'visa',
+        component: AppBlogsComponent,
+      },
+      {
         path: 'chat',
         component: AppChatComponent,
        

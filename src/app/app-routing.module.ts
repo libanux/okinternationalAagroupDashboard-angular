@@ -9,14 +9,14 @@ const routes: Routes = [
     component: FullComponent,
     children: [
       {
-        path: '',
-        redirectTo: '/dashboards/dashboard3',
-        pathMatch: 'full',
-      },
-      {
         path: 'starter',
         loadChildren: () =>
           import('./pages/pages.module').then((m) => m.PagesModule),
+      },
+      {
+        path: 'visa',
+        loadChildren: () =>
+          import('./pages/apps/visa/visa.module').then((m) => m.VisaModule),
       },
       {
         path: 'dashboards',
@@ -66,9 +66,8 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    component: BlankComponent,
+
+  { path: '', component: BlankComponent,
     children: [
       {
         path: 'authentication',
@@ -79,10 +78,13 @@ const routes: Routes = [
       },
     ],
   },
+
   {
     path: '**',
     redirectTo: 'authentication/error',
-  },
+  }
+
+ 
 ];
 
 @NgModule({
