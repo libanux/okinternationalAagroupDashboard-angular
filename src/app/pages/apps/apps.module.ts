@@ -74,7 +74,9 @@ import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-d
 // blog
 import { AppBlogsComponent } from './blogs/blogs.component';
 import { AppBlogDetailsComponent } from './blogs/details/details.component';
+import { VisaComponentComponent } from './visa-component/visa-component.component';
 
+// visa
 
 @NgModule({
   imports: [
@@ -95,7 +97,8 @@ import { AppBlogDetailsComponent } from './blogs/details/details.component';
       useFactory: adapterFactory,
     }),
     MatNativeDateModule,
-    NgScrollbarModule,
+    NgScrollbarModule
+    
   ],
   exports: [TablerIconsModule],
   declarations: [
@@ -131,6 +134,8 @@ import { AppBlogDetailsComponent } from './blogs/details/details.component';
     OkDialogComponent,
     AppBlogsComponent,
     AppBlogDetailsComponent,
+    VisaComponentComponent
+
   ],
   providers: [DatePipe],
 })
