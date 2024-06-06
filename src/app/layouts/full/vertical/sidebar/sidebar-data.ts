@@ -1,9 +1,9 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  {
-    navCap: 'Home',
-  },
+  // {
+  //   navCap: 'Home',
+  // },
   // {
   //   displayName: 'Analytical',
   //   iconName: 'chart-pie-2',
@@ -14,9 +14,9 @@ export const navItems: NavItem[] = [
     iconName: 'inbox',
     route: '/',
   },
-  {
-    navCap: 'Apps',
-  },
+  // {
+  //   navCap: 'Apps',
+  // },
   // {
   //   displayName: 'Contacts',
   //   iconName: 'phone',
@@ -35,7 +35,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Labor Recruitment',
-    iconName: 'ticket',
+    iconName: 'clipboard',
     route: 'apps/labors',
   },
   {
@@ -44,26 +44,27 @@ export const navItems: NavItem[] = [
     route: 'apps/notes',
   },
   
-  {
-    navCap: 'Pages',
-  },
+  // {
+  //   navCap: 'Pages',
+  // },
   {
     displayName: 'Charts',
-    iconName: 'point',
+    iconName: 'layout',
+    // iconName: 'file-description',
     route: 'widgets/charts',
   },
-  {
-    displayName: 'Invoice',
-    iconName: 'file-invoice',
-    route: 'apps/invoice',
-  },
+  // {
+  //   displayName: 'Invoice',
+  //   iconName: 'file-invoice',
+  //   route: 'apps/invoice',
+  // },
 
   {
     navCap: 'Auth',
   },
   {
     displayName: 'Users',
-    iconName: 'brand-ctemplar',
+    iconName: 'user-plus',
     route: 'apps/employee',
   },
   {
