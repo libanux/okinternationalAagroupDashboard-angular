@@ -22,6 +22,7 @@ import { AppBlogDetailsComponent } from './blogs/details/details.component';
 import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 import { VisaModule } from './visa/visa.module';
 import { LaborRecModule } from './labor-rec/labor-rec.module';
+import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
 
 export const AppsRoutes: Routes = [
   {
@@ -118,6 +119,10 @@ export const AppsRoutes: Routes = [
       {
         path: 'viewTicket/:id',
         component:ViewticketComponent
+      },
+      {
+        path: 'viewLabor/:id',
+        component:ViewLaborComponent
       },
       // {
       // },
