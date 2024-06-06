@@ -8,10 +8,7 @@ import { navItems } from './vertical/sidebar/sidebar-data';
 import { NavService } from '../../services/nav.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { AppSearchDialogComponent, HeaderComponent } from './vertical/header/header.component';
-import { AppHorizontalHeaderComponent } from './horizontal/header/header.component';
-import { AppHorizontalSidebarComponent } from './horizontal/sidebar/sidebar.component';
 import { SidebarComponent } from './vertical/sidebar/sidebar.component';
-import { CustomizerComponent } from './shared/customizer/customizer.component';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -28,11 +25,8 @@ const BELOWMONITOR = 'screen and (max-width: 1023px)';
   imports: [
     NgScrollbarModule,
     HeaderComponent,
-    AppHorizontalHeaderComponent,
-    AppHorizontalSidebarComponent,
     SidebarComponent,
     AppSearchDialogComponent,
-    CustomizerComponent,
     MaterialModule,
     RouterModule,
     CommonModule,

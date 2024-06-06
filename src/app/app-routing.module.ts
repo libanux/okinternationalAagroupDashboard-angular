@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { BlankComponent } from './layouts/blank/blank.component';
 
 const routes: Routes = [
   {
     path: '',
     component: FullComponent,
     children: [
-      {
-        path: 'starter',
-        loadChildren: () =>
-          import('./pages/pages.module').then(
-            (m) => m.PagesModule),
-      },
+      // {
+      //   path: 'starter',
+      //   loadChildren: () =>
+      //     import('./pages/pages.module').then(
+      //       (m) => m.PagesModule),
+      // },
       {
         path: 'labor',
         loadChildren: () =>
