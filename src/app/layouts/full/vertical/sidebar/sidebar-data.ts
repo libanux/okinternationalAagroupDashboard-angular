@@ -31,12 +31,12 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Visa',
     iconName: 'ticket',
-    route: 'apps/Visa',
+    route: 'visa/main',
   },
   {
     displayName: 'Labor Recruiment',
     iconName: 'ticket',
-    route: 'apps/tickets',
+    route: 'visa/main',
   },
   {
     displayName: 'Notes',
