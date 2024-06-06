@@ -24,9 +24,9 @@ export const navItems: NavItem[] = [
   // },
   
   {
-    displayName: 'Package1',
+    displayName: 'Package',
     iconName: 'ticket',
-    route: 'apps/Package',
+    route: 'apps/tickets',
   },
   {
     displayName: 'Visa',
@@ -34,7 +34,7 @@ export const navItems: NavItem[] = [
     route: 'visa/main',
   },
   {
-    displayName: 'Package',
+    displayName: 'Labor Recruitment',
     iconName: 'ticket',
     route: 'labor/main',
   },
