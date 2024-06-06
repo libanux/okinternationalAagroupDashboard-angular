@@ -8,105 +8,128 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 
 export interface TicketElement {
-  id: number;
-  title: string;
-  subtext: string;
-  assignee: string;
-  status: string;
-  date: string;
+  id: number
+  name: string
+  destination: string
+  duration: string
+  hotels: string
+  date: string
+  nbOfSeats: number
+  note: string
+  status: string
 }
 
 const tickets: TicketElement[] = [
   {
     id: 1,
-    title: 'Sed ut perspiciatis unde omnis iste',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Alice',
-    status: 'inprogress',
+    name: 'Package',
+    destination: 'Paris',
+    duration: '7 days',
+    hotels: 'Hotel Paris',
     date: '2023-05-01',
+    nbOfSeats: 10,
+    note: 'Lorem ipsum dolor sit amet',
+    status: 'inprogress'
   },
   {
     id: 2,
-    title: 'Xtreme theme dropdown issue',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Jonathan',
-    status: 'open',
-    date: '2023-05-03',
+    name: 'Package',
+    destination: 'London',
+    duration: '5 days',
+    hotels: 'Hotel London',
+    date: '2023-06-15',
+    nbOfSeats: 8,
+    note: 'Consectetur adipiscing elit',
+    status: 'completed'
   },
   {
     id: 3,
-    title: 'Header issue in material admin',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Smith',
-    status: 'closed',
-    date: '2023-05-02',
+    name: 'Package',
+    destination: 'New York',
+    duration: '10 days',
+    hotels: 'Hotel New York',
+    date: '2023-07-22',
+    nbOfSeats: 12,
+    note: 'Sed do eiusmod tempor incididunt',
+    status: 'completed'
   },
   {
     id: 4,
-    title: 'Sidebar issue in Nice admin',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Vincent',
-    status: 'inprogress',
-    date: '2023-05-06',
+    name: 'Package',
+    destination: 'Tokyo',
+    duration: '6 days',
+    hotels: 'Hotel Tokyo',
+    date: '2023-08-10',
+    nbOfSeats: 15,
+    note: 'Ut labore et dolore magna aliqua',
+    status: 'inprogress'
   },
   {
     id: 5,
-    title: 'Elegant Theme Side Menu show OnClick',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Chris',
-    status: 'open',
-    date: '2023-05-04',
+    name: 'Package',
+    destination: 'Sydney',
+    duration: '8 days',
+    hotels: 'Hotel Sydney',
+    date: '2023-09-01',
+    nbOfSeats: 20,
+    note: 'Duis aute irure dolor in reprehenderit',
+    status: 'cancelled'
   },
   {
     id: 6,
-    title: 'Header issue in admin pro admin',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'James',
-    status: 'closed',
-    date: '2023-05-03',
+    name: 'Package',
+    destination: 'Rome',
+    duration: '4 days',
+    hotels: 'Hotel Rome',
+    date: '2023-10-15',
+    nbOfSeats: 5,
+    note: 'Excepteur sint occaecat cupidatat',
+    status: 'completed'
   },
   {
     id: 7,
-    title: 'Elegant Theme Side Menu OnClick',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Jonathan',
-    status: 'inprogress',
-    date: '2023-05-05',
+    name: 'Package',
+    destination: 'Berlin',
+    duration: '9 days',
+    hotels: 'Hotel Berlin',
+    date: '2023-11-05',
+    nbOfSeats: 7,
+    note: 'Nemo enim ipsam voluptatem quia voluptas',
+    status: 'completed'
   },
   {
     id: 8,
-    title: 'adminpress Theme Side Menu not opening',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Smith',
-    status: 'open',
-    date: '2023-05-04',
+    name: 'Package',
+    destination: 'Moscow',
+    duration: '12 days',
+    hotels: 'Hotel Moscow',
+    date: '2023-12-20',
+    nbOfSeats: 10,
+    note: 'Velit esse cillum dolore eu fugiat',
+    status: 'completed'
   },
   {
     id: 9,
-    title: 'Charts not proper in xtreme admin',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Markus',
-    status: 'closed',
-    date: '2023-05-02',
+    name: 'Package',
+    destination: 'Dubai',
+    duration: '7 days',
+    hotels: 'Hotel Dubai',
+    date: '2024-01-14',
+    nbOfSeats: 18,
+    note: 'Quis nostrud exercitation ullamco laboris',
+    status: 'inprogress'
   },
   {
     id: 10,
-    title: 'Psd not availabel with package',
-    subtext:
-      'ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos',
-    assignee: 'Jane',
-    status: 'closed',
-    date: '2023-05-03',
-  },
+    name: 'Package',
+    destination: 'Barcelona',
+    duration: '5 days',
+    hotels: 'Hotel Barcelona',
+    date: '2024-02-18',
+    nbOfSeats: 12,
+    note: 'Ut enim ad minima veniam',
+    status: 'cancelled'
+  }
 ];
 
 @Component({
@@ -116,7 +139,7 @@ const tickets: TicketElement[] = [
 export class AppTicketlistComponent implements OnInit {
   @ViewChild(MatTable, { static: true }) table: MatTable<any> =
     Object.create(null);
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
   searchText: any;
   totalCount = -1;
   Closed = -1;
@@ -125,15 +148,20 @@ export class AppTicketlistComponent implements OnInit {
 
   displayedColumns: string[] = [
     'id',
-    'title',
-    'assignee',
-    'status',
+    'name',
+    'destination',
+    'duration',
+    'hotels',
     'date',
-    'action',
+    'nbOfSeats',
+    'note',
+    'status',
+    'action',  // If you still need an action column
   ];
+
   dataSource = new MatTableDataSource(tickets);
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.totalCount = this.dataSource.data.length;
@@ -157,48 +185,48 @@ export class AppTicketlistComponent implements OnInit {
   }
 
   openDialog(action: string, obj: any): void {
-    obj.action = action;
-    const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
-      data: obj,
-    });
+    // obj.action = action;
+    // const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
+    //   data: obj,
+    // });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
-      } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result.event === 'Add') {
+    //     this.addRowData(result.data);
+    //   } else if (result.event === 'Update') {
+    //     this.updateRowData(result.data);
+    //   } else if (result.event === 'Delete') {
+    //     this.deleteRowData(result.data);
+    //   }
+    // });
   }
   // tslint:disable-next-line - Disables all
-  addRowData(row_obj: TicketElement): void {
-    const d = new Date();
-    this.dataSource.data.unshift({
-      id: d.getTime(),
-      title: row_obj.title,
-      subtext: row_obj.subtext,
-      assignee: row_obj.assignee,
-      status: row_obj.status,
-      date: row_obj.date,
-    });
-    this.table.renderRows();
-  }
+  // addRowData(row_obj: TicketElement): void {
+  //   const d = new Date();
+  //   this.dataSource.data.unshift({
+  //     id: d.getTime(),
+  //     title: row_obj.title,
+  //     subtext: row_obj.subtext,
+  //     assignee: row_obj.assignee,
+  //     status: row_obj.status,
+  //     date: row_obj.date,
+  //   });
+  //   this.table.renderRows();
+  // }
 
   // tslint:disable-next-line - Disables all
-  updateRowData(row_obj: TicketElement): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value, key) => {
-      if (value.id === row_obj.id) {
-        value.title = row_obj.title;
-        value.subtext = row_obj.subtext;
-        value.assignee = row_obj.assignee;
-        value.status = row_obj.status;
-        value.date = row_obj.date;
-      }
-      return true;
-    });
-  }
+  // updateRowData(row_obj: TicketElement): boolean | any {
+  //   this.dataSource.data = this.dataSource.data.filter((value, key) => {
+  //     if (value.id === row_obj.id) {
+  //       value.title = row_obj.title;
+  //       value.subtext = row_obj.subtext;
+  //       value.assignee = row_obj.assignee;
+  //       value.status = row_obj.status;
+  //       value.date = row_obj.date;
+  //     }
+  //     return true;
+  //   });
+  // }
 
   // tslint:disable-next-line - Disables all
   deleteRowData(row_obj: TicketElement): boolean | any {

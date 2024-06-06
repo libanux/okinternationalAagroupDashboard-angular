@@ -5,11 +5,13 @@ import { TicketElement } from '../ticketlist.component';
 
 import { ServiceticketService } from '../serviceticket.service';
 import { TicketList } from '../ticket';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-viewticket',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './viewticket.component.html',
   styleUrl: './viewticket.component.scss'
 })
