@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceinvoiceService } from '../../invoice/serviceinvoice.service';
-import { TicketElement } from '../ticketlist.component';
+
 
 import { ServiceticketService } from '../serviceticket.service';
 import { TicketList } from '../ticket';

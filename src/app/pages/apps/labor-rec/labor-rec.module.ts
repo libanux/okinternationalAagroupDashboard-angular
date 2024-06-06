@@ -11,12 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 @NgModule({
   imports: [
     RouterModule.forChild(laborRoutes),
-    LaborMainComponent,
     LaborTableComponent,
-      BrowserModule,
-      BrowserAnimationsModule,
-      MatFormFieldModule,
-      MatInputModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class LaborRecModule { }

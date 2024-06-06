@@ -1,7 +1,7 @@
 import { TicketList } from "./ticket";
 
 
-export const ticketLists: TicketList[] = [
+export const tickets: TicketList[] = [
   {
     id: 1,
     name: 'Package',

@@ -1,6 +1,6 @@
 import { LaborList } from "./labor";
 
-export const laborLists: LaborList[] = [
+export const labors: LaborList[] = [
     {
       id: 1,
       name: 'John Doe',
@@ -9,7 +9,7 @@ export const laborLists: LaborList[] = [
       type: 'Skilled',
       cost: '$200/day',
       note: 'Experienced carpenter',
-      status: 'active'
+      status: 'Active'
     },
     {
       id: 2,
