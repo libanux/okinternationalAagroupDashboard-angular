@@ -12,9 +12,8 @@
 
 
   <!-- ============================================================== -->
-  <!-- Vertical Sidebar -->
-  <!-- ============================================================== -->
-  @if(!options.horizontal) {
+  <!-- Sidebar -->
+
   <mat-sidenav #leftsidenav [mode]="isOver ? 'over' : 'side'"
     [opened]="options.navPos === 'side' && options.sidenavOpened && !isOver && !resView"
     (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav">
@@ -31,37 +30,27 @@
       </ng-scrollbar>
     </div>
   </mat-sidenav>
-  }
 
   <!-- ============================================================== -->
   <!-- Main Content -->
-  <!-- ============================================================== -->
 
 <mat-sidenav-content class="contentWrapper" #content>
-    <!-- ============================================================== -->
-    <!-- VerticalHeader -->
-    <!-- ============================================================== -->
-    @if(!options.horizontal) {
-    <app-header [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()"
-      (toggleMobileNav)="sidenav.toggle()"></app-header>
-    } @else {
-    <app-horizontal-header (toggleMobileNav)="sidenav.toggle()"></app-horizontal-header>
-    }
 
-    @if(options.horizontal) {
-    <app-horizontal-sidebar></app-horizontal-sidebar>
-    }
-
+<app-header 
+  [showToggle]="!isOver" 
+  (toggleCollapsed)="toggleCollapsed()" 
+  (toggleMobileNav)="sidenav.toggle()">
+</app-header>
+  
 
 <!-- ============================================================== -->
 <!-- Outlet -->
-<!-- ============================================================== -->
 <main class="pageWrapper" [ngClass]="{maxWidth: options.boxed}">
     <router-outlet></router-outlet>
 </main>
 
 
-  </mat-sidenav-content>
+</mat-sidenav-content>
 <!-- 
   <mat-sidenav #customizerRight mode="over" position="end">
     <app-customizer (optionsChange)="receiveOptions($event)"></app-customizer>

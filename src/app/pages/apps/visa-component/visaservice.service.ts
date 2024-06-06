@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-import {  TicketList } from './visa';
+import { VisaClass } from './visa-class';
 import { from } from 'rxjs';
-import { ticketLists } from './visa-data';
+import { VisaArray } from './visa-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisaserviceService {
 
-  private ticketlist: TicketList[] = [];
+  private visaArray: VisaClass[] = [];
 
-  private getTicket(): any {
-    return from(ticketLists);
-  }
   constructor() {
-    this.getTicket().subscribe((data: any) => this.ticketlist.push(data));
-    console.log("Ticket list:",this.ticketlist)
+    this.getVisa().subscribe((data: any) => this.visaArray.push(data));
+    console.log("Visa array :",this.visaArray)
   }
 
+  private getVisa(): any {
+    return from(VisaArray);
+  }
 
-  public getTicketList(): TicketList[] {
-    return this.ticketlist;
+  public getVisaArray(): VisaClass[] {
+    return this.visaArray;
   }
 }
