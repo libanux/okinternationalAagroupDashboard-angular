@@ -12,6 +12,7 @@ import { VisaClass } from './visaClass';
 @Component({
   selector: 'app-visa-component',
   templateUrl: './visa-component.component.html',
+    styleUrl: './visa-component.component.scss'
 })
 
 export class VisaComponentComponent implements OnInit {
