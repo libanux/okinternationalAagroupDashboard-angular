@@ -10,8 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-viewticket',
-  standalone: true,
-  imports: [MatCardModule],
   templateUrl: './viewticket.component.html',
   styleUrl: './viewticket.component.scss'
 })

@@ -71,6 +71,7 @@ import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component'
 
 // visa
 import { VisaComponentComponent } from './visa-component/visa-component.component';
+import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 
 @NgModule({
   imports: [
@@ -122,7 +123,9 @@ import { VisaComponentComponent } from './visa-component/visa-component.componen
     OkDialogComponent,
     VisaComponentComponent,
     LaborMainComponent,
-    ViewLaborComponent
+    ViewLaborComponent,
+    AppTicketlistComponent,
+    ViewticketComponent
 
   ],
   providers: [DatePipe],
