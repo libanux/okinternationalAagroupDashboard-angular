@@ -34,27 +34,68 @@
   </div>
 </div>
 <!-- add and search tickets -->
-<mat-card class="cardWithShadow">
+<!-- <mat-card class="cardWithShadow">
   <mat-card-content>
-    <div class="row justify-content-between">
-      <div class="col-sm-4">
+    <div class="row justify-content-between"> -->
+      <!-- <div class="col-sm-4">
         <mat-form-field appearance="outline" class="hide-hint">
           <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Packages" />
           <mat-icon matSuffix>
             <i-tabler name="search" class="icon-20"></i-tabler>
           </mat-icon>
         </mat-form-field>
-      </div>
-      <div class="col-sm-4 d-flex justify-content-end align-items-center">
+      </div> -->
+      <!-- <div class="col-sm-4 d-flex justify-content-end align-items-center">
         <button mat-flat-button (click)="openDialog('Add', {})" color="primary">
           Add Package
         </button>
       </div>
     </div>
   </mat-card-content>
+</mat-card> -->
+
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+
+
+
+      <div class="InputsWholeRow">
+
+          <div class="inputsInAdd">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Destination">
+            <input type="number" placeholder="Duration">
+            <input type="text" placeholder="Hotels">
+            <input type="text" placeholder="Date">
+            <input type="number" placeholder="Seats">
+            <input type="text" placeholder="Note">
+            <input type="text" placeholder="Status">
+          </div>
+
+        <div>
+          <button mat-flat-button (click)="openDialog('Add', {})" color="primary">
+            Add Package
+          </button>
+        </div>
+
+      </div>
+
+
+  </mat-card-content>
 </mat-card>
+
+
 <!-- table -->
 <mat-card class="cardWithShadow">
+  <div class="col-sm-4 p-20 searchbar ">
+    <mat-form-field appearance="outline" class="hide-hint custom-search ">
+      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Packages" />
+      <mat-icon matSuffix>
+        <i-tabler name="search" class="icon-20"></i-tabler>
+      </mat-icon>
+    </mat-form-field>
+  </div>
+  
   <mat-card-content>
     <div class="table-responsive">
       <table mat-table [dataSource]="dataSource" class="w-100 f-w-500 no-wrap">

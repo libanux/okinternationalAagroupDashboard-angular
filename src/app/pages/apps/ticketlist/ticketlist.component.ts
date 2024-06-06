@@ -12,6 +12,7 @@ import { TicketList } from './ticket';
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticketlist.component.html',
+  styleUrl: './ticketlist.component.scss'
 })
 export class AppTicketlistComponent implements OnInit {
 
