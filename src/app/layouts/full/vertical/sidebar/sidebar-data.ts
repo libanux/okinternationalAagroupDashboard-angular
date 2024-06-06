@@ -36,7 +36,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Labor Recruiment',
     iconName: 'ticket',
-    route: 'visa/main',
+    route: 'labor/main',
   },
   {
     displayName: 'Notes',

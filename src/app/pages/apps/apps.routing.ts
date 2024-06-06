@@ -20,6 +20,8 @@ import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.com
 import { AppBlogsComponent } from './blogs/blogs.component';
 import { AppBlogDetailsComponent } from './blogs/details/details.component';
 import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
+import { VisaModule } from './visa/visa.module';
+import { LaborRecModule } from './labor-rec/labor-rec.module';
 
 export const AppsRoutes: Routes = [
   {
@@ -27,7 +29,11 @@ export const AppsRoutes: Routes = [
     children: [
       {
         path: 'visa',
-        component: AppBlogsComponent,
+        component: VisaModule,
+      },
+      {
+        path: 'labor',
+        component: LaborRecModule,
       },
       {
         path: 'chat',
