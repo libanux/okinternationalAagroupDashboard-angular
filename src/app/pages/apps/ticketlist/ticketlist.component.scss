@@ -1,39 +1,83 @@
 .InputsWholeRow{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 15px;
 
-    .inputsInAdd{
-        display: flex;
-        flex-direction: row;
-        column-gap: 10px;
+  .inputsInAdd{
+      display: flex;
+      flex-direction: row;
+      column-gap: 10px;
 
-        input {
-            width: 80px;
-            padding: 10px 5px;
-            border:  1px solid lightgray;
-            border-radius: 10px;
-        }
-    }
+      input {
+          width: 100%;
+          padding: 10px 5px;
+          border:  1px solid lightgray;
+          border-radius: 10px;
+      }
+  }
+
+  div button {
+      min-width: 100px;
+  }
+
+  .TwoButtons {
+      display: flex;
+      flex-direction: row;
+      column-gap: 10px;
+  }
 
 }
+
+.table-responsive {
+  table {
+      th, td, td span {
+          font-size: 14px;
+      }
+  }
+
+}
+
+.element-td {
+  div {
+      display: flex;
+      flex-direction: row;
+      column-gap: 10px;
+      align-items: center;
+      justify-content: center;
+  }
+  a {
+      cursor: pointer;
+  }
+}
+
+
+.searchbar {
+  height: 35px;
+}
+
+
+tr.example-detail-row {
+  height: 0;
+
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+
+
 table {
-    width: 100%;
-    
-    td{
-        cursor: pointer;
-    }
+  width: 100%;
+  
+  td{
+      cursor: pointer;
   }
-  
-  tr.example-detail-row {
-    height: 0;
-  
-  }
-  
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-//   .example-element-row td {
-//     border-bottom-width: 0;
-//   }
-  
-  
+}
+
+.btnadd{
+  font-size: 11px;
+}
+
+
+

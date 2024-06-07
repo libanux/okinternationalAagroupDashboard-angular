@@ -34,6 +34,34 @@
   </div>
 </div>
 
+<!-- Add Row  -->
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="InputsWholeRow">
+
+      <div class="inputsInAdd">
+        <input type="text" placeholder="{{Name}}">
+        <input type="text" placeholder="{{Destination}}">
+        <input type="text" placeholder="{{Duration}}">
+        <input type="text" placeholder="{{Hotels}}">
+        <input type="text" placeholder="{{Date}}">
+        <input type="text" placeholder="{{Seats}}">
+        <input type="text" placeholder="{{Note}}">
+        <input type="text" placeholder="{{Status}}">
+      </div>
+
+      <div *ngIf="ShowAddButoon">
+        <button mat-flat-button color="primary btnadd"> Add Package </button>
+      </div>
+
+      <div class="TwoButtons" *ngIf="!ShowAddButoon">
+        <button (click)="CancelUpdate()" mat-flat-button color="primary">Cancel</button>
+        <button mat-flat-button color="primary">Update</button>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
 
 
 <!-- MAIN TABLE -->
@@ -69,7 +97,7 @@
               <!-- SHOW ACTION TEMPLATE -->
               <ng-template #actionColumn>
                 <div class="action-link">
-                  <a (click)="openDialog('Update', element)" class="m-r-10 cursor-pointer">
+                  <a (click)="Update(element)" class="m-r-10 cursor-pointer">
                     <i-tabler name="edit" class="icon-18"></i-tabler>
                   </a>
                   <a (click)="openDialog('Delete', element)" class="m-r-10 cursor-pointer">
@@ -123,10 +151,8 @@
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
     </div>
-
+    <!-- TABLE PAGINATION -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
   </mat-card-content>
 </mat-card>
-
-<!-- TABLE PAGINATION -->
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-</mat-paginator>

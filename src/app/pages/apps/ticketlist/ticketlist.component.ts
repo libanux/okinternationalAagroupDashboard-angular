@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import {
@@ -26,6 +27,20 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 export class AppTicketlistComponent implements OnInit {
+
+  ShowAddButoon = true;
+
+
+  Name = 'Name';
+  Destination = 'Destination';
+  Duration = 'Duration';
+  Hotels = 'Hotels';
+  Date = 'Date';
+  Seats = 'Seats';
+  Note= 'Note';
+  Status = 'Status';
+
+
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
@@ -85,6 +100,20 @@ export class AppTicketlistComponent implements OnInit {
     }
   }
 
+  CancelUpdate(): void {
+    this.ShowAddButoon = true
+
+    this.Name = 'Name';
+    this.Destination = 'Destination';
+    this.Duration = 'Duration';
+    this.Hotels = 'Hotels';
+    this.Date = 'Date';
+    this.Seats = 'Seats';
+    this.Note= 'Note';
+    this.Status = 'Status';
+  }
+
+
   //GET THE CATEGORY LENGTH
   btnCategoryClick(val: string): number {
     this.dataSource.filter = val.trim().toLowerCase();
@@ -115,9 +144,8 @@ export class AppTicketlistComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result.event === 'Add') {
         this.addRowData(result.data);
-      } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event === 'Delete') {
+      } 
+      else if (result.event === 'Delete') {
         this.deleteRowData(result.data);
       }
     });
@@ -143,20 +171,18 @@ export class AppTicketlistComponent implements OnInit {
 
 
   //UPDATE ROW VALUES
-  updateRowData(row_obj: TicketList): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value, key) => {
-      if (value.id === row_obj.id) {
-        value.name = row_obj.name;
-        value.destination = row_obj.destination;
-        value.duration = row_obj.duration;
-        value.hotels = row_obj.hotels,
-          value.date = row_obj.date;
-        value.nbOfSeats = row_obj.nbOfSeats,
-          value.note = row_obj.note,
-          value.status = row_obj.status;
-      }
-      return true;
-    });
+  Update(obj: any): void {
+    this.ShowAddButoon = false
+
+  this.Name = obj.name
+  this.Destination = obj.destination
+  this.Duration = obj.duration
+  this.Hotels = obj.hotels
+  this.Date = obj.date
+  this.Seats = obj.nbOfSeats
+  this.Note = obj.note
+  this.Status = obj.status
+
   }
 
   //DELETE ROW VALUES
@@ -198,3 +224,4 @@ export class AppTicketDialogContentComponent {
     this.dialogRef.close({ event: 'Cancel' });
   }
 }
+
