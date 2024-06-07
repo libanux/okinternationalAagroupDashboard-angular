@@ -8,8 +8,9 @@ export const labors: LaborList[] = [
       gender: 'Male',
       type: 'Skilled',
       cost: '$200/day',
+      age:30,
       note: 'Experienced carpenter',
-      status: 'Active'
+      status: 'inprogress'
     },
     {
       id: 2,
@@ -18,6 +19,7 @@ export const labors: LaborList[] = [
       gender: 'Female',
       type: 'Unskilled',
       cost: '$150/day',
+      age:30,
       note: 'General laborer',
       status: 'inactive'
     },
@@ -28,8 +30,9 @@ export const labors: LaborList[] = [
       gender: 'Male',
       type: 'Skilled',
       cost: '$220/day',
+      age:30,
       note: 'Electrician',
-      status: 'active'
+      status: 'complete'
     },
     {
       id: 4,
@@ -38,8 +41,9 @@ export const labors: LaborList[] = [
       gender: 'Female',
       type: 'Skilled',
       cost: '$250/day',
+      age:30,
       note: 'Plumber',
-      status: 'active'
+      status: 'complete'
     },
     {
       id: 5,
@@ -48,6 +52,7 @@ export const labors: LaborList[] = [
       gender: 'Male',
       type: 'Unskilled',
       cost: '$180/day',
+      age:30,
       note: 'General laborer',
       status: 'inactive'
     },
@@ -58,8 +63,9 @@ export const labors: LaborList[] = [
       gender: 'Female',
       type: 'Skilled',
       cost: '$230/day',
+      age:30,
       note: 'Welder',
-      status: 'active'
+      status: 'complete'
     },
     {
       id: 7,
@@ -68,6 +74,7 @@ export const labors: LaborList[] = [
       gender: 'Male',
       type: 'Unskilled',
       cost: '$170/day',
+      age:30,
       note: 'General laborer',
       status: 'inactive'
     },
@@ -78,8 +85,9 @@ export const labors: LaborList[] = [
       gender: 'Female',
       type: 'Skilled',
       cost: '$240/day',
+      age:30,
       note: 'Painter',
-      status: 'active'
+      status: 'complete'
     },
     {
       id: 9,
@@ -88,8 +96,9 @@ export const labors: LaborList[] = [
       gender: 'Male',
       type: 'Unskilled',
       cost: '$160/day',
+      age:30,
       note: 'General laborer',
-      status: 'active'
+      status: 'complete'
     },
     {
       id: 10,
@@ -98,6 +107,7 @@ export const labors: LaborList[] = [
       gender: 'Female',
       type: 'Skilled',
       cost: '$260/day',
+      age:30,
       note: 'Mason',
       status: 'inactive'
     }

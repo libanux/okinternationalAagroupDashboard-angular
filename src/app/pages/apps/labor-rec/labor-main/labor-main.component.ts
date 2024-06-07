@@ -4,138 +4,195 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { LaborList } from '../labor';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { labors } from '../labor-data';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 
 @Component({
   selector: 'app-labor-main',
   templateUrl: './labor-main.component.html',
-  styleUrl: './labor-main.component.scss'
+  styleUrl: './labor-main.component.scss',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 
-export class LaborMainComponent  implements AfterViewInit {
+export class LaborMainComponent implements AfterViewInit {
 
+  ShowAddButoon = true;
+
+
+  Name = 'Name';
+  Nationality = 'Nationality';
+  Gender = 'Gender';
+  Type = 'Type';
+  Age = 'Age';
+  Cost = 'Cost';
+  Note = 'Note';
+  Status = 'Status';
+
+
+
+  //TABLE COLUMNS
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'nationality',
+    'gender',
+    'type',
+    'age',
+    'cost',
+    'note',
+    'status',
+    'action',
+  ];
+  columnsToDisplayWithExpand = [...this.displayedColumns];
+  expandedElement: LaborList | null = null;
   @ViewChild(MatTable, { static: true }) table: MatTable<any> =
-  Object.create(null);
-@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
-searchText: any;
-totalCount = -1;
-InActive = -1;
-Active = -1;
-Pending =-1;
+    Object.create(null);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+  searchText: any;
+  totalCount = -1;
+  Cancelled = -1;
+  Inprogress = -1;
+  Completed = -1;
 
-displayedColumns: string[] = [
-  'id',
-  'name',
-  'nationality',
-  'gender',
-  'type',
-  'cost',
-  'note',
-  'status',
-  'action'
-];
+  //TICKETS
+  dataSource = new MatTableDataSource(labors);
 
-dataSource = new MatTableDataSource(labors);
+  constructor(public dialog: MatDialog) { }
 
-constructor(public dialog: MatDialog) { }
+  ngOnInit(): void {
+    this.totalCount = this.dataSource.data.length;
+    this.Completed = this.btnCategoryClick('complete');
+    this.Cancelled = this.btnCategoryClick('inactive');
+    this.Inprogress = this.btnCategoryClick('InProgress');
+    this.dataSource = new MatTableDataSource(labors);
+  }
 
-ngOnInit(): void {
-  this.totalCount = this.dataSource.data.length;
-  this.Active = this.btnCategoryClick('active');
-  this.InActive = this.btnCategoryClick('inactive');
-  this.Pending =this.btnCategoryClick('pending');
-  this.dataSource = new MatTableDataSource(labors);
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  //FILTER DATA
+  applyFilter(filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
+  expandRow(event: Event, element: any, column: string): void {
+    if (column === 'action') {
+      this.expandedElement = element;
+    }
+    else {
+      this.expandedElement = this.expandedElement === element ? null : element;
+      event.stopPropagation();
+    }
+  }
+
+  CancelUpdate(): void {
+    this.ShowAddButoon = true
+
+    this.Name = 'Name';
+    this.Nationality = 'Nationality';
+    this.Type = 'Type';
+    this.Gender = 'Gender';
+    this.Age = 'Age';
+    this.Cost = 'Cost'
+    this.Note = 'Note';
+    this.Status = 'Status';
+  }
+
+
+  //GET THE CATEGORY LENGTH
+  btnCategoryClick(val: string): number {
+    this.dataSource.filter = val.trim().toLowerCase();
+    return this.dataSource.filteredData.length;
+  }
+
+  //GET THE STATUS CLASS
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'inprogress':
+        return 'bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      case 'complete':
+        return 'bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      case 'inactive':
+        return 'bg-light-error mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      default:
+        return '';
+    }
+  }
+
+
+  //OPEN UPDATE & DELETE DIALOGS
+  openDialog(action: string, obj: any): void {
+    // obj.action = action;
+    // const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
+    //   data: obj,
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result.event === 'Add') {
+    //     this.addRowData(result.data);
+    //   } 
+    //   else if (result.event === 'Delete') {
+    //     this.deleteRowData(result.data);
+    //   }
+    // });
+  }
+
+
+  //ADD ROW VALUES
+  addRowData(row_obj: LaborList): void {
+    const d = new Date();
+    this.dataSource.data.unshift({
+      id: d.getTime(),
+      name: row_obj.name,
+      nationality: row_obj.nationality,
+      gender: row_obj.gender,
+      type: row_obj.type,
+      cost: row_obj.cost,
+      age: row_obj.age,
+      note: row_obj.note,
+      status: row_obj.status,
+    });
+    this.table.renderRows();
+  }
+
+
+  //UPDATE ROW VALUES
+  Update(obj: any): void {
+    this.ShowAddButoon = false;
+    console.log("Hereee")
+    this.Name = obj.name
+    this.Nationality = obj.nationality
+    this.Gender = obj.gender
+    this.Type = obj.type
+    this.Age = obj.age
+    this.Cost = obj.cost
+    this.Note = obj.note
+    this.Status = obj.status
+
+  }
+
+  //DELETE ROW VALUES
+  deleteRowData(row_obj: LaborList): boolean | any {
+    this.dataSource.data = this.dataSource.data.filter((value, key) => {
+      return value.id !== row_obj.id;
+    });
+  }
 }
 
-ngAfterViewInit(): void {
-  this.dataSource.paginator = this.paginator;
-}
 
-applyFilter(filterValue: string): void {
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-}
 
-btnCategoryClick(val: string): number {
-  this.dataSource.filter = val.trim().toLowerCase();
 
-  return this.dataSource.filteredData.length;
-}
 
-openDialog(action: string, obj: any): void {
-  // obj.action = action;
-  // const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
-  //   data: obj,
-  // });
 
-  // dialogRef.afterClosed().subscribe((result) => {
-  //   if (result.event === 'Add') {
-  //     this.addRowData(result.data);
-  //   } else if (result.event === 'Update') {
-  //     this.updateRowData(result.data);
-  //   } else if (result.event === 'Delete') {
-  //     this.deleteRowData(result.data);
-  //   }
-  // });
-}
-// tslint:disable-next-line - Disables all
-// addRowData(row_obj: TicketElement): void {
-//   const d = new Date();
-//   this.dataSource.data.unshift({
-//     id: d.getTime(),
-//     title: row_obj.title,
-//     subtext: row_obj.subtext,
-//     assignee: row_obj.assignee,
-//     status: row_obj.status,
-//     date: row_obj.date,
-//   });
-//   this.table.renderRows();
-// }
 
-// tslint:disable-next-line - Disables all
-// updateRowData(row_obj: TicketElement): boolean | any {
-//   this.dataSource.data = this.dataSource.data.filter((value, key) => {
-//     if (value.id === row_obj.id) {
-//       value.title = row_obj.title;
-//       value.subtext = row_obj.subtext;
-//       value.assignee = row_obj.assignee;
-//       value.status = row_obj.status;
-//       value.date = row_obj.date;
-//     }
-//     return true;
-//   });
-// }
-
-// tslint:disable-next-line - Disables all
-deleteRowData(row_obj: LaborList): boolean | any {
-  this.dataSource.data = this.dataSource.data.filter((value, key) => {
-    return value.id !== row_obj.id;
-  });
-}
-}
-
-// @Component({
-// // tslint:disable-next-line - Disables all
-// selector: 'app-dialog-content',
-// templateUrl: 'ticket-dialog-content.html',
-// })
-// // tslint:disable-next-line - Disables all
-// export class AppTicketDialogContentComponent {
-// action: string;
-// // tslint:disable-next-line - Disables all
-// local_data: any;
-
-// constructor(
-//   public dialogRef: MatDialogRef<AppTicketDialogContentComponent>,
-//   @Optional() @Inject(MAT_DIALOG_DATA) public data: LaborList
-// ) {
-//   this.local_data = { ...data };
-//   this.action = this.local_data.action;
-// }
-
-// doAction(): void {
-//   this.dialogRef.close({ event: this.action, data: this.local_data });
-// }
-
-// closeDialog(): void {
-//   this.dialogRef.close({ event: 'Cancel' });
-// }
-// }
