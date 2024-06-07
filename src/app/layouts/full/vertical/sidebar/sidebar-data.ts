@@ -31,17 +31,17 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Visa',
     iconName: 'ticket',
-    route: 'apps/visa',
+    route: '/visa',
   },
   {
     displayName: 'Labor Recruitment',
     iconName: 'clipboard',
-    route: 'apps/labors',
+    route: '/labors',
   },
   {
     displayName: 'Notes',
     iconName: 'note',
-    route: 'apps/notes',
+    route: '/notes',
   },
   
   // {
@@ -53,11 +53,11 @@ export const navItems: NavItem[] = [
     // iconName: 'file-description',
     route: 'widgets/charts',
   },
-  {
-    displayName: 'Tables',
-    iconName: 'file-invoice',
-    route: 'tables/expand-table',
-  },
+  // {
+  //   displayName: 'Tables',
+  //   iconName: 'file-invoice',
+  //   route: 'tables/expand-table',
+  // },
 
   {
     navCap: 'Auth',
@@ -65,7 +65,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Users',
     iconName: 'user-plus',
-    route: 'apps/employee',
+    route: '/employee',
   },
   {
     displayName: 'logout',
