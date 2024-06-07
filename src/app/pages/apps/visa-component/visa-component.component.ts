@@ -8,11 +8,22 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { VisaArray } from './visa-data';
 import { VisaClass } from './visaClass';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-visa-component',
   templateUrl: './visa-component.component.html',
-    styleUrl: './visa-component.component.scss'
+  styleUrl: './visa-component.component.scss',
+  animations: [
+      trigger('detailExpand', [
+        state('collapsed', style({ height: '0px', minHeight: '0' })),
+        state('expanded', style({ height: '*' })),
+        transition(
+          'expanded <=> collapsed',
+          animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+        ),
+      ]),
+    ],
 })
 
 export class VisaComponentComponent implements OnInit {
@@ -21,6 +32,7 @@ export class VisaComponentComponent implements OnInit {
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+
 
   Name = 'Name';
   Destination = 'Destination';
@@ -50,6 +62,9 @@ export class VisaComponentComponent implements OnInit {
     'action',  // If you still need an action column
   ];
 
+  columnsToDisplayWithExpand = [...this.displayedColumns];
+  expandedElement: VisaClass | null = null;
+  
   dataSource = new MatTableDataSource(VisaArray);
 
   constructor(public dialog: MatDialog) { }
@@ -75,11 +90,11 @@ export class VisaComponentComponent implements OnInit {
     return this.dataSource.filteredData.length;
   }
 
-  Delete(action: string, obj: any): void {
+  Delete(obj: any): void {
   
   }
 
-  Update(action: string, obj: any): void {
+  Update(obj: any): void {
     this.ShowAddButoon = false
 
   this.Name = obj.name
@@ -93,6 +108,18 @@ export class VisaComponentComponent implements OnInit {
 
   }
  
+  
+  //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
+  expandRow(event: Event, element: any, column: string): void {
+    if (column === 'action') {
+      this.expandedElement = element;
+    }
+    else {
+      this.expandedElement = this.expandedElement === element ? null : element;
+      event.stopPropagation();
+    }
+  }
+
   CancelUpdate(): void {
     this.ShowAddButoon = true
 
@@ -112,5 +139,19 @@ export class VisaComponentComponent implements OnInit {
       return value.id !== row_obj.id;
     });
   }
+
+    //GET THE STATUS CLASS
+    getStatusClass(status: string): string {
+      switch (status) {
+        case 'inprogress':
+          return 'bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+        case 'completed':
+          return 'bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+        case 'cancelled':
+          return 'bg-light-error mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+        default:
+          return '';
+      }
+    }
 
 }

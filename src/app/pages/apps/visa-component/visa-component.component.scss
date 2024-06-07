@@ -55,3 +55,24 @@
     height: 35px;
 }
   
+
+tr.example-detail-row {
+    height: 0;
+  
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+
+ 
+
+table {
+    width: 100%;
+    
+    td{
+        cursor: pointer;
+    }
+  }
+
+  

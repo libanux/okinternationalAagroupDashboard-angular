@@ -65,6 +65,7 @@
 
 <!-- Searcj -->
 <mat-card class="cardWithShadow">
+
   <div class="col-sm-4 p-20 searchbar ">
     <mat-form-field appearance="outline" class="hide-hint custom-search ">
       <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Visa's" />
@@ -76,128 +77,83 @@
 
   <!-- Table -->
   <mat-card-content>
-    <div class="table-responsive">
-      <table mat-table [dataSource]="dataSource" class="w-100 f-w-500 no-wrap">
+    <!-- TABLE BODY -->
+    <div class="table-responsive-sm">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+        @for( column of displayedColumns; track column) {
+        <ng-container matColumnDef="{{ column }}">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-x-24 p-l-0">
+            {{ column | titlecase }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="p-x-24 f-s-14 p-l-0"
+            (click)=" expandRow($event, element, column)">
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Id</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.id }}
+            <ng-container *ngIf="column !== 'status'; else statusColumn">
+              <!-- CHECKS IF COLUMN 'ACTION'-->
+              <ng-container *ngIf="column !== 'action'; else actionColumn">
+                {{ element[column] }}
+              </ng-container>
+              <!-- SHOW ACTION TEMPLATE -->
+              <ng-template #actionColumn>
+                <div class="action-link">
+                  <a (click)="Update(element)" class="m-r-10 cursor-pointer">
+                    <i-tabler name="edit" class="icon-18"></i-tabler>
+                  </a>
+                  <a (click)="Delete(element)" class="m-r-10 cursor-pointer">
+                    <i-tabler name="trash" class="icon-18"></i-tabler>
+                  </a>
+                </div>
+              </ng-template>
+            </ng-container>
+
+
+            <!--IF THE COLUMN IS STATUS THEM APPLY SPECIFIC DESIGN-->
+            <ng-template #statusColumn>
+              <span [ngClass]="getStatusClass(element.status)">
+                {{ element.status }}
+              </span>
+            </ng-template>
           </td>
         </ng-container>
-  
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Name</th>
-            <td mat-cell *matCellDef="let element">
-              <span class="mat-subtitle-1 m-b-4">{{ element.name }}</span>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="destination">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Destination</th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <span class="mat-subtitle-1">{{ element.destination }}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="duration">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Duration</th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <span class="mat-subtitle-1">{{ element.duration }}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="hotels">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Hotels</th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <span class="mat-subtitle-1">{{ element.hotels }}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="nbOfSeats">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Seats </th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center justify-content-center">
-                <span class="mat-subtitle-1">{{ element.nbOfSeats }}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="note">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Note</th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <span class="mat-subtitle-1">{{ element.note }}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Status</th>
-            <td mat-cell *matCellDef="let element">
-            
-              @if(element.status == 'inprogress') {
-              <span class="bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill">In Progress</span>
-              }
-  
-              @if(element.status == 'completed') {
-              <span class="bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill">Completed</span>
-              }
-  
-              @if(element.status == 'cancelled') {
-              <span class="bg-light-error mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill">Cancelled</span>
-              }
-            </td>
-          </ng-container>
-  
-  
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
-              Date
-            </th>
-            <td mat-cell *matCellDef="let element">
-              <div class="d-flex align-items-center">
-                <span class="mat-subtitle-1">{{ element.date }}</span>
-              </div>
-            </td>
-          </ng-container>
+        }
 
-  
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
-              Action
-            </th>
-
-            <td mat-cell *matCellDef="let element" class="element-td">
-              
-              <div>
-                <a>
-                  <i-tabler name="eye" class="icon-18"></i-tabler>
-                </a>
-                <a (click)="Update('Update', element)">
-                  <i-tabler name="edit" class="icon-18"></i-tabler>
-                </a>
-  
-                <a (click)="Delete('Delete', element)">
-                  <i-tabler name="trash" class="icon-18"></i-tabler>
-                </a>
+        <!-- EXPANDED ROW DETAILS -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+              <div class="p-15 rounded b-1 m-b-16 m-x-18">
+                <div class="d-flex align-items-center gap-12">
+                  <span
+                    class="bg-light-primary text-primary icon-48 rounded f-w-600 d-flex align-items-center justify-content-center">
+                    {{ element.id }}
+                  </span>
+                  <div>
+                    <div class="f-s-14 f-w-600 mat-subtitle-1">
+                      {{ element.name }}
+                    </div>
+                    <div class="f-s-14">{{ element.status }}</div>
+                  </div>
+                </div>
+                <div class="f-s-14 m-t-8">
+                  {{ element.note }}
+                </div>
               </div>
+            </div>
+          </td>
+        </ng-container>
 
-            </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-      </div>
+    <!-- HEADER AND ROW DEFINITIONS -->
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand" class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element" (click)="
+          expandedElement = expandedElement === element ? null : element;"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+    </div>
+
   
       <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
 
     </mat-card-content>
+
   </mat-card>
