@@ -37,7 +37,6 @@
 <!-- Add Row  -->
 <mat-card class="cardWithShadow">
   <mat-card-content>
-
       <div class="InputsWholeRow">
 
           <div class="inputsInAdd">
@@ -51,15 +50,16 @@
             <input type="text" placeholder="{{Status}}">
           </div>
 
-        <div>
-          <button mat-flat-button color="primary">
-            Add Visa
-          </button>
+        <div *ngIf="ShowAddButoon">
+          <button mat-flat-button color="primary"> Add Visa </button>
+        </div>
+
+        <div class="TwoButtons" *ngIf="!ShowAddButoon">
+          <button (click)="CancelUpdate()" mat-flat-button color="primary">Cancel</button>
+          <button mat-flat-button color="primary">Update</button>
         </div>
 
       </div>
-
-
   </mat-card-content>
 </mat-card>
 
