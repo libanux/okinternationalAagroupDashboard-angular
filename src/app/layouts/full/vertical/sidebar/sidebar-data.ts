@@ -24,20 +24,11 @@ export const navItems: NavItem[] = [
     route: '/notes',
   },
   
-  // {
-  //   navCap: 'Pages',
-  // },
   {
     displayName: 'Reports',
     iconName: 'layout',
-    // iconName: 'file-description',
     route: 'widgets/charts',
   },
-  // {
-  //   displayName: 'Tables',
-  //   iconName: 'file-invoice',
-  //   route: 'tables/expand-table',
-  // },
 
   {
     navCap: 'Auth',

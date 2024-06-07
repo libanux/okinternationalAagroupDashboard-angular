@@ -23,11 +23,11 @@ const routes: Routes = [
             (m) => m.UicomponentsModule
           ),
       },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./pages/forms/forms.module').then((m) => m.FormModule),
-      },
+      // {
+      //   path: 'forms',
+      //   loadChildren: () =>
+      //     import('./pages/forms/forms.module').then((m) => m.FormModule),
+      // },
       {
         path: 'charts',
         loadChildren: () =>
@@ -42,18 +42,6 @@ const routes: Routes = [
         path: 'widgets',
         loadChildren: () =>
           import('./pages/widgets/widgets.module').then((m) => m.WidgetsModule),
-      },
-      {
-        path: 'tables',
-        loadChildren: () =>
-          import('./pages/tables/tables.module').then((m) => m.TablesModule),
-      },
-      {
-        path: 'theme-pages',
-        loadChildren: () =>
-          import('./pages/theme-pages/theme-pages.module').then(
-            (m) => m.ThemePagesModule
-          ),
       },
     ],
   },
