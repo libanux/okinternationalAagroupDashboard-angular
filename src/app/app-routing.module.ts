@@ -20,13 +20,13 @@ const routes: Routes = [
           import('./pages/apps/labor-rec/labor-rec.module').then(
             (m) => m.LaborRecModule),
       },
-      {
-        path: '',
-        loadChildren: () =>
-          import('./pages/dashboards/dashboards.module').then(
-            (m) => m.DashboardsModule
-          ),
-      },
+      // {
+      //   path: '',
+      //   loadChildren: () =>
+      //     import('./pages/dashboards/dashboards.module').then(
+      //       (m) => m.DashboardsModule
+      //     ),
+      // },
       {
         path: 'ui-components',
         loadChildren: () =>
@@ -45,7 +45,7 @@ const routes: Routes = [
           import('./pages/charts/charts.module').then((m) => m.ChartsModule),
       },
       {
-        path: 'apps',
+        path: '',
         loadChildren: () =>
           import('./pages/apps/apps.module').then((m) => m.AppsModule),
       },

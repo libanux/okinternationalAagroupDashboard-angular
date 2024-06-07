@@ -61,7 +61,7 @@ export const AppsRoutes: Routes = [
         component: AppTaskboardComponent,
       },
       {
-        path: 'packages',
+        path: '',
         component: AppTicketlistComponent,
       },
       {
