@@ -123,6 +123,8 @@ const employees = [
   templateUrl: './employee.component.html',
 })
 export class AppEmployeeComponent implements AfterViewInit {
+
+  
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   searchText: any;
   displayedColumns: string[] = [
@@ -211,6 +213,7 @@ export class AppEmployeeComponent implements AfterViewInit {
   // tslint:disable-next-line: component-selector
   selector: 'app-dialog-content',
   templateUrl: 'employee-dialog-content.html',
+  styleUrl: 'employee-dialog-content.scss'
 })
 // tslint:disable-next-line: component-class-suffix
 export class AppEmployeeDialogContentComponent {
@@ -264,5 +267,15 @@ export class AppEmployeeDialogContentComponent {
       // tslint:disable-next-line - Disables all
       this.local_data.imagePath = reader.result;
     };
+  }
+
+  selectedPermission: string = ''; // Track the selected permission
+
+  toggleSubPermissions(permission: string) {
+    if (this.selectedPermission === permission) {
+      this.selectedPermission = ''; // If the same permission is clicked again, close it
+    } else {
+      this.selectedPermission = permission; // Otherwise, set the selected permission
+    }
   }
 }
