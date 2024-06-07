@@ -1,6 +1,7 @@
 .InputsWholeRow{
     display: flex;
     justify-content: space-between;
+    column-gap: 15px;
 
     .inputsInAdd{
         display: flex;
@@ -8,13 +9,39 @@
         column-gap: 10px;
 
         input {
-            width: 80px;
+            width: 100%;
             padding: 10px 5px;
             border:  1px solid lightgray;
             border-radius: 10px;
         }
     }
 
+    div button {
+        min-width: 100px;
+    }
+
+}
+
+.table-responsive {
+    table {
+        th, td, td span {
+            font-size: 14px;
+        }
+    }
+
+}
+
+.element-td {
+    div {
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    a {
+        cursor: pointer;
+    }
 }
 
 
