@@ -1,84 +1,150 @@
 <!-- listing and total no.of counts -->
-<div class="row">
-  <div class="col-sm-6 col-lg-3">
+<div class="four-sections-header">
+
+  <div class="two-sections-header">
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-primary text-center rounded" (click)="btnCategoryClick('')">
+          <h3 class="text-primary">{{ totalCount }}</h3>
+          <p class="text-primary">Total Packages</p>
+        </div>
+      </mat-card>
+    </div>
+  
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-warning text-center rounded" (click)="btnCategoryClick('InProgress')">
+          <h3 class="text-warning">{{ Inprogress }}</h3>
+          <p class="text-warning">In Progress</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  
+<div class="two-sections-header">
+  <div>
     <mat-card class="shadow-none">
-      <div class="p-10 bg-light-primary text-center cursor-pointer rounded" (click)="btnCategoryClick('')">
-        <h3 class="f-s-24 text-primary f-w-600 m-0 m-b-4">{{ totalCount }}</h3>
-        <h6 class="text-primary f-w-600 m-0 f-s-16">Total Packages</h6>
+      <div class="bg-light-success text-center rounded" (click)="btnCategoryClick('completed')">
+        <h3 class="text-success">{{ Completed }}</h3>
+        <p class="text-success">Completed</p>
       </div>
     </mat-card>
   </div>
-  <div class="col-sm-6 col-lg-3 col-xs-6">
+
+  <div>
     <mat-card class="shadow-none">
-      <div class="p-10 bg-light-warning text-center cursor-pointer rounded" (click)="btnCategoryClick('InProgress')">
-        <h3 class="f-s-24 text-warning m-0 m-b-4">{{ Inprogress }}</h3>
-        <h6 class="text-warning f-w-600 m-0 f-s-16">In Progress</h6>
-      </div>
-    </mat-card>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-success text-center cursor-pointer rounded" (click)="btnCategoryClick('completed')">
-        <h3 class="f-s-24 text-success m-0 m-b-4">{{ Completed }}</h3>
-        <h6 class="text-success f-w-600 m-0 f-s-16">Completed</h6>
-      </div>
-    </mat-card>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-error text-center cursor-pointer rounded" (click)="btnCategoryClick('cancelled')">
-        <h3 class="f-s-24 text-error m-0 m-b-4">{{ Cancelled }}</h3>
-        <h6 class="text-error f-w-600 m-0 f-s-16">Cancelled</h6>
+      <div class="bg-light-error text-center rounded" (click)="btnCategoryClick('cancelled')">
+        <h3 class="text-error">{{ Cancelled }}</h3>
+        <p class="text-error">Cancelled</p>
       </div>
     </mat-card>
   </div>
 </div>
 
-<!-- Add Row  -->
+</div>
+
+
 <mat-card class="cardWithShadow">
   <mat-card-content>
-      <div class="InputsWholeRow">
+    <div class="InputsWholeRow">
 
-          <div class="inputsInAdd">
+      <div class="inputsInAdd">
+  
+        <section>
+          <div>
             <input type="text" placeholder="{{Name}}">
-            <input type="text" placeholder="{{Destination}}">
-            <input type="text" placeholder="{{Duration}}">
-            <input type="text" placeholder="{{Hotels}}">
-            <input type="text" placeholder="{{Date}}">
-            <input type="text" placeholder="{{Seats}}">
-            <input type="text" placeholder="{{Note}}">
-            <input type="text" placeholder="{{Status}}">
           </div>
+          <div>
+            <input type="text" placeholder="{{Destination}}">
+          </div>
+        </section>
+        
+        <section>
+          <div>
+            <input type="text" placeholder="{{Duration}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Hotels}}">
+          </div>
+        </section>
+        
+        <section>
+          <div>
+            <input type="text" placeholder="{{Date}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Seats}}">
+          </div>
+        </section>
 
-        <div *ngIf="ShowAddButoon">
-          <button mat-flat-button color="primary"> Add Visa </button>
-        </div>
 
-        <div class="TwoButtons" *ngIf="!ShowAddButoon">
-          <button (click)="CancelUpdate()" mat-flat-button color="primary">Cancel</button>
-          <button mat-flat-button color="primary">Update</button>
-        </div>
+        <section>
+          <div>
+            <input type="text" placeholder="{{Note}}">
+          </div>
+          
+          <div>
+          <select>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          </div>
+        </section>
+       
+
+
 
       </div>
+
+      <div *ngIf="ShowAddButoon">
+        <button mat-flat-button color="primary"> Add Visa </button>
+      </div>
+
+      <div class="TwoButtons" *ngIf="!ShowAddButoon">
+        <button (click)="CancelUpdate()" mat-flat-button color="primary">Cancel</button>
+        <button mat-flat-button color="primary">Update</button>
+      </div>
+
+    </div>
   </mat-card-content>
 </mat-card>
 
-<!-- Searcj -->
+
+
 <mat-card class="cardWithShadow">
 
-  <div class="col-sm-4 p-20 searchbar ">
-    <mat-form-field appearance="outline" class="hide-hint custom-search ">
-      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Visa's" />
-      <mat-icon matSuffix>
-        <i-tabler name="search" class="icon-15"></i-tabler>
-      </mat-icon>
-    </mat-form-field>
-  </div>
+  <!-- Search -->
+  <header>
+    <div class="col-sm-4 p-20 searchbar ">
+      <mat-form-field appearance="outline" class="hide-hint custom-search ">
+        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Visa's" />
+        <mat-icon matSuffix>
+          <i-tabler name="search" class="icon-15"></i-tabler>
+        </mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="filter-date">
+      <mat-card-header class="d-flex">
+        <mat-form-field class="theme-select" appearance="outline">
+          <mat-select value="mar">
+            @for(month of months; track month) {
+            <mat-option [value]="month.value">
+              {{ month.viewValue }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-card-header>
+    </div>
+  </header>
+
 
   <!-- Table -->
   <mat-card-content>
     <!-- TABLE BODY -->
-    <div class="table-responsive-sm">
+    <div class="table-responsive">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
         @for( column of displayedColumns; track column) {
         <ng-container matColumnDef="{{ column }}">

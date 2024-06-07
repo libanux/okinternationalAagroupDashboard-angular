@@ -9,11 +9,11 @@ export const navItems: NavItem[] = [
   //   iconName: 'chart-pie-2',
   //   route: '/dashboards/dashboard1',
   // },
-  {
-    displayName: 'Dashboard',
-    iconName: 'inbox',
-    route: '/',
-  },
+  // {
+  //   displayName: 'Dashboard',
+  //   iconName: 'inbox',
+  //   route: '/',
+  // },
   // {
   //   navCap: 'Apps',
   // },
@@ -26,7 +26,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Package',
     iconName: 'packages',
-    route: 'apps/packages',
+    route: '/',
   },
   {
     displayName: 'Visa',
