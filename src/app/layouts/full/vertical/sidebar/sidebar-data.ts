@@ -48,7 +48,7 @@ export const navItems: NavItem[] = [
   //   navCap: 'Pages',
   // },
   {
-    displayName: 'Charts',
+    displayName: 'Reports',
     iconName: 'layout',
     // iconName: 'file-description',
     route: 'widgets/charts',
