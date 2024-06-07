@@ -100,6 +100,8 @@ export class AppTicketlistComponent implements OnInit {
     }
   }
 
+  
+
   CancelUpdate(): void {
     this.ShowAddButoon = true
 
@@ -191,10 +193,18 @@ export class AppTicketlistComponent implements OnInit {
       return value.id !== row_obj.id;
     });
   }
+  months: month[] = [
+    { value: 'mar', viewValue: 'March 2023' },
+    { value: 'apr', viewValue: 'April 2023' },
+    { value: 'june', viewValue: 'June 2023' },
+  ];
 }
 
 
-
+interface month {
+  value: string;
+  viewValue: string;
+}
 
 
 @Component({

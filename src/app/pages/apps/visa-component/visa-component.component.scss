@@ -49,9 +49,11 @@
         flex-direction: row;
         column-gap: 10px;
         div {
+
             width: 100%;
             .shadow-none{
                 div{
+                    cursor: pointer;
                     display: flex;
                     flex-direction: column;
                     padding: 10px;
