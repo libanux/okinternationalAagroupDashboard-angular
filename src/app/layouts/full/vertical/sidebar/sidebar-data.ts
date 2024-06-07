@@ -1,27 +1,7 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  // {
-  //   navCap: 'Home',
-  // },
-  // {
-  //   displayName: 'Analytical',
-  //   iconName: 'chart-pie-2',
-  //   route: '/dashboards/dashboard1',
-  // },
-  // {
-  //   displayName: 'Dashboard',
-  //   iconName: 'inbox',
-  //   route: '/',
-  // },
-  // {
-  //   navCap: 'Apps',
-  // },
-  // {
-  //   displayName: 'Contacts',
-  //   iconName: 'phone',
-  //   route: 'apps/contacts',
-  // },
+
   
   {
     displayName: 'Package',
