@@ -1,14 +1,71 @@
+
+export interface productsData {
+  id: number;
+  imagePath: string;
+  uname: string;
+  productName: string;
+  budget: number;
+  priority: string;
+}
+
+const ELEMENT_DATA: productsData[] = [
+  {
+    id: 1,
+    imagePath: 'assets/images/profile/user-1.jpg',
+    uname: 'Sunil Joshi',
+    productName: 'Elite Admin',
+    budget: 3.9,
+    priority: 'low'
+  },
+  {
+    id: 2,
+    imagePath: 'assets/images/profile/user-2.jpg',
+    uname: 'Andrew McDownland',
+    productName: 'Real Homes Theme',
+    budget: 24.5,
+    priority: 'medium'
+  },
+  {
+    id: 3,
+    imagePath: 'assets/images/profile/user-3.jpg',
+    uname: 'Christopher Jamil',
+    productName: 'MedicalPro Theme',
+    budget: 12.8,
+    priority: 'high'
+  },
+  {
+    id: 4,
+    imagePath: 'assets/images/profile/user-4.jpg',
+    uname: 'Nirav Joshi',
+    productName: 'Hosting Press HTML',
+    budget: 2.4,
+    priority: 'critical'
+  },
+  {
+    id: 5,
+    imagePath: 'assets/images/profile/user-5.jpg',
+    uname: 'Micheal Doe',
+    
+    productName: 'Helping Hands',
+    budget: 9.3,
+    priority: 'moderate'
+  },
+];
+
+interface month {
+  value: string;
+  viewValue: string;
+}
+
+
 import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { VisaArray } from './visa-data';
 import { VisaClass } from './visaClass';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+
 
 @Component({
   selector: 'app-visa-component',
@@ -27,6 +84,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 
 export class VisaComponentComponent implements OnInit {
+
+
+  months: month[] = [
+    { value: 'mar', viewValue: 'March 2023' },
+    { value: 'apr', viewValue: 'April 2023' },
+    { value: 'june', viewValue: 'June 2023' },
+  ];
 
   ShowAddButoon = true;
 
