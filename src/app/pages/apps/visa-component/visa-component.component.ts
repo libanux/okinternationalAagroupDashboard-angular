@@ -17,6 +17,8 @@ import { VisaClass } from './visaClass';
 
 export class VisaComponentComponent implements OnInit {
 
+  ShowAddButoon = true;
+
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
 
@@ -78,6 +80,8 @@ export class VisaComponentComponent implements OnInit {
   }
 
   Update(action: string, obj: any): void {
+    this.ShowAddButoon = false
+
   this.Name = obj.name
   this.Destination = obj.destination
   this.Duration = obj.duration
@@ -89,6 +93,19 @@ export class VisaComponentComponent implements OnInit {
 
   }
  
+  CancelUpdate(): void {
+    this.ShowAddButoon = true
+
+    this.Name = 'Name';
+    this.Destination = 'Destination';
+    this.Duration = 'Duration';
+    this.Hotels = 'Hotels';
+    this.Date = 'Date';
+    this.Seats = 'Seats';
+    this.Note= 'Note';
+    this.Status = 'Status';
+  }
+
   // tslint:disable-next-line - Disables all
   deleteRowData(row_obj: VisaClass): boolean | any {
     this.dataSource.data = this.dataSource.data.filter((value, key) => {

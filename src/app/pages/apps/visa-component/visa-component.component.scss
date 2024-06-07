@@ -20,6 +20,12 @@
         min-width: 100px;
     }
 
+    .TwoButtons {
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+    }
+
 }
 
 .table-responsive {
