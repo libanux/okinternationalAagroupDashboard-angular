@@ -53,11 +53,11 @@ export const navItems: NavItem[] = [
     // iconName: 'file-description',
     route: 'widgets/charts',
   },
-  // {
-  //   displayName: 'Invoice',
-  //   iconName: 'file-invoice',
-  //   route: 'apps/invoice',
-  // },
+  {
+    displayName: 'Tables',
+    iconName: 'file-invoice',
+    route: 'tables/expand-table',
+  },
 
   {
     navCap: 'Auth',
