@@ -8,22 +8,24 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { tickets } from './ticket-data'
 import { TicketList } from './ticket';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticketlist.component.html',
-  styleUrl: './ticketlist.component.scss'
+  styleUrl: './ticketlist.component.scss',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class AppTicketlistComponent implements OnInit {
-
-  @ViewChild(MatTable, { static: true }) table: MatTable<any> =
-    Object.create(null);
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
-  searchText: any;
-  totalCount = -1;
-  Cancelled = -1;
-  Inprogress = -1;
-  Completed = -1;
 
   displayedColumns: string[] = [
     'id',
@@ -37,6 +39,17 @@ export class AppTicketlistComponent implements OnInit {
     'status',
     'action',  
   ];
+  columnsToDisplayWithExpand = [...this.displayedColumns];
+  expandedElement: TicketList | null = null;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any> =
+    Object.create(null);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+  searchText: any;
+  totalCount = -1;
+  Cancelled = -1;
+  Inprogress = -1;
+  Completed = -1;
+
 
   dataSource = new MatTableDataSource(tickets);
 
@@ -61,6 +74,19 @@ export class AppTicketlistComponent implements OnInit {
   btnCategoryClick(val: string): number {
     this.dataSource.filter = val.trim().toLowerCase();
     return this.dataSource.filteredData.length;
+  }
+
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'inprogress':
+        return 'bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      case 'completed':
+        return 'bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      case 'cancelled':
+        return 'bg-light-error mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
+      default:
+        return '';
+    }
   }
 
   openDialog(action: string, obj: any): void {
