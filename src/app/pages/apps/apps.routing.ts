@@ -1,10 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { AppChatComponent } from './chat/chat.component';
 import { AppNotesComponent } from './notes/notes.component';
 import { AppPermissionComponent } from './permission/permission.component';
-import { AppEmailComponent } from './email/email.component';
-import { DetailComponent } from './email/detail/detail.component';
 import { AppTaskboardComponent } from './taskboard/taskboard.component';
 import { AppTicketlistComponent } from './ticketlist/ticketlist.component';
 import { AppContactComponent } from './contact/contact.component';
@@ -33,25 +30,10 @@ export const AppsRoutes: Routes = [
         component: LaborRecModule,
       },
       {
-        path: 'chat',
-        component: AppChatComponent,
-       
-      },
-      {
         path: 'notes',
         component: AppNotesComponent,
       },
       { path: 'email', redirectTo: 'email/inbox', pathMatch: 'full' },
-      {
-        path: 'email/:type',
-        component: AppEmailComponent,
-        children: [
-          {
-            path: ':id',
-            component: DetailComponent,
-          },
-        ],
-      },
       {
         path: 'permission',
         component: AppPermissionComponent,

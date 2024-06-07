@@ -1,27 +1,7 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  // {
-  //   navCap: 'Home',
-  // },
-  // {
-  //   displayName: 'Analytical',
-  //   iconName: 'chart-pie-2',
-  //   route: '/dashboards/dashboard1',
-  // },
-  // {
-  //   displayName: 'Dashboard',
-  //   iconName: 'inbox',
-  //   route: '/',
-  // },
-  // {
-  //   navCap: 'Apps',
-  // },
-  // {
-  //   displayName: 'Contacts',
-  //   iconName: 'phone',
-  //   route: 'apps/contacts',
-  // },
+
   
   {
     displayName: 'Package',
@@ -44,20 +24,11 @@ export const navItems: NavItem[] = [
     route: '/notes',
   },
   
-  // {
-  //   navCap: 'Pages',
-  // },
   {
     displayName: 'Reports',
     iconName: 'layout',
-    // iconName: 'file-description',
     route: 'widgets/charts',
   },
-  // {
-  //   displayName: 'Tables',
-  //   iconName: 'file-invoice',
-  //   route: 'tables/expand-table',
-  // },
 
   {
     navCap: 'Auth',

@@ -1,14 +1,8 @@
-<mat-sidenav-container class="mainWrapper" autosize autoFocus [ngClass]="{
-    'sidebarNav-mini': options.sidenavCollapsed && options.navPos !== 'top' &&  !resView,
-    'sidebarNav-horizontal': options.horizontal,
-    cardBorder: options.cardBorder,
-    orange_theme: options.activeTheme == 'orange_theme',
-    blue_theme: options.activeTheme == 'blue_theme',
-    aqua_theme: options.activeTheme == 'aqua_theme',
-    purple_theme: options.activeTheme == 'purple_theme',
-    green_theme: options.activeTheme == 'green_theme',
-    pink_theme: options.activeTheme == 'pink_theme'
-  }" [dir]="options.dir!">
+<mat-sidenav-container 
+class="mainWrapper" 
+autosize autoFocus [ngClass]="{
+'sidebarNav-mini': options.sidenavCollapsed && options.navPos !== 'top' &&  !resView, cardBorder: options.cardBorder,}"
+ [dir]="options.dir!">
 
 
   <!-- ============================================================== -->

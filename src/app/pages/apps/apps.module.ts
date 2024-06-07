@@ -16,8 +16,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
-//Chat
-import { AppChatComponent } from './chat/chat.component';
 //Contact
 import { AppContactDialogContentComponent } from './contact/contact.component';
 import { AppContactComponent } from './contact/contact.component';
@@ -27,13 +25,6 @@ import { AppNotesComponent } from './notes/notes.component';
 
 // Permission
 import { AppPermissionComponent } from './permission/permission.component';
-//Mailbox
-import {
-  ListingComponent,
-  ListingDialogDataExampleDialogComponent,
-} from './email/listing/listing.component';
-import { DetailComponent } from './email/detail/detail.component';
-import { AppEmailComponent } from './email/email.component';
 
 //Taskboard
 import { AppTaskboardComponent } from './taskboard/taskboard.component';
@@ -97,17 +88,12 @@ import { ViewticketComponent } from './ticketlist/viewticket/viewticket.componen
   ],
   exports: [TablerIconsModule],
   declarations: [
-    AppChatComponent,
     AppPermissionComponent,
     AppNotesComponent,
     AppTaskboardComponent,
     TaskDialogComponent,
     OkAppTaskComponent,
     DeleteAppTaskComponent,
-    ListingDialogDataExampleDialogComponent,
-    ListingComponent,
-    DetailComponent,
-    AppEmailComponent,
     AppTicketlistComponent,
     AppTicketDialogContentComponent,
     AppContactComponent,

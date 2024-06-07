@@ -16,6 +16,7 @@ import { MaterialModule } from '../../../../material.module';
   imports: [BrandingComponent, TablerIconsModule, MaterialModule],
   templateUrl: './sidebar.component.html',
 })
+
 export class SidebarComponent implements OnInit {
   constructor() { }
   @Input() showToggle = true;
