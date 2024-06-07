@@ -1,32 +1,32 @@
-<!-- listing and total no.of counts -->
+<!-- HEADER AND COUNTS -->
 <div class="row">
-  <div class="col-sm-6 col-lg-3">
+  <div class="col-sm-6 col-lg-3 ">
     <mat-card class="shadow-none">
-      <div class="p-30 bg-light-primary text-center cursor-pointer rounded" (click)="btnCategoryClick('')">
+      <div class="p-10 bg-light-primary text-center cursor-pointer rounded" (click)="btnCategoryClick('')">
         <h3 class="f-s-24 text-primary f-w-600 m-0 m-b-4">{{ totalCount }}</h3>
         <h6 class="text-primary f-w-600 m-0 f-s-16">Total Packages</h6>
       </div>
     </mat-card>
   </div>
-  <div class="col-sm-6 col-lg-3">
+  <div class="col-sm-6 col-lg-3 col-xs-6">
     <mat-card class="shadow-none">
-      <div class="p-30 bg-light-warning text-center cursor-pointer rounded" (click)="btnCategoryClick('InProgress')">
+      <div class="p-10 bg-light-warning text-center cursor-pointer rounded" (click)="btnCategoryClick('InProgress')">
         <h3 class="f-s-24 text-warning m-0 m-b-4">{{ Inprogress }}</h3>
         <h6 class="text-warning f-w-600 m-0 f-s-16">In Progress</h6>
       </div>
     </mat-card>
   </div>
-  <div class="col-sm-6 col-lg-3">
+  <div class="col-sm-6 col-lg-3 ">
     <mat-card class="shadow-none">
-      <div class="p-30 bg-light-success text-center cursor-pointer rounded" (click)="btnCategoryClick('completed')">
+      <div class="p-10 bg-light-success text-center cursor-pointer rounded" (click)="btnCategoryClick('completed')">
         <h3 class="f-s-24 text-success m-0 m-b-4">{{ Completed }}</h3>
         <h6 class="text-success f-w-600 m-0 f-s-16">Completed</h6>
       </div>
     </mat-card>
   </div>
-  <div class="col-sm-6 col-lg-3">
+  <div class="col-sm-6 col-lg-3 ">
     <mat-card class="shadow-none">
-      <div class="p-30 bg-light-error text-center cursor-pointer rounded" (click)="btnCategoryClick('cancelled')">
+      <div class="p-10 bg-light-error text-center cursor-pointer rounded" (click)="btnCategoryClick('cancelled')">
         <h3 class="f-s-24 text-error m-0 m-b-4">{{ Cancelled }}</h3>
         <h6 class="text-error f-w-600 m-0 f-s-16">Cancelled</h6>
       </div>
@@ -34,12 +34,14 @@
   </div>
 </div>
 
-<mat-card class="cardWithShadow">
 
-     <!-- SEARCH BAR -->
-  <div class="col-sm-4 p-20  searchbar" >
+
+<!-- MAIN TABLE -->
+<mat-card class="cardWithShadow">
+  <!-- SEARCH BAR -->
+  <div class="col-sm-4 p-20  searchbar">
     <mat-form-field appearance="outline" class="hide-hint custom-search">
-      <mat-label>Search Packages</mat-label>
+      <!-- <mat-label>Search Packages</mat-label> -->
       <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Packages" />
       <mat-icon matSuffix>
         <i-tabler name="search" class="icon-20"></i-tabler>
@@ -48,72 +50,50 @@
   </div>
 
   <mat-card-content>
-    <div class=" table-responsive-sm">
+    <!-- TABLE BODY -->
+    <div class="table-responsive-sm">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
-      @for( column of displayedColumns; track column) {
-  <ng-container matColumnDef="{{ column }}">
-    <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-x-24 p-l-0">
-      {{ column | titlecase }}
-    </th>
-    <td mat-cell *matCellDef="let element" class="p-x-24 f-s-14 p-l-0">
-      <ng-container *ngIf="column !== 'status'; else statusColumn">
-        <!-- Check if the column is "action" -->
-        <ng-container *ngIf="column !== 'action'; else actionColumn">
-          {{ element[column] }}
-        </ng-container>
-        <!-- If the column is "action", render action buttons -->
-        <ng-template #actionColumn>
-          <div class="action-link">
-            <!-- <a mat-icon-button [routerLink]="['/apps/viewPackage/', element.id]" class="d-flex align-items-center justify-content-center">
-              <i-tabler name="eye" class="icon-18 d-flex align-items-center"></i-tabler>
-            </a> -->
-            <a (click)="openDialog('Update', element)" class="m-r-10 cursor-pointer">
-              <i-tabler name="edit" class="icon-18"></i-tabler>
-            </a>
-            <a (click)="openDialog('Delete', element)" class="m-r-10 cursor-pointer">
-              <i-tabler name="trash" class="icon-18"></i-tabler>
-            </a>
-          </div>
-        </ng-template>
-      </ng-container>
-      <!-- If the column is "status", apply status styling -->
-      <ng-template #statusColumn>
-        <span [ngClass]="getStatusClass(element.status)">
-          {{ element.status }}
-        </span>
-      </ng-template>
-    </td>
-  </ng-container>
-}
-
-
-
-        <ng-container matColumnDef="expand">
-          <th mat-header-cell *matHeaderCellDef aria-label="row actions">
-            &nbsp;
+        @for( column of displayedColumns; track column) {
+        <ng-container matColumnDef="{{ column }}">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-x-24 p-l-0">
+            {{ column | titlecase }}
           </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="expand row" (click)="
-                expandedElement = expandedElement === element ? null : element;
-                $event.stopPropagation()
-              ">
-              @if(expandedElement !== element) {
-              <mat-icon>keyboard_arrow_down</mat-icon>
-              }
-              @if(expandedElement === element) {
-              <mat-icon>keyboard_arrow_up</mat-icon>
-              }
+          <td mat-cell *matCellDef="let element" class="p-x-24 f-s-14 p-l-0"
+            (click)=" expandRow($event, element, column)">
 
-            </button>
+            <ng-container *ngIf="column !== 'status'; else statusColumn">
+              <!-- CHECKS IF COLUMN 'ACTION'-->
+              <ng-container *ngIf="column !== 'action'; else actionColumn">
+                {{ element[column] }}
+              </ng-container>
+              <!-- SHOW ACTION TEMPLATE -->
+              <ng-template #actionColumn>
+                <div class="action-link">
+                  <a (click)="openDialog('Update', element)" class="m-r-10 cursor-pointer">
+                    <i-tabler name="edit" class="icon-18"></i-tabler>
+                  </a>
+                  <a (click)="openDialog('Delete', element)" class="m-r-10 cursor-pointer">
+                    <i-tabler name="trash" class="icon-18"></i-tabler>
+                  </a>
+                </div>
+              </ng-template>
+            </ng-container>
+
+
+            <!--IF THE COLUMN IS STATUS THEM APPLY SPECIFIC DESIGN-->
+            <ng-template #statusColumn>
+              <span [ngClass]="getStatusClass(element.status)">
+                {{ element.status }}
+              </span>
+            </ng-template>
           </td>
         </ng-container>
+        }
 
-        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <!-- EXPANDED ROW DETAILS -->
         <ng-container matColumnDef="expandedDetail">
           <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <div [@detailExpand]="
-                element === expandedElement ? 'expanded' : 'collapsed'
-              ">
+            <div [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
               <div class="p-15 rounded b-1 m-b-16 m-x-18">
                 <div class="d-flex align-items-center gap-12">
                   <span
@@ -127,7 +107,6 @@
                     <div class="f-s-14">{{ element.status }}</div>
                   </div>
                 </div>
-
                 <div class="f-s-14 m-t-8">
                   {{ element.note }}
                 </div>
@@ -136,19 +115,18 @@
           </td>
         </ng-container>
 
-
-
+        <!-- HEADER AND ROW DEFINITIONS -->
         <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
         <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand" class="example-element-row"
           [class.example-expanded-row]="expandedElement === element" (click)="
-            expandedElement = expandedElement === element ? null : element
-          "></tr>
+          expandedElement = expandedElement === element ? null : element;"></tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
     </div>
+
   </mat-card-content>
 </mat-card>
 
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-    </mat-paginator>
+<!-- TABLE PAGINATION -->
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+</mat-paginator>

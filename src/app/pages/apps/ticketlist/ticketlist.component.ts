@@ -27,6 +27,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class AppTicketlistComponent implements OnInit {
 
+  //TABLE COLUMNS
   displayedColumns: string[] = [
     'id',
     'name',
@@ -37,7 +38,7 @@ export class AppTicketlistComponent implements OnInit {
     'nbOfSeats',
     'note',
     'status',
-    'action',  
+    'action',
   ];
   columnsToDisplayWithExpand = [...this.displayedColumns];
   expandedElement: TicketList | null = null;
@@ -50,7 +51,7 @@ export class AppTicketlistComponent implements OnInit {
   Inprogress = -1;
   Completed = -1;
 
-
+  //TICKETS
   dataSource = new MatTableDataSource(tickets);
 
   constructor(public dialog: MatDialog) { }
@@ -67,15 +68,30 @@ export class AppTicketlistComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  //FILTER DATA
   applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
+  //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
+  expandRow(event: Event, element: any, column: string): void {
+    if (column === 'action') {
+      this.expandedElement = element;
+    }
+    else {
+      this.expandedElement = this.expandedElement === element ? null : element;
+      event.stopPropagation();
+    }
+  }
+
+  //GET THE CATEGORY LENGTH
   btnCategoryClick(val: string): number {
     this.dataSource.filter = val.trim().toLowerCase();
     return this.dataSource.filteredData.length;
   }
 
+  //GET THE STATUS CLASS
   getStatusClass(status: string): string {
     switch (status) {
       case 'inprogress':
@@ -89,57 +105,71 @@ export class AppTicketlistComponent implements OnInit {
     }
   }
 
+
+  //OPEN UPDATE & DELETE DIALOGS
   openDialog(action: string, obj: any): void {
-    // obj.action = action;
-    // const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
-    //   data: obj,
-    // });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result.event === 'Add') {
-    //     this.addRowData(result.data);
-    //   } else if (result.event === 'Update') {
-    //     this.updateRowData(result.data);
-    //   } else if (result.event === 'Delete') {
-    //     this.deleteRowData(result.data);
-    //   }
-    // });
+    obj.action = action;
+    const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
+      data: obj,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.event === 'Add') {
+        this.addRowData(result.data);
+      } else if (result.event === 'Update') {
+        this.updateRowData(result.data);
+      } else if (result.event === 'Delete') {
+        this.deleteRowData(result.data);
+      }
+    });
   }
-  // tslint:disable-next-line - Disables all
-  // addRowData(row_obj: TicketElement): void {
-  //   const d = new Date();
-  //   this.dataSource.data.unshift({
-  //     id: d.getTime(),
-  //     title: row_obj.title,
-  //     subtext: row_obj.subtext,
-  //     assignee: row_obj.assignee,
-  //     status: row_obj.status,
-  //     date: row_obj.date,
-  //   });
-  //   this.table.renderRows();
-  // }
 
-  // tslint:disable-next-line - Disables all
-  // updateRowData(row_obj: TicketElement): boolean | any {
-  //   this.dataSource.data = this.dataSource.data.filter((value, key) => {
-  //     if (value.id === row_obj.id) {
-  //       value.title = row_obj.title;
-  //       value.subtext = row_obj.subtext;
-  //       value.assignee = row_obj.assignee;
-  //       value.status = row_obj.status;
-  //       value.date = row_obj.date;
-  //     }
-  //     return true;
-  //   });
-  // }
 
-  // tslint:disable-next-line - Disables all
+  //ADD ROW VALUES
+  addRowData(row_obj: TicketList): void {
+    const d = new Date();
+    this.dataSource.data.unshift({
+      id: d.getTime(),
+      name: row_obj.name,
+      destination: row_obj.destination,
+      duration: row_obj.duration,
+      hotels: row_obj.hotels,
+      date: row_obj.date,
+      nbOfSeats: row_obj.nbOfSeats,
+      note: row_obj.note,
+      status: row_obj.status,
+    });
+    this.table.renderRows();
+  }
+
+
+  //UPDATE ROW VALUES
+  updateRowData(row_obj: TicketList): boolean | any {
+    this.dataSource.data = this.dataSource.data.filter((value, key) => {
+      if (value.id === row_obj.id) {
+        value.name = row_obj.name;
+        value.destination = row_obj.destination;
+        value.duration = row_obj.duration;
+        value.hotels = row_obj.hotels,
+          value.date = row_obj.date;
+        value.nbOfSeats = row_obj.nbOfSeats,
+          value.note = row_obj.note,
+          value.status = row_obj.status;
+      }
+      return true;
+    });
+  }
+
+  //DELETE ROW VALUES
   deleteRowData(row_obj: TicketList): boolean | any {
     this.dataSource.data = this.dataSource.data.filter((value, key) => {
       return value.id !== row_obj.id;
     });
   }
 }
+
+
+
+
 
 @Component({
   // tslint:disable-next-line - Disables all
