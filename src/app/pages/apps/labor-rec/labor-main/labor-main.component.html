@@ -1,38 +1,48 @@
 <!-- listing and total no.of counts -->
-<div class="row">
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-primary text-center cursor-pointer rounded" (click)="btnCategoryClick('')">
-        <h3 class="f-s-24 text-primary f-w-600 m-0 m-b-4">{{ totalCount }}</h3>
-        <h6 class="text-primary f-w-600 m-0 f-s-16">Total Labors</h6>
-      </div>
-    </mat-card>
+<div class="four-sections-header">
+
+  <div class="two-sections-header">
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-primary text-center rounded" (click)="btnCategoryClick('')">
+          <h3 class="text-primary">{{ totalCount }}</h3>
+          <p class="text-primary">Total Packages</p>
+        </div>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-warning text-center rounded" (click)="btnCategoryClick('InProgress')">
+          <h3 class="text-warning">{{ Inprogress }}</h3>
+          <p class="text-warning">In Progress</p>
+        </div>
+      </mat-card>
+    </div>
   </div>
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-warning text-center cursor-pointer rounded" (click)="btnCategoryClick('InProgress')">
-        <h3 class="f-s-24 text-warning m-0 m-b-4">{{ Inprogress }}</h3>
-        <h6 class="text-warning f-w-600 m-0 f-s-16">Pending</h6>
-      </div>
-    </mat-card>
+
+  <div class="two-sections-header">
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-success text-center rounded" (click)="btnCategoryClick('complete')">
+          <h3 class="text-success">{{ Completed }}</h3>
+          <p class="text-success">Completed</p>
+        </div>
+      </mat-card>
+    </div>
+
+    <div>
+      <mat-card class="shadow-none">
+        <div class="bg-light-error text-center rounded" (click)="btnCategoryClick('inactive')">
+          <h3 class="text-error">{{ Cancelled }}</h3>
+          <p class="text-error">Cancelled</p>
+        </div>
+      </mat-card>
+    </div>
   </div>
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-success text-center cursor-pointer rounded" (click)="btnCategoryClick('complete')">
-        <h3 class="f-s-24 text-success m-0 m-b-4">{{ Completed }}</h3>
-        <h6 class="text-success f-w-600 m-0 f-s-16">Active</h6>
-      </div>
-    </mat-card>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <mat-card class="shadow-none">
-      <div class="p-10 bg-light-error text-center cursor-pointer rounded" (click)="btnCategoryClick('inactive')">
-        <h3 class="f-s-24 text-error m-0 m-b-4">{{ Cancelled }}</h3>
-        <h6 class="text-error f-w-600 m-0 f-s-16">Inactive</h6>
-      </div>
-    </mat-card>
-  </div>
+
 </div>
+
 
 <!-- Add Row  -->
 <mat-card class="cardWithShadow">
@@ -40,13 +50,51 @@
     <div class="InputsWholeRow">
 
       <div class="inputsInAdd">
-        <input type="text" placeholder="{{Name}}">
-        <input type="text" placeholder="{{Nationality}}">
-        <input type="text" placeholder="{{Gender}}">
-        <input type="text" placeholder="{{Type}}">
-        <input type="text" placeholder="{{Age}}">
-        <input type="text" placeholder="{{Note}}">
-        <input type="text" placeholder="{{Status}}">
+
+        <section>
+          <div>
+            <input type="text" placeholder="{{Name}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Nationality}}">
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <input type="text" placeholder="{{Gender}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Type}}">
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <input type="text" placeholder="{{Age}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Note}}">
+          </div>
+          <div>
+            <input type="text" placeholder="{{Status}}">
+          </div>
+        </section>
+
+
+        <section>
+          <div>
+            <input type="text" placeholder="{{Note}}">
+          </div>
+
+          <div>
+            <select>
+              <option value="Pending">InProgress</option>
+              <option value="Approved">Active</option>
+              <option value="Rejected">Inactive</option>
+            </select>
+          </div>
+        </section>
       </div>
 
       <div *ngIf="ShowAddButoon">
@@ -63,19 +111,37 @@
 </mat-card>
 
 
+
+
+
 <!-- MAIN TABLE -->
 <mat-card class="cardWithShadow">
   <!-- SEARCH BAR -->
-  <div class="col-sm-4 p-20  searchbar">
-    <mat-form-field appearance="outline" class="hide-hint custom-search">
-      <!-- <mat-label>Search Packages</mat-label> -->
-      <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Packages" />
-      <mat-icon matSuffix>
-        <i-tabler name="search" class="icon-20"></i-tabler>
-      </mat-icon>
-    </mat-form-field>
-  </div>
+   <!-- Search -->
+   <header>
+    <div class="col-sm-4 p-20 searchbar ">
+      <mat-form-field appearance="outline" class="hide-hint custom-search ">
+        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search labors" />
+        <mat-icon matSuffix>
+          <i-tabler name="search" class="icon-15"></i-tabler>
+        </mat-icon>
+      </mat-form-field>
+    </div>
 
+    <div class="filter-date">
+      <mat-card-header class="d-flex">
+        <mat-form-field class="theme-select" appearance="outline">
+          <mat-select value="mar">
+            @for(month of months; track month) {
+            <mat-option [value]="month.value">
+              {{ month.viewValue }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-card-header>
+    </div>
+  </header>
   <mat-card-content>
     <!-- TABLE BODY -->
     <div class="table-responsive">
@@ -112,7 +178,7 @@
               <span [ngClass]="getStatusClass(element.status)">
                 {{ element.status === 'complete' ? 'active' : element.status }}
               </span>
-              
+
             </ng-template>
           </td>
         </ng-container>
@@ -151,9 +217,8 @@
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
     </div>
-<!-- TABLE PAGINATION -->
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-</mat-paginator>
+    <!-- TABLE PAGINATION -->
+    <mat-paginator [pageSizeOptions]="[10, 20,30]" showFirstLastButtons>
+    </mat-paginator>
   </mat-card-content>
 </mat-card>
-

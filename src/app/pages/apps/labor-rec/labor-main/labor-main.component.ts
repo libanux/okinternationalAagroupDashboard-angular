@@ -6,6 +6,10 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { labors } from '../labor-data';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
+interface month {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-labor-main',
@@ -23,6 +27,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 
+
+
 export class LaborMainComponent implements AfterViewInit {
 
   ShowAddButoon = true;
@@ -37,7 +43,11 @@ export class LaborMainComponent implements AfterViewInit {
   Note = 'Note';
   Status = 'Status';
 
-
+  months: month[] = [
+    { value: 'mar', viewValue: 'March 2023' },
+    { value: 'apr', viewValue: 'April 2023' },
+    { value: 'june', viewValue: 'June 2023' },
+  ];
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
