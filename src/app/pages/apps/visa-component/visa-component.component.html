@@ -51,37 +51,22 @@
       <div class="inputsInAdd">
   
         <section>
-          <div>
-            <input type="text" placeholder="{{Name}}">
-          </div>
-          <div>
-            <input type="text" placeholder="{{Destination}}">
-          </div>
+          <div><input type="text" placeholder="{{Name}}"></div>
+          <div><input type="text" placeholder="{{Destination}}"></div>
         </section>
         
         <section>
-          <div>
-            <input type="text" placeholder="{{Duration}}">
-          </div>
-          <div>
-            <input type="text" placeholder="{{Hotels}}">
-          </div>
+          <div><input type="text" placeholder="{{Duration}}"></div>
+          <div><input type="text" placeholder="{{Hotels}}"></div>
         </section>
         
         <section>
-          <div>
-            <input type="text" placeholder="{{Date}}">
-          </div>
-          <div>
-            <input type="text" placeholder="{{Seats}}">
-          </div>
+          <div><input type="text" placeholder="{{Date}}"></div>
+          <div><input type="text" placeholder="{{Seats}}"></div>
         </section>
 
-
         <section>
-          <div>
-            <input type="text" placeholder="{{Note}}">
-          </div>
+          <div><input type="text" placeholder="{{Note}}"></div>
           
           <div>
           <select>
@@ -115,37 +100,40 @@
 <mat-card class="cardWithShadow">
 
   <!-- Search -->
-  <header>
-    <div class="col-sm-4 p-20 searchbar ">
+<header>
+
+  <div class="col-sm-4 p-20 searchbar ">
       <mat-form-field appearance="outline" class="hide-hint custom-search ">
         <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search Visa's" />
         <mat-icon matSuffix>
           <i-tabler name="search" class="icon-15"></i-tabler>
         </mat-icon>
       </mat-form-field>
-    </div>
+  </div>
 
-    <div class="filter-date">
-      <mat-card-header class="d-flex">
-        <mat-form-field class="theme-select" appearance="outline">
-          <mat-select value="mar">
-            @for(month of months; track month) {
-            <mat-option [value]="month.value">
-              {{ month.viewValue }}
-            </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </mat-card-header>
-    </div>
-  </header>
+  <div class="filter-date">
+    <mat-card-header class="d-flex">
+      <mat-form-field class="theme-select" appearance="outline">
+        <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onChange($event.value)">
+          <mat-option *ngFor="let month of months" [value]="month.value">{{ month.viewValue }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </mat-card-header>
+  </div>
+  
+  
+
+</header>
 
 
-  <!-- Table -->
-  <mat-card-content>
+<!-- Table -->
+<mat-card-content>
+
     <!-- TABLE BODY -->
     <div class="table-responsive">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+
         @for( column of displayedColumns; track column) {
         <ng-container matColumnDef="{{ column }}">
           <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-x-24 p-l-0">
@@ -217,9 +205,8 @@
       </table>
     </div>
 
-  
-      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
 
-    </mat-card-content>
+</mat-card-content>
 
   </mat-card>

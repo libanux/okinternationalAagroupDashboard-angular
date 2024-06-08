@@ -1,0 +1,13 @@
+<mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)" class="date-range-calendar">
+    <ng-container *matCalendarCellCssClasses="let date">
+      <div
+       [ngClass]="{ 'selected-range': isInRange(date), 'start-range': date === rangeStart, 'end-range': date === rangeEnd }">
+        {{ date.getDate() }}
+      </div>
+    </ng-container>
+  </mat-calendar>
+  
+  <div *ngIf="dateRange" class="date-range-text">
+    Selected Date Range: {{ dateRange.startDate | date:'mediumDate' }} - {{ dateRange.endDate | date:'mediumDate' }}
+  </div>
+  
