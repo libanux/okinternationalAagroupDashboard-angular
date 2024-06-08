@@ -1,14 +1,4 @@
-
-export interface productsData {
-  id: number;
-  imagePath: string;
-  uname: string;
-  productName: string;
-  budget: number;
-  priority: string;
-}
-
-const ELEMENT_DATA: productsData[] = [
+const ELEMENT_DATA: DateData[] = [
   {
     id: 1,
     imagePath: 'assets/images/profile/user-1.jpg',
@@ -52,19 +42,16 @@ const ELEMENT_DATA: productsData[] = [
   },
 ];
 
-interface month {
-  value: string;
-  viewValue: string;
-}
-
-
-import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, effect, signal } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { VisaArray } from './visa-data';
 import { VisaClass } from './visaClass';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DateData, month } from 'src/app/classes/DateDropdownClass';
+import { CalendarDialogComponent } from './calendar-dialog.component';
+import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
 
 
 @Component({
@@ -87,16 +74,22 @@ export class VisaComponentComponent implements OnInit {
 
 
   months: month[] = [
-    { value: 'mar', viewValue: 'March 2023' },
-    { value: 'apr', viewValue: 'April 2023' },
-    { value: 'june', viewValue: 'June 2023' },
+    { value: 'Today', viewValue: 'Today' },
+    { value: 'Yesterday', viewValue: 'Yesterday' },
+    { value: 'Last Week', viewValue: 'Last Week' },
+    { value: 'Last Month', viewValue: 'Last Month' },
+    { value: 'Last Year', viewValue: 'Last Year' },
+    { value: 'Calendar', viewValue: 'Custom' },
   ];
+
+  rangeStart = signal('');
+  rangeEnd = signal('');
+
 
   ShowAddButoon = true;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
-
 
   Name = 'Name';
   Destination = 'Destination';
@@ -128,17 +121,82 @@ export class VisaComponentComponent implements OnInit {
 
   columnsToDisplayWithExpand = [...this.displayedColumns];
   expandedElement: VisaClass | null = null;
-  
   dataSource = new MatTableDataSource(VisaArray);
+  valueDisplayed = ''
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private dateSignal : DateSelectedSignal) {
+    effect(()=>(
+      console.log('hey, ', this.rangeEnd()),
+      this.valueDisplayed = this.rangeStart() + '' + this.rangeEnd()
+      
+      // this.months  = [
+      //   { value: 'Today', viewValue: 'Today' },
+      //   { value: 'Yesterday', viewValue: 'Yesterday' },
+      //   { value: 'Last Week', viewValue: 'Last Week' },
+      //   { value: 'Last Month', viewValue: 'Last Month' },
+      //   { value: 'Last Year', viewValue: 'Last Year' },
+      //   { value: 'Calendar', viewValue: this.valueDisplayed },
+      // ]
+    )
 
+    )
+   }
+
+  onChange(value: string) {
+    if (value === 'Calendar') {
+      this.openCalendarDialog();
+
+    }
+
+    else{
+
+    }
+  }
+
+  openCalendarDialog(): void {
+    const dialogRef = this.dialog.open(CalendarDialogComponent, {
+      width: '350px',
+      data: { selectedDate: this.selectedDate }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        if (result.startDate && result.endDate) {
+          this.selectedMonth = `${result.startDate.toLocaleString('default', { month: 'long' })} - ${result.endDate.toLocaleString('default', { month: 'long' })}`;
+        } else {
+          this.selectedMonth = 'Custom';
+        }
+        this.selectedDate = result;
+        // Do something with the selected date
+      }
+    });
+  }
+  
   ngOnInit(): void {
+    this.rangeEnd = this.dateSignal.endDate;
+    this.rangeStart = this.dateSignal.startDate;
+  
     this.totalCount = this.dataSource.data.length;
     this.Completed = this.btnCategoryClick('Completed');
     this.Cancelled = this.btnCategoryClick('Cancelled');
     this.Inprogress = this.btnCategoryClick('InProgress');
     this.dataSource = new MatTableDataSource(VisaArray);
+  }
+
+  showCalendar: boolean = false;
+  selectedMonth: string = '';
+  selectedDate: Date | null = null; // Adjusted the type to accept null
+
+  onDateSelect(date: Date) {
+    console.log('Selected Date:', date);
+    // Do something with the selected date
+  }
+
+  cancelSelection() {
+    this.showCalendar = false;
+    this.selectedMonth = '';
+    this.selectedDate = null;
   }
 
   ngAfterViewInit(): void {
