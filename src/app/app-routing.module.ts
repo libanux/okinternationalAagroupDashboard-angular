@@ -30,7 +30,7 @@ const routes: Routes = [
           import('./pages/charts/charts.module').then((m) => m.ChartsModule),
       },
       {
-        path: '',
+        path: 'apps',
         loadChildren: () =>
           import('./pages/apps/apps.module').then((m) => m.AppsModule),
       },
@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: '', component: BlankComponent,
     children: [
       {
-        path: 'authentication',
+        path: '',
         loadChildren: () =>
           import('./pages/authentication/authentication.module').then(
             (m) => m.AuthenticationModule
@@ -55,9 +55,10 @@ const routes: Routes = [
   },
 
   {
-    path: '**',
-    redirectTo: 'authentication/error',
-  }
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
 
  
 ];

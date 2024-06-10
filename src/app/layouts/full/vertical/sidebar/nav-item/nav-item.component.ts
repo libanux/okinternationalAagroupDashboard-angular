@@ -56,7 +56,7 @@ export class AppNavItemComponent implements OnChanges {
 
     if(item.displayName == 'logout'){
         this.authService.LOGOUT();
-        this.router.navigate(['authentication/login']).then(() => {
+        this.router.navigate(['/login']).then(() => {
           window.scrollTo(0, 0);
         });
     }

@@ -64,7 +64,8 @@ import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component'
 import { VisaComponentComponent } from './visa-component/visa-component.component';
 import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 import { TicketsComponent } from './tickets/tickets.component';
-
+import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
+import { AddComponent } from './admins/add-admin/add.component';
 
 @NgModule({
   imports: [
@@ -114,7 +115,10 @@ import { TicketsComponent } from './tickets/tickets.component';
     ViewLaborComponent,
     AppTicketlistComponent,
     ViewticketComponent,
-    TicketsComponent
+    TicketsComponent,
+    AdminsComponent,
+    AdminDialogContentComponent,
+    AddComponent
   ],
   providers: [DatePipe],
 })
