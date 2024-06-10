@@ -12,6 +12,7 @@ import { Package } from './ticket';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PackageService } from 'src/app/services/package.service';
 import { CalendarDialogComponent } from './calendar-card/calendar-dialog.component';
+import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
 
 
 @Component({
@@ -96,6 +97,7 @@ export class AppTicketlistComponent implements OnInit {
   onDateSelect(date: Date) {
     console.log('Selected Date:', date);
     // Do something with the selected date
+
   }
 
   cancelSelection() {
@@ -120,13 +122,15 @@ export class AppTicketlistComponent implements OnInit {
   }
 
 
-  
+
   onChange(value: string) {
     if (value === 'Calendar') {
       this.openCalendarDialog();
-      console.log("Hereeee")
+
+
+
     }
-    else{
+    else {
     }
   }
 
@@ -135,12 +139,27 @@ export class AppTicketlistComponent implements OnInit {
       width: '350px',
       data: { selectedDate: this.selectedDate }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result) {
         if (result.startDate && result.endDate) {
           this.selectedMonth = `${result.startDate.toLocaleString('default', { month: 'long' })} - ${result.endDate.toLocaleString('default', { month: 'long' })}`;
+          this.packagesService.FILTER_PACKAGE("custom").subscribe({
+            next: (response: any) => {
+              console.log("Response:", response)
+              this.packages = response;
+              this.dataSource = new MatTableDataSource(this.packages);
+              this.totalCount = this.dataSource.data.length;
+              this.Inprogress = this.btnCategoryClick('pending');
+            },
+            error: (error: any) => {
+              console.log("Error:", error)
+            },
+            complete: () => {
+            }
+          });
+
         } else {
           this.selectedMonth = 'Custom';
         }
