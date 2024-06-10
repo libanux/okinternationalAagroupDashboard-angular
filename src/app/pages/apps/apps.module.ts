@@ -64,6 +64,7 @@ import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component'
 import { VisaComponentComponent } from './visa-component/visa-component.component';
 import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 import { CalendarWithDateRangeComponent } from './visa-component/calendar-with-date-range.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   imports: [
@@ -112,7 +113,8 @@ import { CalendarWithDateRangeComponent } from './visa-component/calendar-with-d
     LaborMainComponent,
     ViewLaborComponent,
     AppTicketlistComponent,
-    ViewticketComponent
+    ViewticketComponent,
+    TicketsComponent
   ],
   providers: [DatePipe],
 })
