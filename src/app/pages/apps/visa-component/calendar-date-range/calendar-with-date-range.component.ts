@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter, signal, OnInit, effect } from '@angular/core';
-import { DateRange } from './date-range';
 import { MatCalendar } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
-import { DateSelectedSignal } from '../../../../app/signals/DateSelectedSignal.service'
+import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
+import { DateRange } from '../date-range';
 
 @Component({
   standalone: true,
@@ -43,6 +43,9 @@ export class CalendarWithDateRangeComponent implements OnInit{
     return this.datePipe.transform(date, 'MMM d, y') || '';
   }
   
+  colorStartDate = false;
+  colorEndDate = false;
+
   onDateChange(selectedDate: Date) {
 
     if (!this.dateRange) {
@@ -52,18 +55,23 @@ export class CalendarWithDateRangeComponent implements OnInit{
     if (!this.dateRange.startDate) {
       this.dateRange.startDate = selectedDate;
       this.rangeStart.set(this.getFormattedDate(selectedDate))
-      this.rangeStarted = selectedDate
+      this.rangeStarted = selectedDate;
+      this.colorStartDate = true;
     } 
     
     else if (!this.dateRange.endDate) {
       this.dateRange.endDate = selectedDate;
       this.rangeEnd.set(this.getFormattedDate(selectedDate))
       this.dateRangeChange.emit(this.dateRange);
-      this.rangeEnded = selectedDate
+      this.rangeEnded = selectedDate;
+      this.colorStartDate = true;
     } 
     
     else {
       this.dateRange = new DateRange();
+      this.colorStartDate = false;
+      this.colorEndDate = false;
+
       this.dateRange.startDate = selectedDate;
       this.rangeStart.set(this.getFormattedDate(selectedDate))
       this.rangeStart.set(this.getFormattedDate(selectedDate))
@@ -71,9 +79,11 @@ export class CalendarWithDateRangeComponent implements OnInit{
   }
 
   isInRange(date: Date): boolean {
+    console.log('here')
     if (!this.rangeStart || !this.rangeEnd) {
       return false;
     }
     return date >= this.rangeStarted && date <= this.rangeEnded;
   }
+  
 }

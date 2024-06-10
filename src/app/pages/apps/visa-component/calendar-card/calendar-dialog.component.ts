@@ -1,13 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
-import { DateRange } from './date-range';
-import { CalendarWithDateRangeComponent } from './calendar-with-date-range.component';
+import { DateRange } from '../date-range';
+import { CalendarWithDateRangeComponent } from '../calendar-date-range/calendar-with-date-range.component';
 
 @Component({
   standalone: true,
   selector: 'app-calendar-dialog',
   templateUrl: './calendar-dialog.component.html',
+  styleUrl: './calendar-dialog.component.scss',
   imports: [MatDialogContent, MatCalendar, MatDialogActions, CalendarWithDateRangeComponent]
 })
 export class CalendarDialogComponent {
@@ -29,7 +30,6 @@ export class CalendarDialogComponent {
     }
   
     onSave(): void {
-      console.log(this.dateRange)
       this.dialogRef.close(this.dateRange);
     }
   
