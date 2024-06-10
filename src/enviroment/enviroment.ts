@@ -2,7 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
-    apiLocalBaseUrl: "https://libanux.xyz/servsmart/api/data",
+    // apiLocalBaseUrl: "https://libanux.xyz/DaherTravel/api",
+    apiLocalBaseUrl: "https://192.168.1.8:5000/DaherTravel/api",
     ws_url: "http://localhost:5000"
   };
   /*
