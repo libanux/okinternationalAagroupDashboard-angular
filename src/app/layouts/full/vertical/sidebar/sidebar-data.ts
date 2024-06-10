@@ -4,38 +4,38 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Package',
     iconName: 'packages',
-    route: '/',
+    route: 'apps/package',
   },
   {
     displayName: 'Visa',
     iconName: 'ticket',
-    route: '/visa',
+    route: 'apps/visa',
   },
   {
     displayName: 'Ticketing',
     iconName: 'ticket',
-    route: 'tickets',
+    route: 'apps/tickets',
   },
   {
     displayName: 'Customers',
-    iconName: 'ticket',
-    route: '',
+    iconName: 'apps/ticket',
+    route: 'apps/customers',
   },
   {
     displayName: 'Labor Recruitment',
     iconName: 'clipboard',
-    route: '/labors',
+    route: 'apps/labors',
   },
   {
     displayName: 'Notes',
     iconName: 'note',
-    route: '/notes',
+    route: 'apps/notes',
   },
   
   {
     displayName: 'Reports',
     iconName: 'layout',
-    route: 'widgets/charts',
+    route: 'apps/widgets/charts',
   },
 
   {
@@ -44,16 +44,16 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Profile',
     iconName: 'ticket',
-    route: '',
+    route: 'apps/pro',
   },
   {
-    displayName: 'Users',
+    displayName: 'Admins',
     iconName: 'user-plus',
-    route: '/employee',
+    route: 'apps/admins',
   },
   {
     displayName: 'logout',
     iconName: 'login',
-    route: '/authentication/login',
+    route: '',
   }
 ];

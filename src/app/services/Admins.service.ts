@@ -23,30 +23,15 @@ export class AdminService {
   }
 
   //GET USERS
-  GET_ADMINS(page_Number: number): Observable<any> {
+  GET_ALL_ADMINS(): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.storedToken}`,
       'Content-Type': 'application/json'
     });
-  
-    const startRow = page_Number * this.pagingSize;
-    const endRow = this.pagingSize + (page_Number * this.pagingSize);
 
-    const requestBody = {
-      "OWNER_ID": 1,
-      "GOOGLE_U": "",
-      "FIRST_NAME":  this.searchService.UserSearchKey(),
-      "LAST_NAME": "",
-      "USERNAME": this.searchService.UserSearchKey(),
-      "EMAIL": "",
-      "PASSWORD": "",
-      "USER_TYPE_CODE": "002",
-      "USER_LANG_CODE": "",
-      "START_ROW": startRow,
-      "END_ROW": endRow,
-      "TOTAL_COUNT": 0
-    };
-    return this.httpClient.post<any>(this.apiUrl + '/GET_USER_BY_CRITERIA', requestBody, { headers });
+    console.log('hello')
+  
+    return this.httpClient.get<any>(this.apiUrl + '/GET_ALL_ADMINS', { headers });
   }
 
   //GET USER BY ID

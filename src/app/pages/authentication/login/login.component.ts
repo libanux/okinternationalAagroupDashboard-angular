@@ -38,7 +38,7 @@ export class AppLoginComponent {
       this.authserivece.SIGN_IN(authenticationParams).subscribe({
         next: (response: any) => {
           console.log(response)
-            this.router.navigate(['/']).then(() => {
+            this.router.navigate(['/apps/package']).then(() => {
               window.scrollTo(0, 0);
             }),
               localStorage.setItem('TICKET', response.token),

@@ -16,6 +16,7 @@ import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component'
 import { VisaComponentComponent } from './visa-component/visa-component.component';
 import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { AdminsComponent } from './admins/admins.component';
 
 
 export const AppsRoutes: Routes = [
@@ -44,16 +45,20 @@ export const AppsRoutes: Routes = [
         component: AppTaskboardComponent,
       },
       {
-        path: '',
+        path: 'package',
         component: AppTicketlistComponent,
       },
       {
         path: 'contacts',
         component: AppContactComponent,
       },
+      // {
+      //   path: 'employee',
+      //   component: AppEmployeeComponent,
+      // },
       {
-        path: 'employee',
-        component: AppEmployeeComponent,
+        path: 'admins',
+        component: AdminsComponent,
       },
       {
         path: 'invoice',
