@@ -1,15 +1,15 @@
-export class TicketList {
+export class Package {
   constructor(
-    public _id: number = 0,
+    public _id: string  = '',
     public name: string = '',
     public source: string ='',
     public destination: string = '',
-    public duration: string = '',
+    public duration: number = 0,
     public hotels: string = '',
     public numberOfPeople: number = 0,
     public price: number = 0, //this is cost
-    public sell: string = '',
-    public netprofit: string = '',
+    public sell: number =0,
+    public netprofit: number = 0,
     public note: string = '',
     public status: string = '',
   ) {}

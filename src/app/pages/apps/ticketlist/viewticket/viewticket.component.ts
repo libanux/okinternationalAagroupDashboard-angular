@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceinvoiceService } from '../../invoice/serviceinvoice.service';
-
-
 import { ServiceticketService } from '../serviceticket.service';
-import { TicketList } from '../ticket';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
+import { Package } from '../ticket';
 
 @Component({
   selector: 'app-viewticket',
@@ -15,13 +10,13 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class ViewticketComponent {
   id: any;
-  ticketDetail: TicketList;
+  ticketDetail: Package;
   displayedColumns: string[] = ['itemName', 'unitPrice', 'unit', 'total'];
 
   constructor(activatedRouter: ActivatedRoute, private ticketService: ServiceticketService) {
     this.id = activatedRouter.snapshot.paramMap.get('id');
     console.log("id",this.id)
-    this.ticketDetail = this.ticketService.getTicketList().filter((x) => x?._id === +this.id)[0];
+    // this.ticketDetail = this.ticketService.getTicketList().filter((x) => x?._id === +this._id)[0];
     console.log("Ticket",this.ticketDetail)
   }
 }

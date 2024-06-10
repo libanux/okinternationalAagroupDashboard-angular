@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  TicketList } from './ticket';
+import {  Package } from './ticket';
 import { from } from 'rxjs';
 
 
@@ -8,7 +8,7 @@ import { from } from 'rxjs';
   providedIn: 'root'
 })
 export class ServiceticketService {
-  private ticketlist: TicketList[] = [];
+  private ticketlist: Package[] = [];
 
   // private getTicket(): any {
   //   return from(tickets);
@@ -19,7 +19,7 @@ export class ServiceticketService {
   }
 
 
-  public getTicketList(): TicketList[] {
+  public getTicketList(): Package[] {
     return this.ticketlist;
   }
 }
