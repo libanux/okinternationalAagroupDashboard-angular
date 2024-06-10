@@ -28,8 +28,6 @@ export class AdminService {
       'Authorization': `Bearer ${this.storedToken}`,
       'Content-Type': 'application/json'
     });
-
-    console.log('hello')
   
     return this.httpClient.get<any>(this.apiUrl + '/GET_ALL_ADMINS', { headers });
   }

@@ -42,10 +42,7 @@ import { AppAddEmployeeComponent } from './employee/add/add.component';
 
 import { AppsRoutes } from './apps.routing';
 import { MatNativeDateModule } from '@angular/material/core';
-import {
-  AppTicketlistComponent,
-  AppTicketDialogContentComponent,
-} from './ticketlist/ticketlist.component';
+import { AppTicketlistComponent, AppTicketDialogContentComponent } from './ticketlist/ticketlist.component';
 
 //Invoice
 import { AppInvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
@@ -54,7 +51,6 @@ import { AppAddInvoiceComponent } from './invoice/add-invoice/add-invoice.compon
 import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.component';
 import { OkDialogComponent } from './invoice/edit-invoice/ok-dialog/ok-dialog.component';
 import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-dialog.component';
-
 
 // labor
 import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';

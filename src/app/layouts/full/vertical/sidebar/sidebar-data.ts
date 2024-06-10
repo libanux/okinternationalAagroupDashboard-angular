@@ -18,7 +18,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Customers',
-    iconName: 'apps/ticket',
+    iconName: 'ticket',
     route: 'apps/customers',
   },
   {
@@ -35,7 +35,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Reports',
     iconName: 'layout',
-    route: 'apps/widgets/charts',
+    route: 'widgets/charts',
   },
 
   {
@@ -44,7 +44,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Profile',
     iconName: 'ticket',
-    route: 'apps/pro',
+    route: 'apps/profile',
   },
   {
     displayName: 'Admins',

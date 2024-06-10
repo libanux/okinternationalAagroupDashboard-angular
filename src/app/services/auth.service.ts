@@ -39,8 +39,8 @@ export class AuthService {
   }
 
   LOGOUT(){
-    localStorage.removeItem('TICKET'),
-    localStorage.removeItem('userId')
+    localStorage.setItem('TICKET',''),
+    localStorage.setItem('userId', '')
   }
 }
 

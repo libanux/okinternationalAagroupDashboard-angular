@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,21 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  title = 'Modernize Angular Admin Template';
-
+  title = 'Daher Travel';
   isLoggedIn = false;
-  ticket: string | undefined;
+
+  constructor(private router:Router){}
 
   ngOnInit(): void {
-    this.ticket = localStorage.getItem('TICKET')!;
   
-    if (this.ticket.length > 0) {
+    if (localStorage.getItem('TICKET') != '') {
       this.isLoggedIn = true;
       console.log("true")
-    } else {
+      this.router.navigate(['/apps/package']).then(() => {
+        window.scrollTo(0, 0);
+      })
+    }
+     else if (localStorage.getItem('TICKET') == ''){
       this.isLoggedIn = false;   
         console.log("false")
-
+        this.router.navigate(['/login']).then(() => {
+          window.scrollTo(0, 0);
+        })
     }
   }
   
