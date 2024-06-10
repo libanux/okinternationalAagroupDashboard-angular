@@ -33,10 +33,14 @@ export class AppTicketlistComponent implements OnInit {
 
   Name = 'Name';
   Destination = 'Destination';
+  Source='Source'
   Duration = 'Duration';
   Hotels = 'Hotels';
   Date = 'Date';
   Seats = 'Seats';
+  Cost='Cost';
+  Sell='Sell';
+  Netprofit='Netprofit'
   Note= 'Note';
   Status = 'Status';
 
@@ -47,10 +51,14 @@ export class AppTicketlistComponent implements OnInit {
     'id',
     'name',
     'destination',
+    'source',
     'duration',
     'hotels',
     'date',
     'nbOfSeats',
+    'cost',
+    'sell',
+    'netprofit',
     'note',
     'status',
     'action',
@@ -111,6 +119,9 @@ export class AppTicketlistComponent implements OnInit {
     this.Hotels = 'Hotels';
     this.Date = 'Date';
     this.Seats = 'Seats';
+    this.Cost = 'Cost';
+    this.Sell = 'Sell';
+    this.Netprofit = 'Netprofit';
     this.Note= 'Note';
     this.Status = 'Status';
   }
@@ -161,10 +172,14 @@ export class AppTicketlistComponent implements OnInit {
       id: d.getTime(),
       name: row_obj.name,
       destination: row_obj.destination,
+      source: row_obj.source,
       duration: row_obj.duration,
       hotels: row_obj.hotels,
       date: row_obj.date,
       nbOfSeats: row_obj.nbOfSeats,
+      cost: row_obj.cost,
+      sell: row_obj.sell,
+      netprofit: row_obj.netprofit,
       note: row_obj.note,
       status: row_obj.status,
     });
@@ -182,6 +197,9 @@ export class AppTicketlistComponent implements OnInit {
   this.Hotels = obj.hotels
   this.Date = obj.date
   this.Seats = obj.nbOfSeats
+  this.Cost = obj.cost
+  this.Sell = obj.sell
+  this.Netprofit = obj.netprofit
   this.Note = obj.note
   this.Status = obj.status
 
