@@ -14,6 +14,16 @@ export const navItems: NavItem[] = [
     route: '/visa',
   },
   {
+    displayName: 'Ticketing',
+    iconName: 'ticket',
+    route: '',
+  },
+  {
+    displayName: 'Customers',
+    iconName: 'ticket',
+    route: '',
+  },
+  {
     displayName: 'Labor Recruitment',
     iconName: 'clipboard',
     route: '/labors',
@@ -32,6 +42,11 @@ export const navItems: NavItem[] = [
 
   {
     navCap: 'Auth',
+  },
+  {
+    displayName: 'Profile',
+    iconName: 'ticket',
+    route: '',
   },
   {
     displayName: 'Users',
