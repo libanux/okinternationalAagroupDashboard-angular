@@ -5,10 +5,11 @@
 }
 
 @if(!item.navCap && !item.external) {
-<mat-list-item (click)="onItemSelected(item)" [ngClass]="{
+<mat-list-item 
+(click)="onItemSelected(item)" 
+[ngClass]="{
     'mat-toolbar mat-accent activeMenu': item.route
-      ? router.isActive(item.route, true)
-      : false,
+      ? router.isActive(item.route, true) : false,
     expanded: expanded,
   }" class="menu-list-item rounded-pill">
   <i-tabler name="{{ item.iconName }}" class="routeIcon" matListItemIcon></i-tabler>
@@ -24,7 +25,6 @@
 
 </mat-list-item>
 }
-
 
 <!-- children -->
 @if(expanded) {

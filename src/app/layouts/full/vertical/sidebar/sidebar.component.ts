@@ -1,19 +1,12 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { BrandingComponent } from './branding.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LogoIconComponent } from './logo-icon';
 import { TablerIconsModule } from 'angular-tabler-icons';
-
 import { MaterialModule } from '../../../../material.module';
+
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [BrandingComponent, TablerIconsModule, MaterialModule],
+  imports: [LogoIconComponent, TablerIconsModule, MaterialModule],
   templateUrl: './sidebar.component.html',
 })
 

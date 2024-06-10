@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-
 import { MaterialModule } from '../../../material.module';import { FeatherModule } from "angular-feather"
 import { AuthService, Params_Authenticate } from 'src/app/services/auth.service';
 
@@ -50,7 +49,6 @@ export class AppLoginComponent {
       });
     
   }
-
 
   //LOGIN WHEN CLICK ENTER KEY
   // handleKeydown(event: KeyboardEvent) {

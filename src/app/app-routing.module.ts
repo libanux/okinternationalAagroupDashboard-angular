@@ -23,11 +23,7 @@ const routes: Routes = [
             (m) => m.UicomponentsModule
           ),
       },
-      // {
-      //   path: 'forms',
-      //   loadChildren: () =>
-      //     import('./pages/forms/forms.module').then((m) => m.FormModule),
-      // },
+
       {
         path: 'charts',
         loadChildren: () =>
