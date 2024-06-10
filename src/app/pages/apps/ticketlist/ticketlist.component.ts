@@ -70,9 +70,9 @@ export class AppTicketlistComponent implements OnInit {
 
   //MONTHS FOR FILTER DROPDOWN
   months: month[] = [
-    { value: 'Today', viewValue: 'Today' },
-    { value: 'Yesterday', viewValue: 'Yesterday' },
-    { value: 'Last Week', viewValue: 'Last Week' },
+    { value: 'today', viewValue: 'Today' },
+    { value: 'yesterday', viewValue: 'Yesterday' },
+    { value: 'last Week', viewValue: 'Last Week' },
     { value: 'Last Month', viewValue: 'Last Month' },
     { value: 'Last Year', viewValue: 'Last Year' },
     { value: 'Calendar', viewValue: 'Custom' },
@@ -81,11 +81,8 @@ export class AppTicketlistComponent implements OnInit {
   //PACKAGES
   dataSource = new MatTableDataSource(this.packages);
 
-
-  packageExample = new Package(
-
-  );
-
+  packageExample = new Package();
+  editedpackage = new Package();
 
   constructor(public dialog: MatDialog, private packagesService: PackageService) {
     this.viewPackage = new Package()
@@ -96,8 +93,6 @@ export class AppTicketlistComponent implements OnInit {
   }
   onDateSelect(date: Date) {
     console.log('Selected Date:', date);
-    // Do something with the selected date
-
   }
 
   cancelSelection() {
@@ -121,55 +116,6 @@ export class AppTicketlistComponent implements OnInit {
     }
   }
 
-
-
-  onChange(value: string) {
-    if (value === 'Calendar') {
-      this.openCalendarDialog();
-
-
-
-    }
-    else {
-    }
-  }
-
-  openCalendarDialog(): void {
-    const dialogRef = this.dialog.open(CalendarDialogComponent, {
-      width: '350px',
-      data: { selectedDate: this.selectedDate }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-        if (result.startDate && result.endDate) {
-          this.selectedMonth = `${result.startDate.toLocaleString('default', { month: 'long' })} - ${result.endDate.toLocaleString('default', { month: 'long' })}`;
-          this.packagesService.FILTER_PACKAGE("custom").subscribe({
-            next: (response: any) => {
-              console.log("Response:", response)
-              this.packages = response;
-              this.dataSource = new MatTableDataSource(this.packages);
-              this.totalCount = this.dataSource.data.length;
-              this.Inprogress = this.btnCategoryClick('pending');
-            },
-            error: (error: any) => {
-              console.log("Error:", error)
-            },
-            complete: () => {
-            }
-          });
-
-        } else {
-          this.selectedMonth = 'Custom';
-        }
-        this.selectedDate = result;
-        // Do something with the selected date
-      }
-    });
-  }
-
-
   //FETCH PACKAGES FROM API
   FETCH_PACKAGES(): void {
     this.packagesService.GET_PACKAGES().subscribe({
@@ -189,7 +135,6 @@ export class AppTicketlistComponent implements OnInit {
     });
   }
 
-
   //ADD USER
   ADD_PACKAGE() {
     this.packagesService.ADD_PACKAGE(this.packageExample).subscribe({
@@ -204,10 +149,68 @@ export class AppTicketlistComponent implements OnInit {
     });
   }
 
+  //TRIGGER THE DROP DOWN FILTER VALUES
+  onChange(value: string) {
+    if (value === 'Calendar') {
+      this.openCalendarDialog();
+    }
+    else{
+      this.packagesService.FILTER_PACKAGE(value).subscribe({
+        next: (response: any) => {
+          console.log("Response:", response)
+          this.packages = response;
+          this.dataSource = new MatTableDataSource(this.packages);
+          this.totalCount = this.dataSource.data.length;
+          this.Inprogress = this.btnCategoryClick('pending');
+        },
+        error: (error: any) => {
+          console.log("Error:", error)
+        },
+        complete: () => {
+        }
+      });
+    }
+  }
+
+  //OPEN THE CALENDAR DIALOG
+  openCalendarDialog(): void {
+    const dialogRef = this.dialog.open(CalendarDialogComponent, {
+      width: '350px',
+      data: { selectedDate: this.selectedDate }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        if (result.startDate && result.endDate) {
+          this.selectedMonth = `${result.startDate.toLocaleString('default', { month: 'long' })} - ${result.endDate.toLocaleString('default', { month: 'long' })}`;
+          this.packagesService.FILTER_PACKAGE("custom").subscribe({
+            next: (response: any) => {
+              console.log("Response:", response)
+              this.packages = response;
+              this.dataSource = new MatTableDataSource(this.packages);
+              this.totalCount = this.dataSource.data.length;
+              this.Inprogress = this.btnCategoryClick('pending');
+            },
+            error: (error: any) => {
+              console.log("Error:", error)
+            },
+            complete: () => {
+            }
+          });
+        } else {
+          this.selectedMonth = 'Custom';
+        }
+        this.selectedDate = result;
+      }
+    });
+  }
+
+
   //UPDATE ROW VALUES
   Update(obj: any): void {
     this.ShowAddButoon = false
     this.viewPackage = obj;
+    this.editedpackage = obj;
   }
 
 
