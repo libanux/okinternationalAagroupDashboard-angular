@@ -15,6 +15,7 @@ import { LaborRecModule } from './labor-rec/labor-rec.module';
 import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
 import { VisaComponentComponent } from './visa-component/visa-component.component';
 import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 
 export const AppsRoutes: Routes = [
@@ -82,6 +83,11 @@ export const AppsRoutes: Routes = [
       {
         path: 'labors',
         component:LaborMainComponent
+      },
+
+      {
+        path: 'tickets',
+        component:TicketsComponent
       },
 
 
