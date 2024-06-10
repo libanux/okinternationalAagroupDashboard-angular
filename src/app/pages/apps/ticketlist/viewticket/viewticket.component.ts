@@ -21,7 +21,7 @@ export class ViewticketComponent {
   constructor(activatedRouter: ActivatedRoute, private ticketService: ServiceticketService) {
     this.id = activatedRouter.snapshot.paramMap.get('id');
     console.log("id",this.id)
-    this.ticketDetail = this.ticketService.getTicketList().filter((x) => x?.id === +this.id)[0];
+    this.ticketDetail = this.ticketService.getTicketList().filter((x) => x?._id === +this.id)[0];
     console.log("Ticket",this.ticketDetail)
   }
 }

@@ -4,7 +4,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { tickets } from '../ticketlist/ticket-data';
 import { ticketsArray } from './tickets-data';
 
 @Component({

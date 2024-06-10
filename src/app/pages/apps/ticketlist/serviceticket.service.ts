@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {  TicketList } from './ticket';
 import { from } from 'rxjs';
-import { tickets } from './ticket-data';
+
 
 
 @Injectable({
@@ -10,11 +10,11 @@ import { tickets } from './ticket-data';
 export class ServiceticketService {
   private ticketlist: TicketList[] = [];
 
-  private getTicket(): any {
-    return from(tickets);
-  }
+  // private getTicket(): any {
+  //   return from(tickets);
+  // }
   constructor() {
-    this.getTicket().subscribe((data: any) => this.ticketlist.push(data));
+    // this.getTicket().subscribe((data: any) => this.ticketlist.push(data));
     console.log("Ticket list:",this.ticketlist)
   }
 

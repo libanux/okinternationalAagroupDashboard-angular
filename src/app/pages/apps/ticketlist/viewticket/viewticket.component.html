@@ -4,7 +4,7 @@
     <span>
       <div class="row m-b-24">
         <div class="col-sm-4 d-flex align-items-center">
-          <h4 class="mat-subtitle-2 f-s-18 f-w-600">#{{ ticketDetail.id }}</h4>
+          <h4 class="mat-subtitle-2 f-s-18 f-w-600">#{{ ticketDetail._id }}</h4>
         </div>
           <div class="col-sm-8 text-right">
             <a routerLink="/apps/packages" mat-stroked-button color="primary" class="m-r-10">Back to packages</a>
@@ -20,9 +20,9 @@
           </h6>
         </div>
         <div class="col-sm-6 text-right">
-          <span class="f-w-600 f-s-15 mat-body-1"> Order Date: </span>
+          <span class="f-w-600 f-s-15 mat-body-1"> Order name: </span>
           <h6 class="m-t-5 m-b-0 f-w-500 f-s-14 mat-body-2">
-            {{ ticketDetail.date  }}
+            {{ ticketDetail.name  }}
           </h6>
         </div>
       </div>

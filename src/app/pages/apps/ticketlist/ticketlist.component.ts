@@ -7,9 +7,10 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { tickets } from './ticket-data'
+// import { tickets } from './ticket-data'
 import { TicketList } from './ticket';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { PackageService } from 'src/app/services/package.service';
 
 @Component({
   selector: 'app-ticket-list',
@@ -45,19 +46,18 @@ export class AppTicketlistComponent implements OnInit {
   Status = 'Status';
 
 
+  tickets: any[] =[]
+
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
     'id',
     'name',
     'destination',
-    'source',
     'duration',
     'hotels',
-    'date',
-    'nbOfSeats',
+    'numberOfPeople',
     'cost',
-    'sell',
     'netprofit',
     'note',
     'status',
@@ -75,20 +75,41 @@ export class AppTicketlistComponent implements OnInit {
   Completed = -1;
 
   //TICKETS
-  dataSource = new MatTableDataSource(tickets);
+  dataSource = new MatTableDataSource(this.tickets);
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private packagesService: PackageService) { }
 
   ngOnInit(): void {
+    this.FETCH_ADMINS();
+    this.dataSource = new MatTableDataSource(this.tickets);
     this.totalCount = this.dataSource.data.length;
     this.Completed = this.btnCategoryClick('Completed');
     this.Cancelled = this.btnCategoryClick('Cancelled');
     this.Inprogress = this.btnCategoryClick('InProgress');
-    this.dataSource = new MatTableDataSource(tickets);
+  
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+
+  // FETCH PACKAGES
+  FETCH_ADMINS(): void {
+    this.packagesService.GET_PACKAGES().subscribe({
+      next: (response: any) => {
+        console.log("Response", response)
+        this.tickets = response;
+        console.log("Tickets",this.tickets)
+       
+      },
+      error: (error: any) => { 
+     console.log("Error:", error)
+       },
+      complete: () => { 
+      
+      }
+    });
   }
 
   //FILTER DATA
@@ -172,13 +193,10 @@ export class AppTicketlistComponent implements OnInit {
       id: d.getTime(),
       name: row_obj.name,
       destination: row_obj.destination,
-      source: row_obj.source,
       duration: row_obj.duration,
       hotels: row_obj.hotels,
-      date: row_obj.date,
-      nbOfSeats: row_obj.nbOfSeats,
-      cost: row_obj.cost,
-      sell: row_obj.sell,
+      numberOfPeople: row_obj.numberOfPeople,
+      price: row_obj.price,
       netprofit: row_obj.netprofit,
       note: row_obj.note,
       status: row_obj.status,
@@ -208,7 +226,7 @@ export class AppTicketlistComponent implements OnInit {
   //DELETE ROW VALUES
   deleteRowData(row_obj: TicketList): boolean | any {
     this.dataSource.data = this.dataSource.data.filter((value, key) => {
-      return value.id !== row_obj.id;
+      return value.id !== row_obj._id;
     });
   }
   months: month[] = [
