@@ -51,18 +51,20 @@ export class AppTicketlistComponent implements OnInit {
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
-    'id',
+    // '_id',
     'name',
     'destination',
-    'duration',
-    'hotels',
     'numberOfPeople',
-    'cost',
-    'netprofit',
+    'duration',
+    'price',
+    'hotels',
     'note',
     'status',
-    'action',
+
+    // 'createdAt',
+    // 'updatedAt'
   ];
+  
   columnsToDisplayWithExpand = [...this.displayedColumns];
   expandedElement: TicketList | null = null;
   @ViewChild(MatTable, { static: true }) table: MatTable<any> =
@@ -77,15 +79,16 @@ export class AppTicketlistComponent implements OnInit {
   //TICKETS
   dataSource = new MatTableDataSource(this.tickets);
 
+
   constructor(public dialog: MatDialog, private packagesService: PackageService) { }
 
   ngOnInit(): void {
-    this.FETCH_ADMINS();
+    this.FETCH_PACKAGES();
     this.dataSource = new MatTableDataSource(this.tickets);
     this.totalCount = this.dataSource.data.length;
     this.Completed = this.btnCategoryClick('Completed');
     this.Cancelled = this.btnCategoryClick('Cancelled');
-    this.Inprogress = this.btnCategoryClick('InProgress');
+    this.Inprogress = this.btnCategoryClick('pending');
   
   }
 
@@ -93,71 +96,49 @@ export class AppTicketlistComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-
-  // FETCH PACKAGES
-  FETCH_ADMINS(): void {
-    this.packagesService.GET_PACKAGES().subscribe({
-      next: (response: any) => {
-        console.log("Response", response)
-        this.tickets = response;
-        console.log("Tickets",this.tickets)
-       
-      },
-      error: (error: any) => { 
-     console.log("Error:", error)
-       },
-      complete: () => { 
-      
+    //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
+    expandRow(event: Event, element: any, column: string): void {
+      if (column === 'action') {
+        this.expandedElement = element;
       }
-    });
-  }
-
-  //FILTER DATA
-  applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-
-  //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
-  expandRow(event: Event, element: any, column: string): void {
-    if (column === 'action') {
-      this.expandedElement = element;
+      else {
+        this.expandedElement = this.expandedElement === element ? null : element;
+        event.stopPropagation();
+      }
     }
-    else {
-      this.expandedElement = this.expandedElement === element ? null : element;
-      event.stopPropagation();
-    }
-  }
 
+    FETCH_PACKAGES(): void {
+      this.packagesService.GET_PACKAGES().subscribe({
+        next: (response: any) => {
+          console.log("Response", response)
+          this.tickets = response;
+          console.log("Tickets", this.tickets)
+          
+          // Initialize MatTableDataSource with fetched data
+          this.dataSource = new MatTableDataSource(this.tickets);
+          console.log("DataSource:", this.dataSource);
+        },
+        error: (error: any) => { 
+          console.log("Error:", error)
+        },
+        complete: () => { 
+          
+        }
+      });
+    }
+    
+
+    //GET THE CATEGORY LENGTH
+    btnCategoryClick(val: string): number {
+      this.dataSource.filter = val.trim().toLowerCase();
+      return this.dataSource.filteredData.length;
+    }
   
-
-  CancelUpdate(): void {
-    this.ShowAddButoon = true
-
-    this.Name = 'Name';
-    this.Destination = 'Destination';
-    this.Duration = 'Duration';
-    this.Hotels = 'Hotels';
-    this.Date = 'Date';
-    this.Seats = 'Seats';
-    this.Cost = 'Cost';
-    this.Sell = 'Sell';
-    this.Netprofit = 'Netprofit';
-    this.Note= 'Note';
-    this.Status = 'Status';
-  }
-
-
-  //GET THE CATEGORY LENGTH
-  btnCategoryClick(val: string): number {
-    this.dataSource.filter = val.trim().toLowerCase();
-    return this.dataSource.filteredData.length;
-  }
 
   //GET THE STATUS CLASS
   getStatusClass(status: string): string {
     switch (status) {
-      case 'inprogress':
+      case 'pending':
         return 'bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
       case 'completed':
         return 'bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
@@ -168,74 +149,7 @@ export class AppTicketlistComponent implements OnInit {
     }
   }
 
-
-  //OPEN UPDATE & DELETE DIALOGS
-  openDialog(action: string, obj: any): void {
-    obj.action = action;
-    const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
-      data: obj,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
-      } 
-      else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
-  }
-
-
-  //ADD ROW VALUES
-  addRowData(row_obj: TicketList): void {
-    const d = new Date();
-    this.dataSource.data.unshift({
-      id: d.getTime(),
-      name: row_obj.name,
-      destination: row_obj.destination,
-      duration: row_obj.duration,
-      hotels: row_obj.hotels,
-      numberOfPeople: row_obj.numberOfPeople,
-      price: row_obj.price,
-      netprofit: row_obj.netprofit,
-      note: row_obj.note,
-      status: row_obj.status,
-    });
-    this.table.renderRows();
-  }
-
-
-  //UPDATE ROW VALUES
-  Update(obj: any): void {
-    this.ShowAddButoon = false
-
-  this.Name = obj.name
-  this.Destination = obj.destination
-  this.Duration = obj.duration
-  this.Hotels = obj.hotels
-  this.Date = obj.date
-  this.Seats = obj.nbOfSeats
-  this.Cost = obj.cost
-  this.Sell = obj.sell
-  this.Netprofit = obj.netprofit
-  this.Note = obj.note
-  this.Status = obj.status
-
-  }
-
-  //DELETE ROW VALUES
-  deleteRowData(row_obj: TicketList): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value, key) => {
-      return value.id !== row_obj._id;
-    });
-  }
-  months: month[] = [
-    { value: 'mar', viewValue: 'March 2023' },
-    { value: 'apr', viewValue: 'April 2023' },
-    { value: 'june', viewValue: 'June 2023' },
-  ];
 }
-
 
 interface month {
   value: string;
