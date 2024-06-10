@@ -1,26 +1,13 @@
-import {
-  Component,
-  HostBinding,
-  Input,
-  OnInit,
-  OnChanges,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { NavItem } from './nav-item';
+import { Component, HostBinding, Input, OnInit, OnChanges, Output,  EventEmitter } from '@angular/core';
+import { NavItem } from '../../../../../classes/nav-item';
 import { Router } from '@angular/router';
 import { NavService } from '../../../../../services/nav.service';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
-
-import { MaterialModule } from '../../../../../material.module';import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../../../../material.module';
+import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-item',
@@ -50,7 +37,7 @@ export class AppNavItemComponent implements OnChanges {
   @Input() item: NavItem | any;
   @Input() depth: any;
 
-  constructor(public navService: NavService, public router: Router) {
+  constructor(public navService: NavService, public router: Router, private authService : AuthService) {
     if (this.depth === undefined) {
       this.depth = 0;
     }
@@ -59,33 +46,37 @@ export class AppNavItemComponent implements OnChanges {
   ngOnChanges() {
     this.navService.currentUrl.subscribe((url: string) => {
       if (this.item.route && url) {
-        // console.log(`Checking '/${this.item.route}' against '${url}'`);
         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
         this.ariaExpanded = this.expanded;
-        //console.log(`${this.item.route} is expanded: ${this.expanded}`);
       }
     });
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
-      this.router.navigate([item.route]);
-      
+
+    if(item.displayName == 'logout'){
+        this.authService.LOGOUT();
+        this.router.navigate(['authentication/login']).then(() => {
+          window.scrollTo(0, 0);
+        });
     }
-    if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+
+    else {
+      if (!item.children || !item.children.length) {
+        this.router.navigate([item.route]); 
+      }
+      if (item.children && item.children.length) {
+        this.expanded = !this.expanded;
+      }
+      //scroll
+      window.scroll({  top: 0,  left: 0,  behavior: 'smooth' });
+      if (!this.expanded){
+      if (window.innerWidth < 1024) {
+        this.notify.emit();
+      }
     }
-    //scroll
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    if (!this.expanded){
-    if (window.innerWidth < 1024) {
-      this.notify.emit();
     }
-  }
+
   }
 
   onSubItemSelected(item: NavItem) {

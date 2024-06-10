@@ -35,9 +35,12 @@ export class AuthService {
   //LOGIN FUNCTION
   SIGN_IN(params: Params_Authenticate): Observable<any> {
     const url = `${this.apiUrl}/SIGN_IN`;
-    console.log(params)
-    console.log(url)
     return this.http.post<any>(url, params);
+  }
+
+  LOGOUT(){
+    localStorage.removeItem('TICKET'),
+    localStorage.removeItem('userId')
   }
 }
 

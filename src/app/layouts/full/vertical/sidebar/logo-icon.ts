@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 
 @Component({
-  selector: 'app-branding',
+  selector: 'app-logoIcon',
   standalone: true,
   template: `
     <div class="branding">
-      @if(options.theme === 'light') {
         <a href="/">
           <img
             src="./assets/images/logos/daher-highres-ma2sous.png"
@@ -14,21 +13,10 @@ import { CoreService } from 'src/app/services/core.service';
             alt="logo"
           />
         </a>
-      }
-      @if(options.theme === 'dark') {
-        <a href="/">
-          <img
-          src="./assets/images/logos/daher-highres-ma2sous.png"
-            class="align-middle m-2"
-            alt="logo"
-          />
-        </a>
-      }
-      
     </div>
   `,
 })
-export class BrandingComponent {
+export class LogoIconComponent {
   options = this.settings.getOptions();
 
   constructor(private settings: CoreService) { }

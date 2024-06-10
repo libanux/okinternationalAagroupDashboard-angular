@@ -1,18 +1,16 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralService } from './general.service';
 import { environment } from 'src/enviroment/enviroment';
-import { User } from '../classes/USER.class';
 import { SearchService } from '../signals/search.service';
+import { Admin } from '../classes/admin.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AdminService {
 
-  // userArray = signal<any[]>([]);
-  // selectedUser = signal(new User());
   private apiUrl = '';
   private pagingSize = 10;
   private storedToken = '';
@@ -24,12 +22,8 @@ export class UserService {
     this.storedToken = this.generalService.storedToken
   }
 
-  ngOnInit(): void {
-
-  }
-
   //GET USERS
-  GET_USERS(page_Number: number): Observable<any> {
+  GET_ADMINS(page_Number: number): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.storedToken}`,
       'Content-Type': 'application/json'
@@ -56,7 +50,7 @@ export class UserService {
   }
 
   //GET USER BY ID
-  GET_USER_BY_ID(userID: number): Observable<any> {
+  GET_ADMIN_BY_ID(adminID: number): Observable<any> {
     const jwt = this.generalService.storedToken;
 
     const headers = new HttpHeaders({
@@ -64,14 +58,14 @@ export class UserService {
       'Content-Type': 'application/json'
     });
     const requestBody = {
-      USER_ID: userID
+      USER_ID: adminID
     };
 
     return this.httpClient.post<any>(this.apiUrl + '/GET_USER_BY_USER_ID', requestBody, { headers });
   }
 
   // ADD USER
-  EDIT_USER(user: User): Observable<any> {
+  EDIT_ADMIN(admin: Admin): Observable<any> {
     const jwt = this.generalService.storedToken;
 
     const headers = new HttpHeaders({
@@ -79,20 +73,20 @@ export class UserService {
       'Content-Type': 'application/json'
     });
     const requestBody = {
-      USER_ID: user.user_ID,
-      OWNER_ID: user.owner_ID,
-      GOOGLE_U: user.google_U,
-      FIRST_NAME: user.first_NAME,
-      LAST_NAME: user.last_NAME,
-      USERNAME: user.username,
-      EMAIL: user.email,
-      PASSWORD: user.password,
-      USER_TYPE_CODE: user.user_TYPE_CODE,
-      USER_LANG_CODE: user.user_LANG_CODE,
-      IS_ACTIVE: user.is_ACTIVE,
-      IS_DELETED: user.is_DELETED,
-      PROFILE_COMPLETED: user.profile_COMPLETED,
-      ENTRY_DATE: user.entry_DATE
+      // USER_ID: user.user_ID,
+      // OWNER_ID: user.owner_ID,
+      // GOOGLE_U: user.google_U,
+      // FIRST_NAME: user.first_NAME,
+      // LAST_NAME: user.last_NAME,
+      // USERNAME: user.username,
+      // EMAIL: user.email,
+      // PASSWORD: user.password,
+      // USER_TYPE_CODE: user.user_TYPE_CODE,
+      // USER_LANG_CODE: user.user_LANG_CODE,
+      // IS_ACTIVE: user.is_ACTIVE,
+      // IS_DELETED: user.is_DELETED,
+      // PROFILE_COMPLETED: user.profile_COMPLETED,
+      // ENTRY_DATE: user.entry_DATE
     };
     return this.httpClient.post<any>(this.apiUrl + '/EDIT_USER', requestBody, { headers })
   }

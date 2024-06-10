@@ -1,8 +1,6 @@
-import { NavItem } from './nav-item/nav-item';
+import { NavItem } from '../../../../classes/nav-item';
 
 export const navItems: NavItem[] = [
-
-  
   {
     displayName: 'Package',
     iconName: 'packages',
