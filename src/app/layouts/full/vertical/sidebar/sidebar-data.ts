@@ -16,7 +16,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Ticketing',
     iconName: 'ticket',
-    route: '',
+    route: 'tickets',
   },
   {
     displayName: 'Customers',

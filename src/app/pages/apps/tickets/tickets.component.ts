@@ -1,20 +1,16 @@
-import { AfterViewInit, Component, Inject, Optional, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Tickets } from './tickets';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { LaborList } from '../labor';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { labors } from '../labor-data';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-
-interface month {
-  value: string;
-  viewValue: string;
-}
+import { tickets } from '../ticketlist/ticket-data';
+import { ticketsArray } from './tickets-data';
 
 @Component({
-  selector: 'app-labor-main',
-  templateUrl: './labor-main.component.html',
-  styleUrl: './labor-main.component.scss',
+  selector: 'app-tickets',
+  templateUrl: './tickets.component.html',
+  styleUrl: './tickets.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -26,45 +22,40 @@ interface month {
     ]),
   ],
 })
-
-export class LaborMainComponent implements AfterViewInit {
-
+export class TicketsComponent {
   ShowAddButoon = true;
 
 
-  Name = 'Name';
-  Nationality = 'Nationality';
-  Gender = 'Gender';
-  Type = 'Type';
-  Age = 'Age';
+  Customer = 'Customer';
+  IssueDate = 'IssueDate';
+  Description = 'Description';
   Cost = 'Cost';
-  Note = 'Note';
+  Credit  = 'Credit';
+  Balance = 'Balance';
+  Note= 'Note';
   Status = 'Status';
 
-  months: month[] = [
-    { value: 'mar', viewValue: 'March 2023' },
-    { value: 'apr', viewValue: 'April 2023' },
-    { value: 'june', viewValue: 'June 2023' },
-  ];
+
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
     'id',
-    'name',
-    'nationality',
-    'gender',
-    'type',
-    'age',
+    'customer',
+    'issueDate',
+    'description',
     'cost',
+    'credit',
+    'balance',
     'note',
     'status',
     'action',
   ];
   columnsToDisplayWithExpand = [...this.displayedColumns];
-  expandedElement: LaborList | null = null;
+  expandedElement: Tickets | null = null;
   @ViewChild(MatTable, { static: true }) table: MatTable<any> =
     Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
+
   searchText: any;
   totalCount = -1;
   Cancelled = -1;
@@ -72,16 +63,16 @@ export class LaborMainComponent implements AfterViewInit {
   Completed = -1;
 
   //TICKETS
-  dataSource = new MatTableDataSource(labors);
+  dataSource = new MatTableDataSource(ticketsArray);
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.totalCount = this.dataSource.data.length;
-    this.Completed = this.btnCategoryClick('complete');
-    this.Cancelled = this.btnCategoryClick('inactive');
+    this.Completed = this.btnCategoryClick('Completed');
+    this.Cancelled = this.btnCategoryClick('Cancelled');
     this.Inprogress = this.btnCategoryClick('InProgress');
-    this.dataSource = new MatTableDataSource(labors);
+    this.dataSource = new MatTableDataSource(ticketsArray);
   }
 
   ngAfterViewInit(): void {
@@ -105,34 +96,45 @@ export class LaborMainComponent implements AfterViewInit {
     }
   }
 
+  
+
   CancelUpdate(): void {
     this.ShowAddButoon = true
 
-    this.Name = 'Name';
-    this.Nationality = 'Nationality';
-    this.Type = 'Type';
-    this.Gender = 'Gender';
-    this.Age = 'Age';
-    this.Cost = 'Cost'
-    this.Note = 'Note';
+    this.Customer = 'Customer';
+    this.IssueDate = 'IssueDate';
+    this.Description = 'Description';
+    this.Cost = 'Cost';
+    this.Credit = 'Credit';
+    this.Balance = 'Balance';
+    this.Note= 'Note';
     this.Status = 'Status';
   }
 
 
   //GET THE CATEGORY LENGTH
   btnCategoryClick(val: string): number {
+    // Define a custom filter predicate for the status field
+    this.dataSource.filterPredicate = (data: Tickets, filter: string): boolean => {
+      return data.status.toLowerCase().includes(filter);
+    };
+  
+    // Set the filter value to the trimmed and lowercased input string
     this.dataSource.filter = val.trim().toLowerCase();
+  
+    // Return the length of the filtered data
     return this.dataSource.filteredData.length;
   }
+  
 
   //GET THE STATUS CLASS
   getStatusClass(status: string): string {
     switch (status) {
-      case 'inprogress':
+      case 'InProgress':
         return 'bg-light-warning mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
-      case 'complete':
+      case 'Completed':
         return 'bg-light-success mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
-      case 'inactive':
+      case 'Cancelled':
         return 'bg-light-error mat-body-2 f-w-500 p-x-8 p-y-4 f-s-12 rounded-pill';
       default:
         return '';
@@ -158,16 +160,16 @@ export class LaborMainComponent implements AfterViewInit {
 
 
   //ADD ROW VALUES
-  addRowData(row_obj: LaborList): void {
+  addRowData(row_obj: Tickets): void {
     const d = new Date();
     this.dataSource.data.unshift({
       id: d.getTime(),
-      name: row_obj.name,
-      nationality: row_obj.nationality,
-      gender: row_obj.gender,
-      type: row_obj.type,
+      customer: row_obj.customer,
+      issueDate: row_obj.issueDate,
+      description : row_obj.description,
       cost: row_obj.cost,
-      age: row_obj.age,
+      credit: row_obj.credit,
+      balance: row_obj.balance,
       note: row_obj.note,
       status: row_obj.status,
     });
@@ -177,30 +179,34 @@ export class LaborMainComponent implements AfterViewInit {
 
   //UPDATE ROW VALUES
   Update(obj: any): void {
-    this.ShowAddButoon = false;
-    console.log("Hereee")
-    this.Name = obj.name
-    this.Nationality = obj.nationality
-    this.Gender = obj.gender
-    this.Type = obj.type
-    this.Age = obj.age
-    this.Cost = obj.cost
-    this.Note = obj.note
-    this.Status = obj.status
+    this.ShowAddButoon = false
+
+  this.Customer = obj.customer
+  this.Description = obj.description
+  this.IssueDate = obj.issueDate
+  this.Cost = obj.cost
+  this.Credit = obj.credit
+  this.Balance = obj.balance
+  this.Note = obj.note
+  this.Status = obj.status
 
   }
 
   //DELETE ROW VALUES
-  deleteRowData(row_obj: LaborList): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value, key) => {
+  deleteRowData(row_obj: Tickets): boolean | any {
+    this.dataSource.data = this.dataSource.data.filter((value: { id: number; }, key: any) => {
       return value.id !== row_obj.id;
     });
   }
+  months: month[] = [
+    { value: 'mar', viewValue: 'March 2023' },
+    { value: 'apr', viewValue: 'April 2023' },
+    { value: 'june', viewValue: 'June 2023' },
+  ];
 }
 
 
-
-
-
-
-
+interface month {
+  value: string;
+  viewValue: string;
+}
