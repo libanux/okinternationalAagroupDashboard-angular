@@ -32,18 +32,16 @@ export class AuthService {
     return localStorage.getItem('TICKET');
   }
 
-
   //LOGIN FUNCTION
-  authenticate(params: Params_Authenticate): Observable<any> {
-    const url = `${this.apiUrl}/AUTHENTICATE`;
+  SIGN_IN(params: Params_Authenticate): Observable<any> {
+    const url = `${this.apiUrl}/SIGN_IN`;
+    console.log(params)
+    console.log(url)
     return this.http.post<any>(url, params);
   }
 }
 
-
 export class Params_Authenticate {
-  EMAIL?: string;
-  PASSWORD?: string;
-  IS_ACTIVE?: boolean;
-  PLATFORM?: string;
+  email?: string;
+  password?: string;
 }
