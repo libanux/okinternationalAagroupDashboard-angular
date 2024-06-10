@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroment/enviroment';
+import { Package } from '../pages/apps/ticketlist/ticket';
 
 
 @Injectable({
@@ -42,4 +43,37 @@ export class PackageService {
 
     return this.http.get<any>(`${this.apiUrl}/GET_ALL_PACKAGES`, { headers });
   }
+
+  // ADD PACKAGE
+  ADD_PACKAGE(newPackage: Package): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getToken()}`,
+      'Content-Type': 'application/json'
+    });
+    const requestBody = {
+      "name": newPackage.name,
+      "destination": newPackage.destination,
+      "numberOfPeople": newPackage.numberOfPeople,
+      "duration": newPackage.duration,
+      "price": newPackage.price,
+      "hotels": newPackage.hotels,
+      "status": newPackage.status,
+      "sell": newPackage.sell,
+      "note": newPackage.note
+    };
+    return this.http.post<any>(this.apiUrl + '/ADD_PACKAGE', requestBody, { headers })
+  }
+
+
+    // ADD PACKAGE
+    DELETE_PACKAGE(delPackage: Package): Observable<any> {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${this.getToken()}`,
+        'Content-Type': 'application/json'
+      });
+      const requestBody = {
+       "id":delPackage._id
+      };
+      return this.http.post<any>(this.apiUrl + '/DELETE_PACKAGE', requestBody, { headers })
+    }
 }
