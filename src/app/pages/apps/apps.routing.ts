@@ -17,6 +17,8 @@ import { VisaComponentComponent } from './visa-component/visa-component.componen
 import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { AdminsComponent } from './admins/admins.component';
+import { CustomersComponent } from './customers/customers.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 export const AppsRoutes: Routes = [
@@ -52,10 +54,10 @@ export const AppsRoutes: Routes = [
         path: 'contacts',
         component: AppContactComponent,
       },
-      // {
-      //   path: 'employee',
-      //   component: AppEmployeeComponent,
-      // },
+      {
+        path: 'customers',
+        component: CustomersComponent,
+      },
       {
         path: 'admins',
         component: AdminsComponent,
@@ -95,6 +97,10 @@ export const AppsRoutes: Routes = [
         component:TicketsComponent
       },
 
+      {
+        path: 'profile',
+        component:ProfileComponent
+      },
 
     ],
   },
