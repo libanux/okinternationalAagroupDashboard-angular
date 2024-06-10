@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
 import { DateRange } from '../date-range';
+import { PackageService } from 'src/app/services/package.service';
 
 
 @Component({
@@ -25,11 +26,12 @@ export class CalendarWithDateRangeComponent implements OnInit{
 
   @Output() dateRangeChange: EventEmitter<DateRange> = new EventEmitter<DateRange>();
 
-  constructor(private dateSignal : DateSelectedSignal,  private datePipe: DatePipe) {
+  constructor(private dateSignal : DateSelectedSignal,  private datePipe: DatePipe,private packagesService: PackageService) {
     effect (
       ()=>(
         console.log('start range ', this.rangeStart()),
         console.log('end range ', this.rangeEnd())
+        
       )
     )
   }
@@ -39,16 +41,15 @@ export class CalendarWithDateRangeComponent implements OnInit{
     this.rangeStart = this.dateSignal.startDate;
   
   }
-
   getFormattedDate(date: Date): string {
-    return this.datePipe.transform(date, 'MMM d, y') || '';
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }
+  
   
   colorStartDate = false;
   colorEndDate = false;
 
   onDateChange(selectedDate: Date) {
-
     if (!this.dateRange) {
       this.dateRange = new DateRange();
     }
@@ -76,6 +77,7 @@ export class CalendarWithDateRangeComponent implements OnInit{
       this.dateRange.startDate = selectedDate;
       this.rangeStart.set(this.getFormattedDate(selectedDate))
       this.rangeStart.set(this.getFormattedDate(selectedDate))
+     
     }
   }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroment/enviroment';
 import { Package } from '../pages/apps/ticketlist/ticket';
+import { DateSelectedSignal } from '../signals/DateSelectedSignal.service';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class PackageService {
 
   private apiUrl = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private dateSignal : DateSelectedSignal,) {
     this.apiUrl = environment.apiLocalBaseUrl;
   }
 
@@ -65,7 +66,7 @@ export class PackageService {
   }
 
 
-    // ADD PACKAGE
+    // DELETE PACKAGE
     DELETE_PACKAGE(delPackage: Package): Observable<any> {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${this.getToken()}`,
@@ -76,4 +77,19 @@ export class PackageService {
       };
       return this.http.post<any>(this.apiUrl + '/DELETE_PACKAGE', requestBody, { headers })
     }
+
+
+      // FILTER PACKAGE BY DATE
+      FILTER_PACKAGE(filterType: string): Observable<any> {
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${this.getToken()}`,
+          'Content-Type': 'application/json'
+        });
+        const requestBody = {
+            "filterType": filterType,
+            "startDate": this.dateSignal.startDate(),
+            "endDate": this.dateSignal.endDate()
+        };
+        return this.http.post<any>(this.apiUrl + '/FILTER_PACKAGES_BY_DATE', requestBody, { headers })
+      }
 }
