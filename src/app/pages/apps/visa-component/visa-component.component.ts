@@ -42,7 +42,7 @@ const ELEMENT_DATA: DateData[] = [
   },
 ];
 
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, effect, signal } from '@angular/core';
+import { Component, OnInit, ViewChild, effect, signal } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -50,8 +50,8 @@ import { VisaArray } from './visa-data';
 import { VisaClass } from './visaClass';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DateData, month } from 'src/app/classes/DateDropdownClass';
-import { CalendarDialogComponent } from './calendar-dialog.component';
 import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
+import { CalendarDialogComponent } from './calendar-card/calendar-dialog.component';
 
 
 @Component({
@@ -92,9 +92,9 @@ export class VisaComponentComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
 
   Name = 'Name';
-  Destination = 'Destination';
+  country = 'country';
   Duration = 'Duration';
-  Hotels = 'Hotels';
+  sell = 'sell';
   Date = 'Date';
   Seats = 'Seats';
   Note= 'Note';
@@ -109,9 +109,9 @@ export class VisaComponentComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'name',
-    'destination',
+    'country',
     'duration',
-    'hotels',
+    'sell',
     'date',
     'nbOfSeats',
     'note',
@@ -126,26 +126,14 @@ export class VisaComponentComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private dateSignal : DateSelectedSignal) {
     effect(()=>(
-      console.log('hey, ', this.rangeEnd()),
       this.valueDisplayed = this.rangeStart() + '' + this.rangeEnd()
-      
-      // this.months  = [
-      //   { value: 'Today', viewValue: 'Today' },
-      //   { value: 'Yesterday', viewValue: 'Yesterday' },
-      //   { value: 'Last Week', viewValue: 'Last Week' },
-      //   { value: 'Last Month', viewValue: 'Last Month' },
-      //   { value: 'Last Year', viewValue: 'Last Year' },
-      //   { value: 'Calendar', viewValue: this.valueDisplayed },
-      // ]
     )
-
     )
    }
 
   onChange(value: string) {
     if (value === 'Calendar') {
       this.openCalendarDialog();
-
     }
 
     else{
@@ -220,9 +208,9 @@ export class VisaComponentComponent implements OnInit {
     this.ShowAddButoon = false
 
   this.Name = obj.name
-  this.Destination = obj.destination
+  this.country = obj.country
   this.Duration = obj.duration
-  this.Hotels = obj.hotels
+  this.sell = obj.sell
   this.Date = obj.date
   this.Seats = obj.nbOfSeats
   this.Note = obj.note
@@ -246,9 +234,9 @@ export class VisaComponentComponent implements OnInit {
     this.ShowAddButoon = true
 
     this.Name = 'Name';
-    this.Destination = 'Destination';
+    this.country = 'country';
     this.Duration = 'Duration';
-    this.Hotels = 'Hotels';
+    this.sell = 'sell';
     this.Date = 'Date';
     this.Seats = 'Seats';
     this.Note= 'Note';
