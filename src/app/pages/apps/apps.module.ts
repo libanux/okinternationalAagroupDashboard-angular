@@ -62,6 +62,14 @@ import { ViewticketComponent } from './ticketlist/viewticket/viewticket.componen
 import { TicketsComponent } from './tickets/tickets.component';
 import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
 import { AddComponent } from './admins/add-admin/add.component';
+import { ProductsComponent, productsDialogComponent } from './products/products.component';
+import { StockComponent } from './stock/stock.component';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { SaleComponent } from './sale/sale.component';
+import { ReportsComponent } from './reports/reports.component';
+import { Settings } from 'angular-feather/icons';
+import { SettingsComponent } from './settings/settings.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   imports: [
@@ -114,7 +122,15 @@ import { AddComponent } from './admins/add-admin/add.component';
     TicketsComponent,
     AdminsComponent,
     AdminDialogContentComponent,
-    AddComponent
+    AddComponent,
+    ProductsComponent,
+    StockComponent,
+    PurchaseComponent,
+    SaleComponent,
+    ReportsComponent,
+    SettingsComponent,
+    UsersComponent,
+    productsDialogComponent
   ],
   providers: [DatePipe],
 })

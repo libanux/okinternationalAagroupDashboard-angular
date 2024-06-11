@@ -19,6 +19,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { AdminsComponent } from './admins/admins.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProductsComponent } from './products/products.component';
 
 
 export const AppsRoutes: Routes = [
@@ -47,8 +48,8 @@ export const AppsRoutes: Routes = [
         component: AppTaskboardComponent,
       },
       {
-        path: 'package',
-        component: AppTicketlistComponent,
+        path: 'products',
+        component: ProductsComponent,
       },
       {
         path: 'contacts',

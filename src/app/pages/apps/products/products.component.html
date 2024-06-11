@@ -1,0 +1,222 @@
+<!-- HEADER AND COUNTS -->
+<div class="four-sections-header">
+
+    <div class="two-sections-header">
+      <div>
+        <mat-card class="shadow-none">
+          <div class="bg-light-primary text-center rounded" (click)="btnCategoryClick('')">
+            <h3 class="text-primary">{{ totalCount }}</h3>
+            <p class="text-primary">Total Products</p>
+          </div>
+        </mat-card>
+      </div>
+  
+      <div>
+        <mat-card class="shadow-none">
+          <div class="bg-light-warning text-center rounded" (click)="btnCategoryClick('pending')">
+            <h3 class="text-warning">{{ Inprogress }}</h3>
+            <p class="text-warning">Pending</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  
+    <div class="two-sections-header">
+      <div>
+        <mat-card class="shadow-none">
+          <div class="bg-light-success text-center rounded" (click)="btnCategoryClick('completed')">
+            <h3 class="text-success">{{ Completed }}</h3>
+            <p class="text-success">Completed</p>
+          </div>
+        </mat-card>
+      </div>
+  
+      <div>
+        <mat-card class="shadow-none">
+          <div class="bg-light-error text-center rounded" (click)="btnCategoryClick('cancelled')">
+            <h3 class="text-error">{{ Cancelled }}</h3>
+            <p class="text-error">Cancelled</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  
+  </div>
+  
+  <!-- Add Row  -->
+  <mat-card class="cardWithShadow">
+    <mat-card-content>
+      <div class="InputsWholeRow">
+  
+        <div class="inputsInAdd">
+          <section>
+            <div><input type="text" [(ngModel)]="packageExample.name" placeholder="name"></div>
+            <div><input type="text" [(ngModel)]="packageExample.destination" placeholder="destination"></div>
+          </section>
+  
+          <section>
+            <div><input type="number" [(ngModel)]="packageExample.duration"></div>
+            <div><input type="number" [(ngModel)]="packageExample.price"></div>
+          </section>
+  
+          <section>
+            <div><input type="number" [(ngModel)]="packageExample.sell"></div>
+            <div><input type="text" [(ngModel)]="packageExample.note"></div>
+          </section>
+  
+  
+          <section>
+            <div><input type="text" [(ngModel)]="packageExample.numberOfPeople"></div>
+  
+            <div>
+              <select [(ngModel)]="packageExample.status">
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </section>
+        </div>
+  
+        <div *ngIf="ShowAddButoon">
+          <button mat-flat-button color="primary" style="font-size: 11px;" (click)="ADD_PACKAGE()"> Add Product </button>
+        </div>
+  
+        <div class="TwoButtons" *ngIf="!ShowAddButoon">
+          <button mat-flat-button color="primary">Cancel</button>
+          <button mat-flat-button color="primary" (click)="Update(expandedElement)">Update</button>
+        </div>
+  
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  <!-- MAIN TABLE -->
+  <mat-card class="cardWithShadow">
+  
+    <!-- Search -->
+    <header>
+      <div class="col-sm-4 p-20 searchbar ">
+        <mat-form-field appearance="outline" class="hide-hint custom-search ">
+          <input matInput placeholder="Search Products" />
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-15"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+  
+  
+      <div class="filter-date">
+        <mat-card-header class="d-flex">
+          <mat-form-field class="theme-select" appearance="outline">
+            <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onChange($event.value)" placeholder="Today">
+              <mat-option *ngFor="let month of months" [value]="month.value">{{ month.viewValue }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </mat-card-header>
+      </div>
+    </header>
+  
+    <mat-card-content>
+      <!-- TABLE BODY -->
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+          <!-- Iterate over displayedColumns using ngFor -->
+          <ng-container *ngFor="let column of displayedColumns;">
+            <ng-container matColumnDef="{{ column }}">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-x-24 p-l-0">
+                {{ column | titlecase }}
+              </th>
+              <td mat-cell *matCellDef="let element" class="p-x-24 f-s-14 p-l-0"
+                (click)="expandRow($event, element, column)">
+                <!-- Check if the column is 'status' -->
+                <ng-container *ngIf="column !== 'action'; else actionColumn">
+                  <ng-container *ngIf="column !== 'status'; else statusColumn">
+                    <!-- Check if the column is 'price' -->
+                    <ng-container *ngIf="column !== 'price'; else priceColumn">
+                      <ng-container *ngIf="column !== 'duration'; else durationColumn">
+                        <ng-container *ngIf="column !== 'note'; else noteColumn">
+                          {{ truncateText(element[column], 20) }}
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+  
+                  </ng-container>
+                </ng-container>
+  
+                <!-- Apply specific design if the column is 'status' -->
+                <ng-template #statusColumn>
+                  <span [ngClass]="getStatusClass(element.status)">
+                    {{ element.status }}
+                  </span>
+                </ng-template>
+  
+                <!-- Handle 'price' column separately -->
+                <ng-template #priceColumn>
+                  $ {{ element[column] }}
+                </ng-template>
+  
+                <!-- Handle 'duration' column separately -->
+                <ng-template #durationColumn>
+                  {{ element[column] }} days
+                </ng-template>
+                <!-- Handle 'note' column separately -->
+                <ng-template #noteColumn>
+                  {{ truncateText(element[column], 20) }}
+                </ng-template>
+  
+                <ng-template #actionColumn>
+                  <div class="action-link">
+                    <a (click)="Update(element)" class="m-r-10 cursor-pointer">
+                      <i-tabler name="edit" class="icon-18"></i-tabler>
+                    </a>
+                    <a class="m-r-10 cursor-pointer" (click)="openDialog('Delete',element)">
+                      <i-tabler name="trash" class="icon-18"></i-tabler>
+                    </a>
+                  </div>
+                </ng-template>
+              </td>
+            </ng-container>
+          </ng-container>
+  
+          <!-- EXPANDED ROW DETAILS -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+              <div [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+                <div class="p-15 rounded b-1 m-b-16 m-x-18">
+                  <div class="d-flex align-items-center gap-12">
+                    <span
+                      class="bg-light-primary text-primary icon-48 rounded f-w-600 d-flex align-items-center justify-content-center">
+                      {{ element._id }}
+                    </span>
+                    <div>
+                      <div class="f-s-14 f-w-600 mat-subtitle-1">
+                        {{ element.name }}
+                      </div>
+                      <div class="f-s-14">{{ element.status }}</div>
+                    </div>
+                  </div>
+                  <div class="f-s-14 m-t-8">
+                    {{ element.note }}
+                  </div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+  
+          <!-- HEADER AND ROW DEFINITIONS -->
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element;"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+      </div>
+  
+      <!-- TABLE PAGINATION -->
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons>
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>

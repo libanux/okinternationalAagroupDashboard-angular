@@ -3,18 +3,15 @@ import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-// import { tickets } from './ticket-data'
-import { Package } from './ticket';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PackageService } from 'src/app/services/package.service';
+import { Package } from '../ticketlist/ticket';
 import { CalendarDialogComponent } from './calendar-card/calendar-dialog.component';
-import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
-
 
 @Component({
-  selector: 'app-ticket-list',
-  templateUrl: './ticketlist.component.html',
-  styleUrl: './ticketlist.component.scss',
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -26,7 +23,7 @@ import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
     ]),
   ],
 })
-export class AppTicketlistComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   ShowAddButoon = true;
   selectedMonth: string = '';
@@ -212,7 +209,7 @@ export class AppTicketlistComponent implements OnInit {
 
   // OPEN UPDATE & DELETE DIALOGS
   openDialog(action: string, delPackage: Package): void {
-    const dialogRef = this.dialog.open(AppTicketDialogContentComponent, {
+    const dialogRef = this.dialog.open(productsDialogComponent, {
       data: { action, delPackage }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -268,18 +265,18 @@ interface month {
 
 @Component({
   // tslint:disable-next-line - Disables all
-  selector: 'app-dialog-content',
-  templateUrl: 'ticket-dialog-content.html',
+  selector: 'products-dialog-content',
+  templateUrl: 'products-dialog-content.html',
 })
 // tslint:disable-next-line - Disables all
-export class AppTicketDialogContentComponent {
+export class productsDialogComponent {
   action: string;
   // tslint:disable-next-line - Disables all
   local_data: any;
   package: Package
 
   constructor(
-    public dialogRef: MatDialogRef<AppTicketDialogContentComponent>,
+    public dialogRef: MatDialogRef<productsDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Package
   ) {
     this.local_data = { ...data };
@@ -294,4 +291,5 @@ export class AppTicketDialogContentComponent {
     this.dialogRef.close({ event: 'Cancel' });
   }
 }
+
 

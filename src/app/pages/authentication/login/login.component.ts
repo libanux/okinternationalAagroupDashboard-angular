@@ -35,7 +35,7 @@ export class AppLoginComponent {
       password: this.form.value.password ?? undefined // Use nullish coalescing to convert null to undefined
     };
 
-    this.router.navigate(['/apps/package']).then(() => {
+    this.router.navigate(['/apps/products']).then(() => {
       window.scrollTo(0, 0);
     })
 

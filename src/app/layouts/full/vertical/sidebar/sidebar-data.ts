@@ -2,9 +2,9 @@ import { NavItem } from '../../../../classes/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    displayName: 'Package',
+    displayName: 'products',
     iconName: 'packages',
-    route: 'apps/package',
+    route: 'apps/products',
   },
   {
     displayName: 'Visa',
