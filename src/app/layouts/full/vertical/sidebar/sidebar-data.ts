@@ -2,24 +2,44 @@ import { NavItem } from '../../../../classes/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    displayName: 'Package',
+    displayName: 'products',
     iconName: 'packages',
-    route: 'apps/package',
+    route: 'apps/products',
   },
   {
-    displayName: 'Visa',
-    iconName: 'ticket',
-    route: 'apps/visa',
+    displayName: 'stock',
+    iconName: 'packages',
+    route: 'apps/stock',
   },
   {
-    displayName: 'Ticketing',
-    iconName: 'ticket',
-    route: 'apps/tickets',
+    displayName: 'purchase',
+    iconName: 'packages',
+    route: 'apps/purchase',
   },
   {
-    displayName: 'Customers',
-    iconName: 'ticket',
-    route: 'apps/customers',
+    displayName: 'sale',
+    iconName: 'packages',
+    route: 'apps/sale',
+  },
+  {
+    displayName: 'reports',
+    iconName: 'packages',
+    route: 'apps/reports',
+  },
+  {
+    displayName: 'settings',
+    iconName: 'packages',
+    route: 'apps/settings',
+  },
+  {
+    displayName: 'users',
+    iconName: 'packages',
+    route: 'apps/users',
+  },
+
+  
+  {
+    navCap: 'daher components',
   },
   {
     displayName: 'Labor Recruitment',
