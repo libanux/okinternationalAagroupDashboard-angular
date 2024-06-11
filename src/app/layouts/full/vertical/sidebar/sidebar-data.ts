@@ -1,6 +1,7 @@
 import { NavItem } from '../../../../classes/nav-item';
 
 export const navItems: NavItem[] = [
+  { navCap: 'Apps' },
   {
     displayName: 'products',
     iconName: 'packages',
@@ -26,33 +27,11 @@ export const navItems: NavItem[] = [
     iconName: 'packages',
     route: 'apps/reports',
   },
-  {
-    displayName: 'settings',
-    iconName: 'packages',
-    route: 'apps/settings',
-  },
-  {
-    displayName: 'users',
-    iconName: 'packages',
-    route: 'apps/users',
-  },
+
 
   
-  {
-    navCap: 'daher components',
-  },
-  {
-    displayName: 'Labor Recruitment',
-    iconName: 'clipboard',
-    route: 'apps/labors',
-  },
-  {
-    displayName: 'Notes',
-    iconName: 'note',
-    route: 'apps/notes',
-  },
-  
-  {
+  { navCap: 'daher components' },
+ {
     displayName: 'Reports',
     iconName: 'layout',
     route: 'widgets/charts',
@@ -60,6 +39,16 @@ export const navItems: NavItem[] = [
 
   {
     navCap: 'Auth',
+  },
+  {
+    displayName: 'settings',
+    iconName: 'packages',
+    route: 'apps/settings',
+  },
+  {
+    displayName: 'users',
+    iconName: 'user-plus',
+    route: 'apps/users',
   },
   {
     displayName: 'Profile',

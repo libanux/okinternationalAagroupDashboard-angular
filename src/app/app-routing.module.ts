@@ -8,36 +8,25 @@ const routes: Routes = [
     path: '',
     component: FullComponent,
     children: [
-
-      {
-        path: 'labor',
-        loadChildren: () =>
-          import('./pages/apps/labor-rec/labor-rec.module').then(
-            (m) => m.LaborRecModule),
-      },
-
       {
         path: 'ui-components',
         loadChildren: () =>
-          import('./pages/ui-components/ui-components.module').then(
-            (m) => m.UicomponentsModule
-          ),
+        import('./pages/ui-components/ui-components.module').then((m) => m.UicomponentsModule),
       },
-
       {
         path: 'charts',
         loadChildren: () =>
-          import('./pages/charts/charts.module').then((m) => m.ChartsModule),
+        import('./pages/charts/charts.module').then((m) => m.ChartsModule),
       },
       {
         path: 'apps',
         loadChildren: () =>
-          import('./pages/apps/apps.module').then((m) => m.AppsModule),
+        import('./pages/apps/apps.module').then((m) => m.AppsModule),
       },
       {
         path: 'widgets',
         loadChildren: () =>
-          import('./pages/widgets/widgets.module').then((m) => m.WidgetsModule),
+        import('./pages/widgets/widgets.module').then((m) => m.WidgetsModule),
       },
     ],
   },
@@ -53,20 +42,15 @@ const routes: Routes = [
       },
     ],
   },
-
   {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
   },
-
- 
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
