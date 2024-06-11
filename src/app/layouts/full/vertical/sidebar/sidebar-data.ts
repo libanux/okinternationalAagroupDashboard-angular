@@ -36,24 +36,10 @@ export const navItems: NavItem[] = [
     iconName: 'packages',
     route: 'apps/users',
   },
+
+  
   {
     navCap: 'daher components',
-  },
-
-  {
-    displayName: 'Visa',
-    iconName: 'ticket',
-    route: 'apps/visa',
-  },
-  {
-    displayName: 'Ticketing',
-    iconName: 'ticket',
-    route: 'apps/tickets',
-  },
-  {
-    displayName: 'Customers',
-    iconName: 'ticket',
-    route: 'apps/customers',
   },
   {
     displayName: 'Labor Recruitment',

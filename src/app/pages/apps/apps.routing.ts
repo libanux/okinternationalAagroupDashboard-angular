@@ -10,11 +10,8 @@ import { AppInvoiceViewComponent } from './invoice/invoice-view/invoice-view.com
 import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.component';
 import { LaborRecModule } from './labor-rec/labor-rec.module';
 import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
-import { VisaComponentComponent } from './visa-component/visa-component.component';
 import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
-import { TicketsComponent } from './tickets/tickets.component';
 import { AdminsComponent } from './admins/admins.component';
-import { CustomersComponent } from './customers/customers.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
 import { StockComponent } from './stock/stock.component';
@@ -27,109 +24,29 @@ import { UsersComponent } from './users/users.component';
 
 export const AppsRoutes: Routes = [
   {
-    path: '',
-    children: [
-      {
-        path: 'stock',
-        component: StockComponent,
-      },
-      {
-        path: 'purchase',
-        component: PurchaseComponent,
-      },
-      {
-        path: 'sale',
-        component: SaleComponent,
-      },     
-       {
-        path: 'reports',
-        component: ReportsComponent,
-      },
-      {
-        path: 'settings',
-        component: SettingsComponent,
-      },     
-       {
-        path: 'users',
-        component: UsersComponent,
-      },
-      {
-        path: 'visa',
-        component: VisaComponentComponent,
-      },
-      {
-        path: 'labor',
-        component: LaborRecModule,
-      },
-      {
-        path: 'notes',
-        component: AppNotesComponent,
-      },
-      { path: 'email', redirectTo: 'email/inbox', pathMatch: 'full' },
-      {
-        path: 'permission',
-        component: AppPermissionComponent,
-      },
-      {
-        path: 'taskboard',
-        component: AppTaskboardComponent,
-      },
-      {
-        path: 'products',
-        component: ProductsComponent,
-      },
-      {
-        path: 'contacts',
-        component: AppContactComponent,
-      },
-      {
-        path: 'customers',
-        component: CustomersComponent,
-      },
-      {
-        path: 'admins',
-        component: AdminsComponent,
-      },
-      {
-        path: 'invoice',
-        component: AppInvoiceListComponent,
-      },
-      {
-        path: 'addInvoice',
-        component: AppAddInvoiceComponent,
-      },
-      {
-        path: 'viewInvoice/:id',
-        component: AppInvoiceViewComponent,
-      },
-      {
-        path: 'editinvoice/:id',
-        component: AppEditInvoiceComponent,
-      },
-      // {
-      //   path: 'viewPackage/:id',
-      //   component:ViewticketComponent
-      // },
-      {
-        path: 'viewLabor/:id',
-        component:ViewLaborComponent
-      },
-
-      {
-        path: 'labors',
-        component:LaborMainComponent
-      },
-
-      {
-        path: 'tickets',
-        component:TicketsComponent
-      },
-
-      {
-        path: 'profile',
-        component:ProfileComponent
-      },
-
-    ],
-  },
+  path: '',
+  children: [
+      {path: 'stock', component: StockComponent,},
+      {path: 'purchase',  component: PurchaseComponent,},
+      {path: 'sale',  component: SaleComponent,},     
+      {path: 'reports',  component: ReportsComponent,},
+      {path: 'settings',  component: SettingsComponent,},     
+      {path: 'users',  component: UsersComponent,},
+      {path: 'labor', component: LaborRecModule,},
+      {path: 'notes', component: AppNotesComponent,},
+      {path: 'email', redirectTo: 'email/inbox', pathMatch: 'full' },
+      {path: 'permission',  component: AppPermissionComponent,},
+      {path: 'taskboard', component: AppTaskboardComponent,},
+      {path: 'products', component: ProductsComponent,},
+      {path: 'contacts', component: AppContactComponent,},
+      {path: 'admins',  component: AdminsComponent,},
+      {path: 'invoice', component: AppInvoiceListComponent,},
+      {path: 'addInvoice',  component: AppAddInvoiceComponent,},
+      {path: 'viewInvoice/:id', component: AppInvoiceViewComponent,},
+      {path: 'editinvoice/:id', component: AppEditInvoiceComponent,},
+      {path: 'viewLabor/:id', component:ViewLaborComponent},
+      {path: 'labors' ,component:LaborMainComponent},
+      {path: 'profile', component:ProfileComponent},
+],
+},
 ];

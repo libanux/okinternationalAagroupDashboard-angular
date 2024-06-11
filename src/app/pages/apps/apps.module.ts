@@ -56,8 +56,6 @@ import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component'
 import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
 
 // visa
-import { VisaComponentComponent } from './visa-component/visa-component.component';
-import { TicketsComponent } from './tickets/tickets.component';
 import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
 import { AddComponent } from './admins/add-admin/add.component';
 import { ProductsComponent, productsDialogComponent } from './products/products.component';
@@ -109,10 +107,8 @@ import { UsersComponent } from './users/users.component';
     AppEditInvoiceComponent,
     AddedDialogComponent,
     OkDialogComponent,
-    VisaComponentComponent,
     LaborMainComponent,
     ViewLaborComponent,
-    TicketsComponent,
     AdminsComponent,
     AdminDialogContentComponent,
     AddComponent,
