@@ -35,27 +35,24 @@ export class AppLoginComponent {
       password: this.form.value.password ?? undefined // Use nullish coalescing to convert null to undefined
     };
 
-      this.authserivece.SIGN_IN(authenticationParams).subscribe({
-        next: (response: any) => {
-          console.log(response)
-            this.router.navigate(['/apps/package']).then(() => {
-              window.scrollTo(0, 0);
-            }),
-              localStorage.setItem('TICKET', response.token),
-              localStorage.setItem('userId', response._id)
+    this.router.navigate(['/apps/package']).then(() => {
+      window.scrollTo(0, 0);
+    })
 
-        },
-        error: (error: any) => {this.loading = false;}
-      });
+      // this.authserivece.SIGN_IN(authenticationParams).subscribe({
+      //   next: (response: any) => {
+      //     console.log(response)
+      //       this.router.navigate(['/apps/package']).then(() => {
+      //         window.scrollTo(0, 0);
+      //       }),
+      //         localStorage.setItem('TICKET', response.token),
+      //         localStorage.setItem('userId', response._id)
+
+      //   },
+      //   error: (error: any) => {this.loading = false;}
+      // });
     
   }
-
-  //LOGIN WHEN CLICK ENTER KEY
-  // handleKeydown(event: KeyboardEvent) {
-  //   if (event.key === 'Enter') {
-  //     this.login();
-  //   }
-  // }
 
   
 }

@@ -6,13 +6,13 @@ import { CoreService } from 'src/app/services/core.service';
   standalone: true,
   template: `
     <div class="branding">
-        <a href="/">
+        <!-- <a href="/"> -->
           <img
-            src="./assets/images/logos/daher-highres-ma2sous.png"
+            src="./assets/images/logos/logoNoBG_M2sousa.png"
             class="align-middle m-2"
             alt="logo"
           />
-        </a>
+        <!-- </a> -->
     </div>
   `,
 })

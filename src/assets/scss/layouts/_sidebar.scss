@@ -7,11 +7,15 @@
 }
 
 .branding {
-  padding: 20px;
+  // background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
-.branding a img{
-  width: 150px;
+.branding img{
+  width: 100px;
 }
 
 .sidebarNav-mini {
