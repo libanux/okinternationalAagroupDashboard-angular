@@ -1,6 +1,6 @@
 import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { DateRange } from './date-range';
+import { DateRange } from '../../../classes/date-range';
 
 @Directive({
   selector: '[appDateRangePicker]'

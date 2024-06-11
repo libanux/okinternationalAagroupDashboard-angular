@@ -42,7 +42,6 @@ import { AppAddEmployeeComponent } from './employee/add/add.component';
 
 import { AppsRoutes } from './apps.routing';
 import { MatNativeDateModule } from '@angular/material/core';
-import { AppTicketlistComponent, AppTicketDialogContentComponent } from './ticketlist/ticketlist.component';
 
 //Invoice
 import { AppInvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
@@ -58,7 +57,6 @@ import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component'
 
 // visa
 import { VisaComponentComponent } from './visa-component/visa-component.component';
-import { ViewticketComponent } from './ticketlist/viewticket/viewticket.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
 import { AddComponent } from './admins/add-admin/add.component';
@@ -67,7 +65,6 @@ import { StockComponent } from './stock/stock.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
-import { Settings } from 'angular-feather/icons';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
 
@@ -101,8 +98,6 @@ import { UsersComponent } from './users/users.component';
     TaskDialogComponent,
     OkAppTaskComponent,
     DeleteAppTaskComponent,
-    AppTicketlistComponent,
-    AppTicketDialogContentComponent,
     AppContactComponent,
     AppContactDialogContentComponent,
     AppEmployeeComponent,
@@ -117,8 +112,6 @@ import { UsersComponent } from './users/users.component';
     VisaComponentComponent,
     LaborMainComponent,
     ViewLaborComponent,
-    AppTicketlistComponent,
-    ViewticketComponent,
     TicketsComponent,
     AdminsComponent,
     AdminDialogContentComponent,

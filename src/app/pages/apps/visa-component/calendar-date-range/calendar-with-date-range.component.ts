@@ -3,7 +3,7 @@ import { MatCalendar } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DateSelectedSignal } from 'src/app/signals/DateSelectedSignal.service';
-import { DateRange } from '../date-range';
+import { DateRange } from '../../../../classes/date-range';
 
 @Component({
   standalone: true,

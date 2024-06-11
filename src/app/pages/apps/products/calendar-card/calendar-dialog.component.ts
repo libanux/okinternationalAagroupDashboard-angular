@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { CalendarWithDateRangeComponent } from '../calendar-date-range/calendar-with-date-range.component';
-import { DateRange } from '../../ticketlist/date-range';
+import { DateRange } from '../../../../classes/date-range';
 
 @Component({
   standalone: true,
