@@ -4,7 +4,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../material.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -26,12 +25,6 @@ import { AppNotesComponent } from './notes/notes.component';
 // Permission
 import { AppPermissionComponent } from './permission/permission.component';
 
-//Taskboard
-import { AppTaskboardComponent } from './taskboard/taskboard.component';
-import { TaskDialogComponent } from './taskboard/task-dialog.component';
-import { OkAppTaskComponent } from './taskboard/ok-task/ok-task.component';
-import { DeleteAppTaskComponent } from './taskboard/delete-task/delete-task.component';
-
 //Calendar
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -51,10 +44,6 @@ import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.com
 import { OkDialogComponent } from './invoice/edit-invoice/ok-dialog/ok-dialog.component';
 import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-dialog.component';
 
-// labor
-import { LaborMainComponent } from './labor-rec/labor-main/labor-main.component';
-import { ViewLaborComponent } from './labor-rec/view-labor/view-labor.component';
-
 // visa
 import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
 import { AddComponent } from './admins/add-admin/add.component';
@@ -65,6 +54,8 @@ import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
+import { ChangeLogoImageComponent } from './settings/Account/change-logo-image/change-logo-image.component';
+import { ChangeBusinessInfoComponent } from './settings/Account/change-business-info/change-business-info.component';
 
 @NgModule({
   imports: [
@@ -92,10 +83,6 @@ import { UsersComponent } from './users/users.component';
   declarations: [
     AppPermissionComponent,
     AppNotesComponent,
-    AppTaskboardComponent,
-    TaskDialogComponent,
-    OkAppTaskComponent,
-    DeleteAppTaskComponent,
     AppContactComponent,
     AppContactDialogContentComponent,
     AppEmployeeComponent,
@@ -107,8 +94,6 @@ import { UsersComponent } from './users/users.component';
     AppEditInvoiceComponent,
     AddedDialogComponent,
     OkDialogComponent,
-    LaborMainComponent,
-    ViewLaborComponent,
     AdminsComponent,
     AdminDialogContentComponent,
     AddComponent,
@@ -119,7 +104,9 @@ import { UsersComponent } from './users/users.component';
     ReportsComponent,
     SettingsComponent,
     UsersComponent,
-    productsDialogComponent
+    productsDialogComponent,
+    ChangeLogoImageComponent,
+    ChangeBusinessInfoComponent
   ],
   providers: [DatePipe],
 })

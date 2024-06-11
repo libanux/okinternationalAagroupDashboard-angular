@@ -11,33 +11,14 @@
             Account
           </ng-template>
           <mat-card-content class="p-y-24 b-t-1">
+           
             <div class="row">
-              <div class="col-sm-6">
-                <mat-card class="cardWithShadow">
-                  <mat-card-content class="p-y-24">
-                    <mat-card-title>Change Profile</mat-card-title>
-                    <mat-card-subtitle class="mat-body-1"
-                      >Change your profile picture from here</mat-card-subtitle
-                    >
-                    <div class="text-center m-t-24">
-                      <img
-                        src="/assets/images/profile/user-1.jpg"
-                        class="rounded-circle"
-                        width="120"
-                      />
-                      <div class="m-t-24">
-                        <button mat-flat-button color="primary" class="m-r-8">
-                          Upload
-                        </button>
-                        <button mat-stroked-button color="warn">Reset</button>
-                      </div>
-                      <span class="f-s-14 m-t-24 d-block"
-                        >Allowed JPG, GIF or PNG. Max size of 800K</span
-                      >
-                    </div>
-                  </mat-card-content>
-                </mat-card>
+             
+                <div class="col-sm-6">
+                <app-change-logo-image></app-change-logo-image>
               </div>
+
+
               <div class="col-sm-6">
                 <mat-card class="cardWithShadow">
                   <mat-card-content class="p-y-24">

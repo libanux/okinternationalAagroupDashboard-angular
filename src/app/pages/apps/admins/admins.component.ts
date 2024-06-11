@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
 import { AdminService } from 'src/app/services/Admins.service';
-import { Admin } from 'src/app/classes/admin.class';
+import { Admin, adminsArray } from 'src/app/classes/admin.class';
 
 @Component({
   templateUrl: './admins.component.html',
@@ -12,68 +12,69 @@ import { Admin } from 'src/app/classes/admin.class';
 })
 export class AdminsComponent implements AfterViewInit, OnInit {
 
-  admins : Admin [] = [];
+admins : Admin [] = [];
+
+displayedColumns: string[] = [
+  'firstname',
+  'lastname',
+  'email',
+  'phone',
+  'action'
+];
   
-  @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
-  searchText: any;
- 
-  displayedColumns: string[] = [
-    'firstname',
-    'lastname',
-    'email',
-    'phone',
-    'action'
-  ];
+searchText: any;
+dataSource = new MatTableDataSource(this.admins);
+columnsToDisplayWithExpand = [...this.displayedColumns];
 
-  dataSource = new MatTableDataSource(this.admins);
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
-  columnsToDisplayWithExpand = [...this.displayedColumns];
+@ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
+@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
 
-  constructor(public dialog: MatDialog, public datePipe: DatePipe, private adminService : AdminService) { }
+constructor(public dialog: MatDialog, public datePipe: DatePipe, private adminService : AdminService) { }
 
-  ngOnInit(): void {
-    this.FETCH_ADMINS()
-    this.dataSource = new MatTableDataSource(this.admins);
-  }
+ngOnInit(): void {
+  this.FETCH_ADMINS()
+  this.dataSource = new MatTableDataSource(this.admins);
+}
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
+ngAfterViewInit(): void {
+  this.dataSource.paginator = this.paginator;
+}
 
-  FETCH_ADMINS(){
-    this.adminService.GET_ALL_ADMINS().subscribe({
-      next: (response: any) => {
-        console.log(response)
-        this.admins = response
-        console.log(this.dataSource)
-      },
-      error: (error) => {},
-      complete: () => {}
-    });
-  }
+FETCH_ADMINS(){
+  this.admins = adminsArray
+    // this.adminService.GET_ALL_ADMINS().subscribe({
+    //   next: (response: any) => {
+    //     console.log(response)
+    //     this.admins = response
+    //     console.log(this.dataSource)
+    //   },
+    //   error: (error) => {},
+    //   complete: () => {}
+    // });
+}
 
-  applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+APPLY_FILTER(filterValue: string): void {
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 
-  openDialog(action: string, obj: any): void {
+OPEN_DIALOG(action: string, obj: any): void {
     obj.action = action;
     const dialogRef = this.dialog.open(AdminDialogContentComponent, {
       data: obj,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result.event === 'Add') {
-        this.addRowData(result.data);
+        this.ADD_ADMIN(result.data);
       } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
+        this.UPDATE_ADMIN(result.data);
       } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
-  }
+        this.DELETE_ADMIN(result.data);
+    }
+  });
+}
 
-  // tslint:disable-next-line - Disables all
-  addRowData(row_obj: Admin): void {
+// tslint:disable-next-line - Disables all
+ADD_ADMIN(row_obj: Admin): void {
     // this.dataSource.data.unshift({
     //   id: this.admins.length + 1,
     //   Name: row_obj.Name,
@@ -87,12 +88,12 @@ export class AdminsComponent implements AfterViewInit, OnInit {
     //   imagePath: row_obj.imagePath,
     // });
     // this.dialog.open(AppAddEmployeeComponent);
-    this.table.renderRows();
-  }
+  this.table.renderRows();
+}
 
-  // tslint:disable-next-line - Disables all
-  updateRowData(row_obj: Admin): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value: any) => {
+// tslint:disable-next-line - Disables all
+UPDATE_ADMIN(row_obj: Admin): boolean | any {
+  this.dataSource.data = this.dataSource.data.filter((value: any) => {
       // if (value.id === row_obj.id) {
         // value.Name = row_obj.Name;
         // value.Position = row_obj.Position;
@@ -103,32 +104,30 @@ export class AdminsComponent implements AfterViewInit, OnInit {
         // value.Projects = row_obj.Projects;
         // value.imagePath = row_obj.imagePath;
       // }
-      return true;
-    });
-  }
-
-  expandedElement: Admin | null = null;
-      //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
-      expandRow(event: Event, element: any, column: string): void {
-        if (column === 'action') {
-          this.expandedElement = element;
-        }
-        else {
-          this.expandedElement = this.expandedElement === element ? null : element;
-          event.stopPropagation();
-        }
-      }
-
-
-  // tslint:disable-next-line - Disables all
-  deleteRowData(row_obj: Admin): boolean | any {
-    this.dataSource.data = this.dataSource.data.filter((value: any) => {
-      // return value.id !== row_obj.id;
-    });
-  }
+  return true;
+});
 }
 
+expandedElement: Admin | null = null;
+//EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
+EXPAND_RAW(event: Event, element: any, column: string): void {
+    if (column === 'action') 
+      { this.expandedElement = element; }
 
+    else {
+      this.expandedElement = this.expandedElement === element ? null : element;
+      event.stopPropagation();
+        }
+}
+
+// tslint:disable-next-line - Disables all
+DELETE_ADMIN(row_obj: Admin): boolean | any {
+  this.dataSource.data = this.dataSource.data.filter((value: any) => {
+    // return value.id !== row_obj.id;
+  });
+}
+
+}
 
 
 @Component({

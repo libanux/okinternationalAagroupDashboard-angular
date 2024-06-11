@@ -12,21 +12,8 @@ export class ProductsService {
 
   private apiUrl = '';
 
-  constructor(private http: HttpClient,private dateSignal : DateSelectedSignal,) {
+  constructor(private http: HttpClient, private dateSignal : DateSelectedSignal,) {
     this.apiUrl = environment.apiLocalBaseUrl;
-  }
-
-  // VALIDATE TOKEN
-  isTokenExpired1(): boolean {
-    const token = this.getToken();
-    if (!token) return true;
-    const tokenParts = token.split('.');
-    if (tokenParts.length !== 3) return true;
-    const payload = JSON.parse(atob(tokenParts[1]));
-    if (!payload.exp) return true;
-    const expirationTime = payload.exp * 1000;
-    const currentTime = new Date().getTime();
-    return expirationTime < currentTime;
   }
 
   // GET TOKEN FROM LOCAL STORAGE
