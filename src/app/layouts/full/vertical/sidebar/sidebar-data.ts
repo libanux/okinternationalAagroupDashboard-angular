@@ -7,6 +7,40 @@ export const navItems: NavItem[] = [
     route: 'apps/products',
   },
   {
+    displayName: 'stock',
+    iconName: 'packages',
+    route: 'apps/stock',
+  },
+  {
+    displayName: 'purchase',
+    iconName: 'packages',
+    route: 'apps/purchase',
+  },
+  {
+    displayName: 'sale',
+    iconName: 'packages',
+    route: 'apps/sale',
+  },
+  {
+    displayName: 'reports',
+    iconName: 'packages',
+    route: 'apps/reports',
+  },
+  {
+    displayName: 'settings',
+    iconName: 'packages',
+    route: 'apps/settings',
+  },
+  {
+    displayName: 'users',
+    iconName: 'packages',
+    route: 'apps/users',
+  },
+  {
+    navCap: 'daher components',
+  },
+
+  {
     displayName: 'Visa',
     iconName: 'ticket',
     route: 'apps/visa',
