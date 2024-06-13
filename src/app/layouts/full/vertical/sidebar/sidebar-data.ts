@@ -68,12 +68,12 @@ export const navItems: NavItem[] = [
 
 
   
-  { navCap: 'daher components' },
- {
-    displayName: 'Reports',
-    iconName: 'layout',
-    route: 'widgets/charts',
-  },
+//   { navCap: 'daher components' },
+//  {
+//     displayName: 'Reports',
+//     iconName: 'layout',
+//     route: 'widgets/charts',
+//   },
 
   {
     navCap: 'Auth',
@@ -93,11 +93,11 @@ export const navItems: NavItem[] = [
     iconName: 'ticket',
     route: 'apps/profile',
   },
-  {
-    displayName: 'Admins',
-    iconName: 'user-plus',
-    route: 'apps/admins',
-  },
+  // {
+  //   displayName: 'Admins',
+  //   iconName: 'user-plus',
+  //   route: 'apps/admins',
+  // },
   {
     displayName: 'logout',
     iconName: 'login',

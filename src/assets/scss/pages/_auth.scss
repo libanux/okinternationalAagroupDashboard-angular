@@ -9,7 +9,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #D9DFCE;
+      background: #BED6CC;
         .image-container{
           display: flex;
           justify-content: center;
@@ -39,7 +39,7 @@
     background: radial-gradient(
         rgb(210, 241, 223),
         rgb(237, 250, 211),
-        #D9DFCE
+        #BED6CC
       )
       0% 0% / 400% 400%;
     animation: 15s ease 0s infinite normal none running gradient;
@@ -119,7 +119,7 @@
     font-weight: 800;
     line-height: 210px;
     margin: 0px;
-    text-shadow: 4px 5px 1px #D9DFCE;
+    text-shadow: 4px 5px 1px #BED6CC;
   }
 }
 

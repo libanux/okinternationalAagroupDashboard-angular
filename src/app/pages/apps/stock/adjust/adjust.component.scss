@@ -15,13 +15,13 @@
   }
   .table-card {
     width: 100%;
-    padding: 20px;
-    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: #bed6cca8    ;
   }
   
   .mat-table {
@@ -38,11 +38,11 @@
   }
   
   .mat-table th {
-    background-color: #F8FBEF;
     font-weight: bold;
     position: sticky;
     top: 0;
     z-index: 1;
+    background-color: #bed6cca8    ;
   }
   
   .mat-table td {
