@@ -10,8 +10,9 @@ import { PurchaseInvoice } from 'src/app/classes/purchase-invoices.class';
 })
 export class PurchaseAddComponent {
   dataSource = products;
+  filteredProducts: any[]
     constructor() {
-console.log("Data",this.dataSource)
+      this.filteredProducts = this.dataSource
 
     }
     hide = true;
@@ -44,14 +45,32 @@ console.log("Data",this.dataSource)
       'category',
       'cost',
       'sale',
+      'action'
       ];
     
-  
+      searchQuery: string;
     editRowIndex: number = -1;
 
     onEdit(element: Element, field: string, event: any, rowIndex: number) {
       this.editRowIndex = rowIndex; // Set the rowIndex to highlight the editing cell
       // Handle your edit logic here
+    }
+
+
+
+    filterProducts() {
+      this.filteredProducts = this.dataSource
+      const query = this.searchQuery.toLowerCase();
+      this.filteredProducts = this.dataSource.filter(product => product.itemName.toLowerCase().includes(query));
+    }
+  
+    addNewProduct() {
+      // Logic to add a new product
+      console.log('Add new product clicked');
+    }
+  
+    displayFn(product: { id: number, name: string }): string {
+      return product ? product.name : '';
     }
   }
   
