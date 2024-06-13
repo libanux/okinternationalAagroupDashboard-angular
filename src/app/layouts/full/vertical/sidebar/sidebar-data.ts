@@ -16,6 +16,19 @@ export const navItems: NavItem[] = [
     displayName: 'purchase',
     iconName: 'packages',
     route: 'apps/purchase',
+
+    children: [
+      {
+        displayName: 'Add purchase',
+        iconName: '',
+        route: 'apps/purchase/add',
+      },
+      {
+        displayName: 'Purchase invoice',
+        iconName: '',
+        route: 'apps/purchase/invoices',
+      },
+    ],
   },
   {
     displayName: 'sale',
@@ -27,6 +40,8 @@ export const navItems: NavItem[] = [
     iconName: 'packages',
     route: 'apps/reports',
   },
+
+  
 
 
   
