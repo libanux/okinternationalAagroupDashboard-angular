@@ -3,12 +3,12 @@ import { NavItem } from '../../../../classes/nav-item';
 export const navItems: NavItem[] = [
   { navCap: 'Apps' },
   {
-    displayName: 'products',
+    displayName: 'Products',
     iconName: 'category',
     route: 'apps/products',
   },
   {
-    displayName: 'stock',
+    displayName: 'Stock',
     iconName: 'packages',
     route: 'apps/stock',
 
@@ -36,7 +36,7 @@ export const navItems: NavItem[] = [
   //   route: 'apps/stock',
   // },
   {
-    displayName: 'purchase',
+    displayName: 'Purchase',
     iconName: 'packages',
     route: 'apps/purchase',
 
@@ -73,7 +73,7 @@ export const navItems: NavItem[] = [
   },
 
   {
-    displayName: 'reports',
+    displayName: 'Reports',
     iconName: 'packages',
     route: 'apps/reports',
   },
@@ -93,12 +93,12 @@ export const navItems: NavItem[] = [
     navCap: 'Auth',
   },
   {
-    displayName: 'settings',
+    displayName: 'Settings',
     iconName: 'packages',
     route: 'apps/settings',
   },
   {
-    displayName: 'users',
+    displayName: 'Users',
     iconName: 'user-plus',
     route: 'apps/users',
   },
@@ -113,7 +113,7 @@ export const navItems: NavItem[] = [
   //   route: 'apps/admins',
   // },
   {
-    displayName: 'logout',
+    displayName: 'Logout',
     iconName: 'login',
     route: '',
   }
