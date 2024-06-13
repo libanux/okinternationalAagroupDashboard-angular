@@ -169,6 +169,10 @@ FILTER_BY_CATEGORY(value: string){
   this.selectedCategory = value
 }
 
+SORT_COST(){
+  console.log('hi')
+}
+
 //OPEN THE CALENDAR DIALOG
 OPEN_CALENDAR_DIALOG(): void {
     const dialogRef = this.dialog.open(CalendarDialogComponent, {

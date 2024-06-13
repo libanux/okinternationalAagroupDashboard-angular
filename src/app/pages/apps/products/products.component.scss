@@ -21,6 +21,15 @@
                     border-radius: 10px;
                     padding: 10px 5px;
                  }
+
+                 .theme-select2{
+                    .addNewItem_Option{
+                        a{
+                            color: green;
+                           background: black;        
+                }
+                    }
+                 }
             }
         }
 
@@ -59,6 +68,11 @@
             .detail-field {
                 margin-bottom: 0.5rem;
             }
+            .QR {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
         }
     }
 
@@ -87,6 +101,12 @@
 
 .table-responsive {
     table {
+        .icon_th {
+            font-weight: 600;
+            padding: 0;
+            cursor: pointer;
+        }
+
         th {
             font-weight: 600;
             padding: 0;
