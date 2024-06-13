@@ -4,12 +4,12 @@ export const navItems: NavItem[] = [
   { navCap: 'Apps' },
   {
     displayName: 'products',
-    iconName: 'packages',
+    iconName: 'category',
     route: 'apps/products',
   },
   {
     displayName: 'stock',
-    iconName: 'packages',
+    iconName: 'Home',
     route: 'apps/stock',
   },
   {

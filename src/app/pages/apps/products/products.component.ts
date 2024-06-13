@@ -6,6 +6,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { CalendarDialogComponent } from './calendar-card/calendar-dialog.component';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product, products } from 'src/app/classes/products.class';
+import { GeneralService } from 'src/app/services/general.service';
+import { Category, categories } from 'src/app/classes/category.class';
 
 @Component({
   selector: 'app-products',
@@ -27,6 +29,7 @@ export class ProductsComponent implements OnInit {
 
   ShowAddButoon = true;
   selectedMonth: string = '';
+  selectedCategory: string = '';
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
@@ -52,6 +55,8 @@ export class ProductsComponent implements OnInit {
   Inprogress = 0;
   Completed = 0;
 
+  categoryArray = categories
+
   //MONTHS FOR FILTER DROPDOWN
   months: month[] = [
     { value: 'today', viewValue: 'Today' },
@@ -63,19 +68,20 @@ export class ProductsComponent implements OnInit {
   ];
 
  //MAIN PRODUCT ARRAY
- productsArray: any[] = []
+
  showCalendar: boolean = false;
  selectedDate: Date | null = null; // Adjusted the type to accept null
 //PRODUCTS ARRAY
-dataSource = new MatTableDataSource(this.productsArray);
+productsArray = new MatTableDataSource<Product>([]);
 
   //PRODUCT ON EDIT
   viewPRODUCT: Product
-  PRODUCTExample = new Product('', '', '', '', 0, 0);
-  editedPRODUCT = new Product('', '', '', '', 0, 0);
+  PRODUCTExample = new Product('', '', '', new Category(-1, ''), 0, 0);
+  ADDED_PRODUCT = new Product('', '', '', new Category(-1, ''), 0, 0);
 
-constructor(public dialog: MatDialog, private productsService: ProductsService) {
-  this.viewPRODUCT = new Product('', '', '', '', 0, 0);
+constructor(public generalService: GeneralService, public dialog: MatDialog, private productsService: ProductsService) {
+  this.viewPRODUCT = new Product('', '', '', new Category(-1, ''), 0, 0);
+  // this.categoryArray = categories
 }
 
 ngOnInit(): void {
@@ -93,7 +99,7 @@ onDateSelect(date: Date) {
 // }
 
 ngAfterViewInit(): void {
-  this.dataSource.paginator = this.paginator;
+  this.productsArray.paginator = this.paginator;
 }
 
 //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
@@ -109,13 +115,13 @@ expandRow(event: Event, element: any, column: string): void {
 
 //FETCH productsArray FROM API
 FETCH_PRODUCTS(): void {
-    this.productsArray = products;
+    this.productsArray = new MatTableDataSource(products);
     this.totalCount = products.length;
     // this.productsService.GET_productsArray().subscribe({
     //   next: (response: any) => {
     //     this.productsArray = response;
-    //     this.dataSource = new MatTableDataSource(this.productsArray);
-    //     this.totalCount = this.dataSource.data.length;
+    //     this.productsArray = new MatTableDataSource(this.productsArray);
+    //     this.totalCount = this.productsArray.data.length;
     //     this.Inprogress = this.btnCategoryClick('pending');
     //     // this.Completed = this.btnCategoryClick('complete');
     //     // this.Cancelled = this.btnCategoryClick('cancelled');
@@ -129,17 +135,15 @@ FETCH_PRODUCTS(): void {
 }
 
 //ADD PRODUCT
-ADD_PRODUCT() {
-    this.productsService.ADD_PRODUCT(this.PRODUCTExample).subscribe({
-      next: (response: any) => {
-        console.log("Response:", response);
-      },
-      error: (error: any) => {
-        console.error(error);
-        console.log("Error::", error);
-      },
-      complete: () => { }
-    });
+ADD_PRODUCT(obj: Product) {
+  this.productsService.ADD_PRODUCT(obj).subscribe({
+    next: (response: any) => { },
+    error: (error) => { },
+    complete: () => {
+      this.CANCEL_UPDATE();
+      this.FETCH_PRODUCTS();
+    }
+  });
 }
 
 //TRIGGER THE DROP DOWN FILTER VALUES
@@ -150,19 +154,19 @@ ON_CHANGE_DROPDOWN(value: string) {
     else{
       this.productsService.FILTER_PRODUCT(value).subscribe({
         next: (response: any) => {
-          console.log("Response:", response)
-          this.productsArray = response;
-          this.dataSource = new MatTableDataSource(this.productsArray);
-          this.totalCount = this.dataSource.data.length;
+          this.productsArray = new MatTableDataSource(response);
+          this.totalCount = this.productsArray.data.length;
           this.Inprogress = this.btnCategoryClick('pending');
         },
-        error: (error: any) => {
-          console.log("Error:", error)
-        },
+        error: (error: any) => {console.log("Error:", error)},
         complete: () => {
         }
       });
     }
+}
+
+FILTER_BY_CATEGORY(value: string){
+  this.selectedCategory = value
 }
 
 //OPEN THE CALENDAR DIALOG
@@ -171,24 +175,19 @@ OPEN_CALENDAR_DIALOG(): void {
       width: '350px',
       data: { selectedDate: this.selectedDate }
     });
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       if (result) {
         if (result.startDate && result.endDate) {
           this.selectedMonth = `${result.startDate.toLocaleString('default', { month: 'long' })} - ${result.endDate.toLocaleString('default', { month: 'long' })}`;
           this.productsService.FILTER_PRODUCT("custom").subscribe({
             next: (response: any) => {
-              console.log("Response:", response)
-              this.productsArray = response;
-              this.dataSource = new MatTableDataSource(this.productsArray);
-              this.totalCount = this.dataSource.data.length;
+              this.productsArray = new MatTableDataSource(response);
+              this.totalCount = this.productsArray.data.length;
               this.Inprogress = this.btnCategoryClick('pending');
             },
-            error: (error: any) => {
-              console.log("Error:", error)
-            },
-            complete: () => {
-            }
+            error: (error: any) => {console.log("Error:", error)},
+            complete: () => {}
           });
         } else {
           this.selectedMonth = 'Custom';
@@ -202,45 +201,57 @@ OPEN_CALENDAR_DIALOG(): void {
 EDIT_PRODUCT(obj: any): void {
   this.ShowAddButoon = false
   this.viewPRODUCT = obj;
-  this.editedPRODUCT = obj;
+  this.ADDED_PRODUCT = obj;
+}
+  // CONFIRM UPDATE
+UPDATE_PRODUCT(obj: Product): void {
+    this.productsService.UPDATE_PRODUCT(obj).subscribe({
+      next: (response: any) => { },
+      error: (error) => { },
+      complete: () => {
+        this.CANCEL_UPDATE();
+        this.FETCH_PRODUCTS();
+      }
+    });
 }
 
-CANCEL(){
-  this.ShowAddButoon = true;
-  this.editedPRODUCT = new Product('', '', '', '', 0, 0);
+// DELETE 
+DELETE_PRODUCT(ID: any): void {
+  this.productsService.DELETE_PRODUCT(ID).subscribe({
+    next: (response: any) => { },
+    error: (error) => { },
+    complete: () => { this.FETCH_PRODUCTS(); }
+  });
+}
+
+// CANCEL UPDATE
+CANCEL_UPDATE(): void {
+  this.ShowAddButoon = true
+  this.ADDED_PRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0);
 }
 
 // OPEN UPDATE & DELETE DIALOGS
-OPEN_DIALOG(action: string, delPRODUCT: Product): void {
+OPEN_DIALOG(action: string, product: Product): void {
     const dialogRef = this.dialog.open(productsDialogComponent, {
-      data: { action, delPRODUCT }
+      data: { action, product }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.event === 'Delete') {
-
-this.productsService.DELETE_PRODUCT(delPRODUCT).subscribe({
-    next: (response: any) => {
-        console.log('Response:', response);
-         this.FETCH_PRODUCTS()
-    },
-    error: (error: any) => {console.error('Error:', error);},
-    complete: () => { }
-      });
+    if (result && result.event === 'Delete') {
+      this.DELETE_PRODUCT(product.barcode)
     }
   });
 }
 
 //GET THE CATEGORY LENGTH
 btnCategoryClick(val: string): number {
-  this.dataSource.filter = val.trim().toLowerCase();
-  return this.dataSource.filteredData.length;
+  this.productsArray.filter = val.trim().toLowerCase();
+  return this.productsArray.filteredData.length;
 }
 
 //TRUNCATE THE TEXT INTO 20 CHARS
-truncateText(text: string, limit: number): string {
-if (text && text.length > limit) { return text.substring(0, limit) + '...';  }
-  return text;
+TRUNCATE_TEXT(text: string, limit: number): string {
+  return this.generalService.truncateText(text, limit);
 }
 
 //GET THE STATUS CLASS
@@ -256,6 +267,11 @@ getStatusClass(status: string): string {
         return '';
     }
   }
+
+  APPLY_SEARCH_FILTER(filterValue: string): void {
+    this.productsArray.filter = filterValue.trim().toLowerCase();
+  }
+
 }
 
 //MONTHS INTERFACE

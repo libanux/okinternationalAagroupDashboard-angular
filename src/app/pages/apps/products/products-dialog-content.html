@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>{{action}}</h2>
-@if(action !== 'Delete') {
+@if(action === 'add') {
 <mat-dialog-content style="max-width: 500px" class="mat-typography m-t-24">
   <form #userForm="ngForm">
     <div class="row">
@@ -44,15 +44,40 @@
     </div>
   </form>
 </mat-dialog-content>
-} @else {
+}
+
+@if(action === 'add category') {
+  <mat-dialog-content style="max-width: 500px" class="mat-typography m-t-24">
+    <form #userForm="ngForm">
+      <div class="row">
+        <div class="col-sm-6 col-lg-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput required id="id" name="id" [(ngModel)]="local_data.id" placeholder="id" />
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <input type="text" matInput required id="title" name="title" [(ngModel)]="local_data.title"
+              placeholder="Category Name" />
+          </mat-form-field>
+        </div>
+       
+      </div>
+    </form>
+  </mat-dialog-content>
+  }
+
+@if(action === 'Delete')  {
 <div class="p-x-24 p-b-24">
   Sure to delete <span class="f-w-600">{{local_data.title}}</span>?
 </div>
 }
 
+
+
 <div mat-dialog-actions class="p-24 p-t-0">
   <button mat-flat-button (click)="doAction()" color="primary">
     {{action}}
   </button>
-  <button mat-stroked-button color="warn" (click)="closeDialog()">Cancel</button>
+  <button mat-stroked-button (click)="closeDialog()">Cancel</button>
 </div>

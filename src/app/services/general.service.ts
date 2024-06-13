@@ -23,4 +23,13 @@ export class GeneralService  {
   }
 
 
+  //TRUNCATE THE TEXT INTO 20 CHARS
+truncateText(text: string, limit: number): string {
+  if (text && text.length > limit)
+     { return text.substring(0, limit) + '...';  }
+    return text;
+}
+  
+
+
 }
