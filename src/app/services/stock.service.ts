@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroment/enviroment';
 import { DateSelectedSignal } from '../signals/DateSelectedSignal.service';
-import { stock } from '../classes/stock.class';
+import { Product } from '../classes/products.class';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class stocksService {
   }
 
 // ADD stock
-ADD_stock(newstock: stock): Observable<any> {
+ADD_stock(newstock: Product): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.getToken()}`,
       'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ ADD_stock(newstock: stock): Observable<any> {
 }
 
 // DELETE stock
-DELETE_stock(delstock: stock): Observable<any> {
+DELETE_stock(delstock: Product): Observable<any> {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${this.getToken()}`,
         'Content-Type': 'application/json'

@@ -48,7 +48,6 @@ import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-d
 import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.component';
 import { AddComponent } from './admins/add-admin/add.component';
 import { ProductsComponent, productsDialogComponent } from './products/products.component';
-import { StockComponent } from './stock/stock.component';
 
 import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -59,6 +58,9 @@ import { ChangeBusinessInfoComponent } from './settings/Account/change-business-
 import { PurchaseModule } from './purchase/purchase.module';
 import { PurchaseAddComponent } from './purchase/purchase-add/purchase-add.component';
 import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase-invoices.component';
+import { StockComponent } from './stock/view/stock.component';
+import { AdjustComponent } from './stock/adjust/adjust.component';
+import { AdjustementComponent } from './stock/adjustement/adjustement.component';
 
 @NgModule({
   imports: [
@@ -102,7 +104,6 @@ import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase
     AdminDialogContentComponent,
     AddComponent,
     ProductsComponent,
-    StockComponent,
     SaleComponent,
     ReportsComponent,
     SettingsComponent,
@@ -111,7 +112,10 @@ import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase
     ChangeLogoImageComponent,
     ChangeBusinessInfoComponent,
    PurchaseAddComponent,
-   PurchaseInvoicesComponent
+   PurchaseInvoicesComponent,
+   StockComponent,
+   AdjustComponent,
+   AdjustementComponent
   ],
   providers: [DatePipe],
 })

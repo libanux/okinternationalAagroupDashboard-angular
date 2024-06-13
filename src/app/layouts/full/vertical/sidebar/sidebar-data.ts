@@ -9,9 +9,32 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'stock',
-    iconName: 'Home',
+    iconName: 'packages',
     route: 'apps/stock',
+
+    children: [
+      {
+        displayName: 'View',
+        iconName: '',
+        route: 'apps/stock/view',
+      },
+      {
+        displayName: 'Adjust',
+        iconName: '',
+        route: 'apps/stock/Adjust',
+      },
+      {
+        displayName: 'Adjustement',
+        iconName: '',
+        route: 'apps/stock/Adjustement',
+      }
+    ],
   },
+  // {
+  //   displayName: 'stock',
+  //   iconName: 'Home',
+  //   route: 'apps/stock',
+  // },
   {
     displayName: 'purchase',
     iconName: 'packages',

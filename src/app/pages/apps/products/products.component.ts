@@ -77,11 +77,11 @@ productsArray = new MatTableDataSource<Product>([]);
 
   //PRODUCT ON EDIT
   viewPRODUCT: Product
-  PRODUCTExample = new Product('', '', '', new Category(-1, ''), 0, 0);
-  ADDED_PRODUCT = new Product('', '', '', new Category(-1, ''), 0, 0);
+  PRODUCTExample = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
+  ADDED_PRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
 
 constructor(public generalService: GeneralService, public dialog: MatDialog, private productsService: ProductsService) {
-  this.viewPRODUCT = new Product('', '', '', new Category(-1, ''), 0, 0);
+  this.viewPRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
   // this.categoryArray = categories
 }
 
@@ -235,7 +235,7 @@ DELETE_PRODUCT(ID: any): void {
 CANCEL_UPDATE(): void {
   this.ShowAddButoon = true;
   this.CurrentAction = 'Add Product'
-  this.ADDED_PRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0);
+  this.ADDED_PRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
 }
 
 // OPEN UPDATE & DELETE DIALOGS

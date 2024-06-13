@@ -9,10 +9,10 @@ export class Category {
   }
   
  export const categories: Category[] = [
-    new Category(1, 'Banana'),
-    new Category(2, 'Apple'),
-    new Category(3, 'Bread'),
-    new Category(4, 'Milk'),
-    new Category(5, 'Eggs')
+    new Category(1, 'Category1'),
+    new Category(2, 'Category2'),
+    new Category(3, 'Category3'),
+    new Category(4, 'Category4'),
+    new Category(5, 'Category5')
   ];
   
