@@ -4,8 +4,6 @@
     <mat-tab label="Create purchase">
       <mat-card-content>
         <div class="row">
-
-
           <!-- Supplier -->
           <div class="col-md-4 d-flex flex-column">
             <div class="d-flex align-items-center">
@@ -70,62 +68,74 @@
         </div>
         <div class="m-t-12 text-right">
           <button mat-flat-button color="primary">Create</button>
-          <button mat-flat-button color="warn" class="m-l-8">Cancel</button>
+          <button mat-flat-button  class="m-l-8 btn">Cancel</button>
         </div>
       </mat-card-content>
     </mat-tab>
   </mat-tab-group>
 </mat-card>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput [(ngModel)]="element.id" (ngModelChange)="onEdit(element, 'id', $event)" />
-    </td>
-  </ng-container>
-  
-  <!-- Supplier Name Column -->
-  <ng-container matColumnDef="supplier">
-    <th mat-header-cell *matHeaderCellDef> Supplier Name </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput [(ngModel)]="element.supplier" (ngModelChange)="onEdit(element, 'supplier', $event)" />
-    </td>
-  </ng-container>
 
-  <!-- Total Column -->
-  <ng-container matColumnDef="total">
-    <th mat-header-cell *matHeaderCellDef> Total </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput type="number" [(ngModel)]="element.total" (ngModelChange)="onEdit(element, 'total', $event)" />
-    </td>
-  </ng-container>
-  
-  <!-- Paid Column -->
-  <ng-container matColumnDef="paid">
-    <th mat-header-cell *matHeaderCellDef> Paid </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput type="number" [(ngModel)]="element.paid" (ngModelChange)="onEdit(element, 'paid', $event)" />
-    </td>
-  </ng-container>
+<!-- MAIN TABLE -->
+<div class="table-card">
+  <div class="w-100">
+    <table mat-table [dataSource]="dataSource" class="mat-table">
+      <!-- Item Name Column -->
+      <ng-container matColumnDef="itemName">
+        <th mat-header-cell *matHeaderCellDef> Item Name </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput [(ngModel)]="element.itemName"
+            (ngModelChange)="onEdit(element, 'itemName', $event, rowIndex)" />
+        </td>
+      </ng-container>
 
-  <!-- Balance Column -->
-  <ng-container matColumnDef="balance">
-    <th mat-header-cell *matHeaderCellDef> Balance </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput type="number" [(ngModel)]="element.balance" (ngModelChange)="onEdit(element, 'balance', $event)" />
-    </td>
-  </ng-container>
+      <!-- Barcode Column -->
+      <ng-container matColumnDef="barcode">
+        <th mat-header-cell *matHeaderCellDef> Barcode </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput [(ngModel)]="element.barcode"
+            (ngModelChange)="onEdit(element, 'barcode', $event, rowIndex)" />
+        </td>
+      </ng-container>
 
-  <!-- Date Column -->
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <input matInput [(ngModel)]="element.date" (ngModelChange)="onEdit(element, 'date', $event)" />
-    </td>
-  </ng-container>
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput [(ngModel)]="element.description"
+            (ngModelChange)="onEdit(element, 'description', $event, rowIndex)" />
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput [(ngModel)]="element.category.CategoryName"
+            (ngModelChange)="onEdit(element, 'category', $event, rowIndex)" />
+        </td>
+      </ng-container>
+
+      <!-- Cost Column -->
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef> Cost </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput type="number" [(ngModel)]="element.cost"
+            (ngModelChange)="onEdit(element, 'cost', $event, rowIndex)" />
+        </td>
+      </ng-container>
+
+      <!-- Sale Column -->
+      <ng-container matColumnDef="sale">
+        <th mat-header-cell *matHeaderCellDef> Sale </th>
+        <td mat-cell *matCellDef="let element; let rowIndex = index;" [class.editing]="editRowIndex === rowIndex">
+          <input class="input-text" matInput type="number" [(ngModel)]="element.sale"
+            (ngModelChange)="onEdit(element, 'sale', $event, rowIndex)" />
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
