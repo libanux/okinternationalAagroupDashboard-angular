@@ -10,8 +10,6 @@ import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.com
 import { AdminsComponent } from './admins/admins.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
-import { StockComponent } from './stock/view/stock.component';
-import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
@@ -36,7 +34,14 @@ export const AppsRoutes: Routes = [
               ),
           },
 
-      {path: 'sale',  component: SaleComponent,},     
+          { path: 'sale',
+            loadChildren: () =>
+              import('./sale/sale.module').then(
+                (m) => m.SaleModule
+              ),
+          },
+        
+       
       {path: 'reports',  component: ReportsComponent,},
       {path: 'settings',  component: SettingsComponent,},     
       {path: 'users',  component: UsersComponent,},

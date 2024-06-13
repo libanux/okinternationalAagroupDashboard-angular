@@ -49,7 +49,6 @@ import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.co
 import { AddComponent } from './admins/add-admin/add.component';
 import { ProductsComponent, productsDialogComponent } from './products/products.component';
 
-import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
@@ -61,6 +60,9 @@ import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase
 import { StockComponent } from './stock/view/stock.component';
 import { AdjustComponent } from './stock/adjust/adjust.component';
 import { AdjustementComponent } from './stock/adjustement/adjustement.component';
+import { SaleModule } from './sale/sale.module';
+import { CreateSaleComponent } from './sale/create-sale/create-sale.component';
+import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component';
 
 @NgModule({
   imports: [
@@ -82,7 +84,8 @@ import { AdjustementComponent } from './stock/adjustement/adjustement.component'
     }),
     MatNativeDateModule,
     NgScrollbarModule,
-    PurchaseModule
+    PurchaseModule,
+  SaleModule
     
   ],
   exports: [TablerIconsModule],
@@ -104,7 +107,6 @@ import { AdjustementComponent } from './stock/adjustement/adjustement.component'
     AdminDialogContentComponent,
     AddComponent,
     ProductsComponent,
-    SaleComponent,
     ReportsComponent,
     SettingsComponent,
     UsersComponent,
@@ -115,7 +117,9 @@ import { AdjustementComponent } from './stock/adjustement/adjustement.component'
    PurchaseInvoicesComponent,
    StockComponent,
    AdjustComponent,
-   AdjustementComponent
+   AdjustementComponent,
+   CreateSaleComponent,
+   SaleInvoiceComponent,
   ],
   providers: [DatePipe],
 })

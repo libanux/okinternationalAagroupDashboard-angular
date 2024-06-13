@@ -54,10 +54,24 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    displayName: 'sale',
+    displayName: 'Sale',
     iconName: 'packages',
     route: 'apps/sale',
+
+    children: [
+      {
+        displayName: 'Create sale',
+        iconName: '',
+        route: 'apps/sale/create',
+      },
+      {
+        displayName: 'Sales invoice',
+        iconName: '',
+        route: 'apps/sale/invoices',
+      },
+    ],
   },
+
   {
     displayName: 'reports',
     iconName: 'packages',
