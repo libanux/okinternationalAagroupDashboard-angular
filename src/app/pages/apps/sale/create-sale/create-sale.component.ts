@@ -1,21 +1,21 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component } from '@angular/core';
 import { products } from 'src/app/classes/products.class';
-
 interface Supplier {
   id: number;
   name: string;
 }
-
 @Component({
-  selector: 'app-purchase-add',
-  templateUrl: './purchase-add.component.html',
-  styleUrl: './purchase-add.component.scss'
+  selector: 'app-create-sale',
+  templateUrl: './create-sale.component.html',
+  styleUrl: './create-sale.component.scss',
+ 
 })
-export class PurchaseAddComponent {
+export class CreateSaleComponent {
   dataSource = products;
   filteredProducts: any[]
   filteredSuppliers: any[]
-
+  paymentOption: string = 'full';
   suppliers: Supplier[] = [
     { id: 1, name: 'Supplier A' },
     { id: 2, name: 'Supplier B' },
@@ -94,6 +94,4 @@ export class PurchaseAddComponent {
     displayFn(product: { id: number, name: string }): string {
       return product ? product.name : '';
     }
-  }
-  
-
+}

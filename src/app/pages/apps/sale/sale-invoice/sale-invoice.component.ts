@@ -1,17 +1,17 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, Inject, Optional, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Product, products } from 'src/app/classes/products.class';
+import { Product } from 'src/app/classes/products.class';
+import { PurchaseInvoice, purchaseInvoices } from 'src/app/classes/purchase-invoices.class';
 import { ProductsService } from 'src/app/services/products.service';
 import { CalendarDialogComponent } from '../../products/calendar-card/calendar-dialog.component';
-import { PurchaseInvoice, purchaseInvoices } from 'src/app/classes/purchase-invoices.class';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-purchase-invoices',
-  templateUrl: './purchase-invoices.component.html',
-  styleUrl: './purchase-invoices.component.scss',
+  selector: 'app-sale-invoice',
+  templateUrl: './sale-invoice.component.html',
+  styleUrl: './sale-invoice.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -23,7 +23,7 @@ import { PurchaseInvoice, purchaseInvoices } from 'src/app/classes/purchase-invo
     ]),
   ],
 })
-export class PurchaseInvoicesComponent {
+export class SaleInvoiceComponent {
   ShowAddButoon = true;
   selectedMonth: string = '';
 
@@ -261,32 +261,3 @@ interface month {
   value: string;
   viewValue: string;
 }
-
-// @Component({
-//   // tslint:disable-next-line - Disables all
-//   selector: 'products-dialog-content',
-//   templateUrl: '..pro/products-dialog-content.html',
-// })
-// // tslint:disable-next-line - Disables all
-// export class productsDialogComponent {
-//   action: string;
-//   // tslint:disable-next-line - Disables all
-//   local_data: any;
-//   PRODUCT: Product
-
-//   constructor(
-//     public dialogRef: MatDialogRef<productsDialogComponent>,
-//     @Optional() @Inject(MAT_DIALOG_DATA) public data: Product
-//   ) {
-//     this.local_data = { ...data };
-//     this.action = this.local_data.action;
-//   }
-
-//   doAction(): void {
-//     this.dialogRef.close({ event: this.action, data: this.local_data });
-//   }
-
-//   closeDialog(): void {
-//     this.dialogRef.close({ event: 'Cancel' });
-//   }
-// }
