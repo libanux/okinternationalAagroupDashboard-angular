@@ -3,8 +3,10 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { stock, stockArray } from 'src/app/classes/stock.class';
 import { stocksService } from 'src/app/services/stock.service';
+import { Product, products } from 'src/app/classes/products.class';
+import { Category, categories } from 'src/app/classes/category.class';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-stock',
@@ -31,24 +33,27 @@ export class StockComponent implements OnInit {
   displayedColumns: string[] = [
     'barcode',
     'itemName',
-    'quantity',
+    'category',
     'previousQuantity',
-    'currentQuantity',
+    'onHandQuantity',
     'action'
   ];
 
   columnsToDisplayWithExpand = [...this.displayedColumns];
-  expandedElement: stock | null = null;
+  expandedElement: Product | null = null;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
 
   // 
+  selectedCategory: string = '';
   searchText: any;
   totalCount = 0;
   Cancelled = 0;
   Inprogress = 0;
   Completed = 0;
+
+  categoryArray = categories
 
   //MONTHS FOR FILTER DROPDOWN
   months: month[] = [
@@ -61,19 +66,18 @@ export class StockComponent implements OnInit {
   ];
 
  //MAIN stock ARRAY
- stocksArray: any[] = []
  showCalendar: boolean = false;
  selectedDate: Date | null = null; // Adjusted the type to accept null
 //stockS ARRAY
-dataSource = new MatTableDataSource(this.stocksArray);
+stocksArray = new MatTableDataSource<Product>([]);
 
   //stock ON EDIT
-  viewstock: stock
-  stockExample = new stock('', '', 0, 0, 0);
-  editedstock = new stock( '', '', 0, 0, 0);
+  viewstock: Product
+  stockExample = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
+  editedstock = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
 
-constructor(public dialog: MatDialog, private stocksService: stocksService) {
-  this.viewstock = new stock( '', '', 0, 0, 0);
+constructor(public generalService: GeneralService, public dialog: MatDialog, private stocksService: stocksService) {
+  this.viewstock = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
 }
 
 ngOnInit(): void {
@@ -91,7 +95,12 @@ onDateSelect(date: Date) {
 // }
 
 ngAfterViewInit(): void {
-  this.dataSource.paginator = this.paginator;
+  this.stocksArray.paginator = this.paginator;
+}
+
+FILTER_BY_CATEGORY(value: string){
+  if(value == 'All'){this.FETCH_STOCKS()}
+  else {this.stocksArray.filter = value.trim().toLowerCase();}
 }
 
 //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
@@ -107,8 +116,8 @@ expandRow(event: Event, element: any, column: string): void {
 
 //FETCH stocksArray FROM API
 FETCH_STOCKS(): void {
-    this.stocksArray = stockArray;
-    this.totalCount = stockArray.length;
+  this.stocksArray = new MatTableDataSource(products);
+  // this.totalCount = stockArray.length;
     // this.stocksService.GET_stocksArray().subscribe({
     //   next: (response: any) => {
     //     this.stocksArray = response;
@@ -126,17 +135,28 @@ FETCH_STOCKS(): void {
     // });
 }
 
+SORT(){
+
+}
+
+// CANCEL UPDATE
+CANCEL_UPDATE(): void {
+  this.ShowAddButoon = true;
+  this.editedstock = new Product('', '', '',new Category(-1, ''), 0, 0, 0, 0);
+}
+
+APPLY_SEARCH_FILTER(filterValue: string): void {
+  this.stocksArray.filter = filterValue.trim().toLowerCase();
+}
+
 //ADD stock
 ADD_STOCK() {
     this.stocksService.ADD_stock(this.stockExample).subscribe({
-      next: (response: any) => {
-        console.log("Response:", response);
-      },
-      error: (error: any) => {
-        console.error(error);
-        console.log("Error::", error);
-      },
-      complete: () => { }
+      next: (response: any) => {},
+      error: (error: any) => {console.error(error);},
+      complete: () => {    
+        this.CANCEL_UPDATE();
+        this.FETCH_STOCKS();}
     });
 }
 
@@ -148,11 +168,9 @@ ON_CHANGE_DROPDOWN(value: string) {
     else{
       this.stocksService.FILTER_stock(value).subscribe({
         next: (response: any) => {
-          console.log("Response:", response)
-          this.stocksArray = response;
-          this.dataSource = new MatTableDataSource(this.stocksArray);
-          this.totalCount = this.dataSource.data.length;
-          this.Inprogress = this.btnCategoryClick('pending');
+          this.stocksArray = new MatTableDataSource(response);
+          this.totalCount = this.stocksArray.data.length;
+          // this.Inprogress = this.btnCategoryClick('pending');
         },
         error: (error: any) => {
           console.log("Error:", error)
@@ -203,13 +221,9 @@ EDIT_STOCK(obj: any): void {
   this.editedstock = obj;
 }
 
-CANCEL(){
-  this.ShowAddButoon = true;
-  this.editedstock = new stock('', '', 0, 0, 0);
-}
 
 // OPEN UPDATE & DELETE DIALOGS
-OPEN_DIALOG(action: string, delstock: stock): void {
+OPEN_DIALOG(action: string, delstock: Product): void {
 //     const dialogRef = this.dialog.open(stocksDialogComponent, {
 //       data: { action, delstock }
 //     });
@@ -230,15 +244,14 @@ OPEN_DIALOG(action: string, delstock: stock): void {
 }
 
 //GET THE CATEGORY LENGTH
-btnCategoryClick(val: string): number {
-  this.dataSource.filter = val.trim().toLowerCase();
-  return this.dataSource.filteredData.length;
-}
+// btnCategoryClick(val: string): number {
+//   this.stocksArray.filter = val.trim().toLowerCase();
+//   return this.st.filteredData.length;
+// }
 
 //TRUNCATE THE TEXT INTO 20 CHARS
-truncateText(text: string, limit: number): string {
-if (text && text.length > limit) { return text.substring(0, limit) + '...';  }
-  return text;
+TRUNCATE_TEXT(text: string, limit: number): string {
+  return this.generalService.truncateText(text, limit);
 }
 
 //GET THE STATUS CLASS

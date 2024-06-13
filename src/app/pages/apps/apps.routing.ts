@@ -10,7 +10,7 @@ import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.com
 import { AdminsComponent } from './admins/admins.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
-import { StockComponent } from './stock/stock.component';
+import { StockComponent } from './stock/view/stock.component';
 import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -21,7 +21,7 @@ export const AppsRoutes: Routes = [
   {
   path: '',
   children: [
-      {path: 'stock', component: StockComponent,},
+      // {path: 'stock', component: StockComponent,},
       { path: 'purchase',
             loadChildren: () =>
               import('./purchase/purchase.module').then(
@@ -29,6 +29,13 @@ export const AppsRoutes: Routes = [
               ),
           },
         
+          { path: 'stock',
+            loadChildren: () =>
+              import('./stock/stock.module').then(
+                (m) => m.StockModule
+              ),
+          },
+
       {path: 'sale',  component: SaleComponent,},     
       {path: 'reports',  component: ReportsComponent,},
       {path: 'settings',  component: SettingsComponent,},     
