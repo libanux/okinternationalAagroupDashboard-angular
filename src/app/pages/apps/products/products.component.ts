@@ -30,6 +30,7 @@ export class ProductsComponent implements OnInit {
   ShowAddButoon = true;
   selectedMonth: string = '';
   selectedCategory: string = '';
+  CurrentAction : string = 'Add Product'
 
   //TABLE COLUMNS
   displayedColumns: string[] = [
@@ -166,7 +167,8 @@ ON_CHANGE_DROPDOWN(value: string) {
 }
 
 FILTER_BY_CATEGORY(value: string){
-  this.selectedCategory = value
+  if(value == 'All'){this.FETCH_PRODUCTS()}
+  else {this.productsArray.filter = value.trim().toLowerCase();}
 }
 
 SORT_COST(){
@@ -203,7 +205,8 @@ OPEN_CALENDAR_DIALOG(): void {
 
 //UPDATE ROW VALUES
 EDIT_PRODUCT(obj: any): void {
-  this.ShowAddButoon = false
+  this.ShowAddButoon = false;
+  this.CurrentAction = 'Update Product'
   this.viewPRODUCT = obj;
   this.ADDED_PRODUCT = obj;
 }
@@ -230,7 +233,8 @@ DELETE_PRODUCT(ID: any): void {
 
 // CANCEL UPDATE
 CANCEL_UPDATE(): void {
-  this.ShowAddButoon = true
+  this.ShowAddButoon = true;
+  this.CurrentAction = 'Add Product'
   this.ADDED_PRODUCT = new Product('', '', '',new Category(-1, ''), 0, 0);
 }
 
@@ -270,11 +274,11 @@ getStatusClass(status: string): string {
       default:
         return '';
     }
-  }
+}
 
-  APPLY_SEARCH_FILTER(filterValue: string): void {
-    this.productsArray.filter = filterValue.trim().toLowerCase();
-  }
+APPLY_SEARCH_FILTER(filterValue: string): void {
+  this.productsArray.filter = filterValue.trim().toLowerCase();
+}
 
 }
 

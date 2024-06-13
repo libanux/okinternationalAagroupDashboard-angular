@@ -1,153 +1,26 @@
-.InputsWholeRow{
-    display: flex;
-    justify-content: space-between;
-    column-gap: 15px;
-
-    .inputsInAdd{
+// ADD OR UPDATE (FIRST DIV
+.cardWithShadow {
+    .Buttons_div{
+        width: 100%;
         display: flex;
-        flex-direction: row;
-        column-gap: 5px;
+        justify-content: flex-end;
 
-        section{
+        .TwoButtons {
             display: flex;
             flex-direction: row;
-            column-gap: 5px;
-            width: 100%;
-            div {
-                width: 100%;
-                input, select{
-                    width: 100%;
-                    border:  1px solid lightgray;
-                    border-radius: 10px;
-                    padding: 10px 5px;
-                 }
-
-                 .theme-select2{
-                    .addNewItem_Option{
-                        a{
-                            color: green;
-                           background: black;        
-                }
-                    }
-                 }
-            }
-        }
-
-    }
-
-    div button {
-        min-width: 100px;
-    }
-
-    .TwoButtons {
-        display: flex;
-        flex-direction: row;
-        column-gap: 10px;
-    }
-
-}
-
-
-.details-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    width: 100%;
-
-    .detail-body {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-
-        .col-md-4 {
-            .detail-field {
-                margin-bottom: 0.5rem;
-            }
-            .QR {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-        }
-    }
-
-    .btns-div {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        column-gap: 10px;
-        align-items: flex-end;
-        justify-content: flex-end;
-        .invoice-btn {
-            background-color: #147e21fb;
-            border-style: none;
-            padding: 10px;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .invoice-btn:hover {
-            cursor: pointer;
-            background-color: #79af8dfb;
-            color: rgb(5, 78, 53);
+            column-gap: 10px;
         }
     }
 }
 
-.table-responsive {
-    table {
-        .icon_th {
-            font-weight: 600;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        th {
-            font-weight: 600;
-            padding: 0;
-        }
-
-        td {
-            padding: 0;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .action-link {
-            a{
-                margin-right: 10px;
-                cursor: pointer;
-                padding: 0;
-            }
-
-        }
-    }
-
-}
-
-.element-td {
-    div {
-        display: flex;
-        flex-direction: row;
-        column-gap: 10px;
-        align-items: center;
-        justify-content: center;
-    }
-    a {
-        cursor: pointer;
-    }
-}
-
-
+// <!-- WHOLE TABLE -->
 .cardWithShadow {
     header {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 15px;
 
         .filter-div{
             display: flex;
@@ -161,18 +34,94 @@
             }
         }
     }
-}
 
+    .table-responsive {
+        table {
 
-.cardWithShadow {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 5px;
+            .icon_th {
+                font-weight: 600;
+                padding: 0;
+                cursor: pointer;
+            }
+    
+            th {
+                font-weight: 600;
+                padding: 0;
+            }
+    
+            td {
+                padding: 0;
+                cursor: pointer;
+                font-size: 14px;
+            }
+    
+            .action-link {
+                a{
+                    margin-right: 10px;
+                    cursor: pointer;
+                    padding: 0;
+                }
+    
+            }
+
+            .details-container {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                align-items: flex-start;
+                justify-content: flex-start;
+                border: 1px solid #dee2e6;
+                padding: 10px;
+                width: 100%;
+            
+                .detail-body {
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: space-between;
+            
+                    .col-md-4 {
+                        .detail-field {
+                            margin-bottom: 0.5rem;
+                        }
+                        .QR {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+            
+                .btns-div {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 10px;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+                    .invoice-btn {
+                        background-color: #147e21fb;
+                        border-style: none;
+                        padding: 10px;
+                        border-radius: 10px;
+                        color: white;
+                    }
+            
+                    .invoice-btn:hover {
+                        cursor: pointer;
+                        background-color: #79af8dfb;
+                        color: rgb(5, 78, 53);
+                    }
+                }
+            }
+
+        
+        }
+    
     }
+    
 }
-  
+
 tr.example-detail-row {
     height: 0;
 }
@@ -246,8 +195,6 @@ tr.example-detail-row {
     }
       
 }
-
-
 
 @media (max-width: 350px) {
     .InputsWholeRow{
