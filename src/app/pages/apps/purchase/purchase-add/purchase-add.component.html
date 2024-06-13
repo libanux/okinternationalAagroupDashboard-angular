@@ -1,0 +1,131 @@
+<h4 class="mat-headline-6 m-y-24">Create Purchase</h4>
+<mat-card class="cardWithShadow theme-card">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
+    <mat-tab label="Create purchase">
+      <mat-card-content>
+        <div class="row">
+
+
+          <!-- Supplier -->
+          <div class="col-md-4 d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Supplier</mat-label>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select value="en">
+                <mat-option value="en">John Doe</mat-option>
+                <mat-option value="fr">Micheal Doe</mat-option>
+                <mat-option value="new" class="fixed-option">
+                  <div class="option-content">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 d-flex" height="24px"
+                      viewBox="0 -960 960 960" width="24px" fill="#5c8305">
+                      <path
+                        d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z" />
+                    </svg>
+                    <span>Add new supplier</span>
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-icon matPrefix class="op-5">
+                <i-tabler name="user" class="icon-20 d-flex"></i-tabler>
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Invoice No. -->
+          <div class="col-md-4 d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Invoice No.</mat-label>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput placeholder="11446688" />
+              <mat-icon matPrefix class="op-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 d-flex" height="24px" viewBox="0 -960 960 960"
+                  width="24px" fill="#5f6368">
+                  <path
+                    d="M160-640h640v-80H160v80Zm-80-80q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v240H160v240h164v80H160q-33 0-56.5-23.5T80-240v-480ZM598-80 428-250l56-56 114 112 226-226 56 58L598-80ZM160-720v480-180 113-413Z" />
+                </svg>
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Purchase Date -->
+          <div class="col-md-4 d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Purchase Date</mat-label>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput [matDatepicker]="birthpicker3" placeholder="13-6-2024" />
+              <mat-icon matPrefix class="op-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-20 d-flex" height="24px" viewBox="0 -960 960 960"
+                  width="24px" fill="#5f6368">
+                  <path
+                    d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
+                </svg>
+              </mat-icon>
+              <mat-datepicker-toggle matIconSuffix [for]="birthpicker3"></mat-datepicker-toggle>
+              <mat-datepicker #birthpicker3></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="m-t-12 text-right">
+          <button mat-flat-button color="primary">Create</button>
+          <button mat-flat-button color="warn" class="m-l-8">Cancel</button>
+        </div>
+      </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput [(ngModel)]="element.id" (ngModelChange)="onEdit(element, 'id', $event)" />
+    </td>
+  </ng-container>
+  
+  <!-- Supplier Name Column -->
+  <ng-container matColumnDef="supplier">
+    <th mat-header-cell *matHeaderCellDef> Supplier Name </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput [(ngModel)]="element.supplier" (ngModelChange)="onEdit(element, 'supplier', $event)" />
+    </td>
+  </ng-container>
+
+  <!-- Total Column -->
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef> Total </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput type="number" [(ngModel)]="element.total" (ngModelChange)="onEdit(element, 'total', $event)" />
+    </td>
+  </ng-container>
+  
+  <!-- Paid Column -->
+  <ng-container matColumnDef="paid">
+    <th mat-header-cell *matHeaderCellDef> Paid </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput type="number" [(ngModel)]="element.paid" (ngModelChange)="onEdit(element, 'paid', $event)" />
+    </td>
+  </ng-container>
+
+  <!-- Balance Column -->
+  <ng-container matColumnDef="balance">
+    <th mat-header-cell *matHeaderCellDef> Balance </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput type="number" [(ngModel)]="element.balance" (ngModelChange)="onEdit(element, 'balance', $event)" />
+    </td>
+  </ng-container>
+
+  <!-- Date Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <input matInput [(ngModel)]="element.date" (ngModelChange)="onEdit(element, 'date', $event)" />
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

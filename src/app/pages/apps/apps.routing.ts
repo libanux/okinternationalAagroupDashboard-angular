@@ -11,7 +11,6 @@ import { AdminsComponent } from './admins/admins.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductsComponent } from './products/products.component';
 import { StockComponent } from './stock/stock.component';
-import { PurchaseComponent } from './purchase/purchase.component';
 import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -23,7 +22,13 @@ export const AppsRoutes: Routes = [
   path: '',
   children: [
       {path: 'stock', component: StockComponent,},
-      {path: 'purchase',  component: PurchaseComponent,},
+      { path: 'purchase',
+            loadChildren: () =>
+              import('./purchase/purchase.module').then(
+                (m) => m.PurchaseModule
+              ),
+          },
+        
       {path: 'sale',  component: SaleComponent,},     
       {path: 'reports',  component: ReportsComponent,},
       {path: 'settings',  component: SettingsComponent,},     

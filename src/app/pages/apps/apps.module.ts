@@ -49,13 +49,16 @@ import { AdminDialogContentComponent, AdminsComponent } from './admins/admins.co
 import { AddComponent } from './admins/add-admin/add.component';
 import { ProductsComponent, productsDialogComponent } from './products/products.component';
 import { StockComponent } from './stock/stock.component';
-import { PurchaseComponent } from './purchase/purchase.component';
+
 import { SaleComponent } from './sale/sale.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
 import { ChangeLogoImageComponent } from './settings/Account/change-logo-image/change-logo-image.component';
 import { ChangeBusinessInfoComponent } from './settings/Account/change-business-info/change-business-info.component';
+import { PurchaseModule } from './purchase/purchase.module';
+import { PurchaseAddComponent } from './purchase/purchase-add/purchase-add.component';
+import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase-invoices.component';
 
 @NgModule({
   imports: [
@@ -76,7 +79,8 @@ import { ChangeBusinessInfoComponent } from './settings/Account/change-business-
       useFactory: adapterFactory,
     }),
     MatNativeDateModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    PurchaseModule
     
   ],
   exports: [TablerIconsModule],
@@ -99,14 +103,15 @@ import { ChangeBusinessInfoComponent } from './settings/Account/change-business-
     AddComponent,
     ProductsComponent,
     StockComponent,
-    PurchaseComponent,
     SaleComponent,
     ReportsComponent,
     SettingsComponent,
     UsersComponent,
     productsDialogComponent,
     ChangeLogoImageComponent,
-    ChangeBusinessInfoComponent
+    ChangeBusinessInfoComponent,
+   PurchaseAddComponent,
+   PurchaseInvoicesComponent
   ],
   providers: [DatePipe],
 })
