@@ -115,6 +115,6 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Logout',
     iconName: 'login',
-    route: '',
+    route: 'login',
   }
 ];
