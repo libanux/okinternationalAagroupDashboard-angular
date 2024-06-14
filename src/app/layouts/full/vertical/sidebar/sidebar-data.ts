@@ -9,7 +9,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Stock',
-    iconName: 'packages',
+    iconName: 'timeline',
     route: 'apps/stock',
 
     children: [
@@ -55,7 +55,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Sale',
-    iconName: 'packages',
+    iconName: 'list',
     route: 'apps/sale',
 
     children: [
@@ -74,7 +74,7 @@ export const navItems: NavItem[] = [
 
   {
     displayName: 'Reports',
-    iconName: 'packages',
+    iconName: 'dashboard',
     route: 'apps/reports',
   },
 
@@ -94,7 +94,7 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Settings',
-    iconName: 'packages',
+    iconName: 'settings',
     route: 'apps/settings',
   },
   {

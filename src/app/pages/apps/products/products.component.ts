@@ -103,6 +103,17 @@ ngAfterViewInit(): void {
   this.productsArray.paginator = this.paginator;
 }
 
+GENERATE_BARCODE() {
+  let result = '';
+  for (let i = 0; i < 12; i++) {
+      result += Math.floor(Math.random() * 10);
+  }
+
+  this.ADDED_PRODUCT.barcode = result
+}
+
+
+
 //EXPAND THE ROW AND CHECK IF THE COLUMN IS ACTION THEN DO NOT EXPAND
 expandRow(event: Event, element: any, column: string): void {
     if (column === 'action') {
