@@ -24,7 +24,7 @@ export class CreateSaleComponent {
     // Add more suppliers as needed
   ];
     constructor() {
-      this.filteredProducts = this.dataSource
+      this.filteredProducts = products
       this.filteredSuppliers = this.suppliers
     }
     hide = true;
@@ -62,7 +62,10 @@ export class CreateSaleComponent {
 
   
       
-    
+      getTotalSale() {
+        console.log("bb",this.dataSource.map(t => t.sale).reduce((acc, value) => acc + value, 0))
+        return this.dataSource.map(t => t.sale).reduce((acc, value) => acc + value, 0);
+      }
       searchQuery: string;
     editRowIndex: number = -1;
 
@@ -74,7 +77,8 @@ export class CreateSaleComponent {
 
 
     filterProducts() {
-      this.filteredProducts = this.dataSource
+      // this.filteredProducts = this.dataSource
+      console.log("filtered prod",this.filteredProducts)
       const query = this.searchQuery.toLowerCase();
       this.filteredProducts = this.dataSource.filter(product => product.itemName.toLowerCase().includes(query));
     }

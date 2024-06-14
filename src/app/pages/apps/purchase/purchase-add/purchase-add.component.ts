@@ -60,9 +60,6 @@ export class PurchaseAddComponent {
       'action'
       ];
 
-  
-      
-    
       searchQuery: string;
     editRowIndex: number = -1;
 

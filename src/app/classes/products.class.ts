@@ -28,5 +28,5 @@ export const products: Product[] = [
     new Product('1234567890124', 'Banana', 'A ripe', categories[0], 0.3, 0.8, 50, 55),
     new Product('1234567890125', 'Milk', 'A liter', categories[1], 1.0, 1.5, 30, 40),
     new Product('1234567890126', 'Bread', 'A loaf', categories[2], 1.2, 2.0, 20, 25),
-    new Product('1234567890127', 'Eggs', 'A dozen', categories[1], 2.0, 3.0, 60, 70)
+    new Product('1234567890127', 'Eggs', 'A dozen', categories[1], 2.0, 3.0, 60, 70),
 ];
