@@ -46,7 +46,7 @@
 </mat-dialog-content>
 }
 
-@if(action === 'add category') {
+@if(action === 'Add Category') {
   <mat-dialog-content style="max-width: 500px" class="mat-typography m-t-24">
     <form #userForm="ngForm">
       <div class="row">
@@ -73,11 +73,7 @@
 </div>
 }
 
-
-
-<div mat-dialog-actions class="p-24 p-t-0">
-  <button mat-flat-button (click)="doAction()" color="primary">
-    {{action}}
-  </button>
+<div mat-dialog-actions class="two_buttons_div">
   <button mat-stroked-button (click)="closeDialog()">Cancel</button>
+  <button mat-flat-button (click)="doAction()" color="primary">{{action}}</button>
 </div>

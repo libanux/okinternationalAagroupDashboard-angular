@@ -292,6 +292,7 @@ interface month {
   // tslint:disable-next-line - Disables all
   selector: 'products-dialog-content',
   templateUrl: 'products-dialog-content.html',
+  styleUrl: 'products-dialog-content.scss'
 })
 // tslint:disable-next-line - Disables all
 export class productsDialogComponent {
