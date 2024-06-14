@@ -1,51 +1,59 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject, Optional, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { Admin, adminsArray } from 'src/app/classes/admin.class';
+import { Admin } from 'src/app/classes/admin.class';
 import { AdminService } from 'src/app/services/Admins.service';
+import { UserDialogComponent } from '../../users/users.component';
+
+import { Customer, customersArray } from 'src/app/classes/customers.class';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  selector: 'app-customers',
+  templateUrl: './customers.component.html',
+  styleUrl: './customers.component.scss'
 })
-export class UsersComponent {
+export class CustomersComponent {
 
-  admins : Admin [] = [];
-selectedUser : Admin
+  showUpdate: boolean = false;
+  customers : Customer [] = [];
+selectedCustomer: Customer
   displayedColumns: string[] = [
     'firstname',
     'lastname',
     'email',
-    'type',
-    'action'
+    'phone',
+    'companyname',
+    'balance',
+    'actions'
   ];
     
-  searchText: any;
-  dataSource = new MatTableDataSource(this.admins);
+  dataSource = new MatTableDataSource(this.customers);
   columnsToDisplayWithExpand = [...this.displayedColumns];
   
   @ViewChild(MatTable, { static: true }) table: MatTable<any> = Object.create(null);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator = Object.create(null);
   
   constructor(public dialog: MatDialog, public datePipe: DatePipe, private adminService : AdminService) {
-
-    this.selectedUser = new Admin('','','','','','');
+    this.selectedCustomer = new Customer('','','','','','', '');
    }
   
   ngOnInit(): void {
     this.FETCH_ADMINS()
-    this.dataSource = new MatTableDataSource(this.admins);
+    this.dataSource = new MatTableDataSource(this.customers);
   }
   
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
+
+  cancelSelection() {
+    this.showUpdate = false;
+ }
   
   FETCH_ADMINS(){
-    this.admins = adminsArray
+    this.customers = customersArray
       // this.adminService.GET_ALL_ADMINS().subscribe({
       //   next: (response: any) => {
       //     console.log(response)
@@ -75,6 +83,11 @@ selectedUser : Admin
           this.DELETE_ADMIN(result.data);
       }
     });
+  }
+
+  UPDATE_CUSTOMER(customer: any){
+    this.showUpdate = true;
+    this.selectedCustomer = customer
   }
   
   // tslint:disable-next-line - Disables all
@@ -123,12 +136,6 @@ selectedUser : Admin
         event.stopPropagation();
           }
   }
-
-  showUpdate: boolean =false;
-  UPDATE_USER(user: any) {
-    this.showUpdate = true;
-    this.selectedUser = user
-  }
   
   // tslint:disable-next-line - Disables all
   DELETE_ADMIN(row_obj: Admin): boolean | any {
@@ -139,82 +146,6 @@ selectedUser : Admin
   
   }
 
-  @Component({
-    // tslint:disable-next-line: component-selector
-    selector: 'app-dialog-content',
-    templateUrl: './users-dialog.component.html',
-    styleUrl: './users-dialog.component.scss'
-  })
-  // tslint:disable-next-line: component-class-suffix
-  export class UserDialogComponent {
-    action: string;
-    // tslint:disable-next-line - Disables all
-    local_data: any;
-    selectedImage: any = '';
-    joiningDate: any = '';
-  
-    constructor(
-      public datePipe: DatePipe,
-      public dialogRef: MatDialogRef<UserDialogComponent>,
-      // @Optional() is used to prevent error if no data is passed
-      @Optional() @Inject(MAT_DIALOG_DATA) public data: Admin,
-    ) {
-      this.local_data = { ...data };
-      this.action = this.local_data.action;
-      if (this.local_data.DateOfJoining !== undefined) {
-        this.joiningDate = this.datePipe.transform(
-          new Date(this.local_data.DateOfJoining),
-          'yyyy-MM-dd',
-        );
-      }
-      if (this.local_data.imagePath === undefined) {
-        this.local_data.imagePath = 'assets/images/profile/user-1.jpg';
-      }
-    }
-  
-    
-    typeOptions = [
-      { value: 'office', viewValue: 'Office' },
-      { value: 'admin', viewValue: 'Admin' },
 
-    ];
-    doAction(): void {
-      this.dialogRef.close({ event: this.action, data: this.local_data });
-    }
-  
-    closeDialog(): void {
-      this.dialogRef.close({ event: 'Cancel' });
-    }
-  
-    selectFile(event: any): void {
-      if (!event.target.files[0] || event.target.files[0].length === 0) {
-        // this.msg = 'You must select an image';
-        return;
-      }
-      const mimeType = event.target.files[0].type;
-      if (mimeType.match(/image\/*/) == null) {
-        // this.msg = "Only images are supported";
-        return;
-      }
-      // tslint:disable-next-line - Disables all
-      const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      // tslint:disable-next-line - Disables all
-      reader.onload = (_event) => {
-        // tslint:disable-next-line - Disables all
-        this.local_data.imagePath = reader.result;
-      };
-    }
-  
-    selectedPermission: string = ''; // Track the selected permission
-  
-    toggleSubPermissions(permission: string) {
-      if (this.selectedPermission === permission) {
-        this.selectedPermission = ''; // If the same permission is clicked again, close it
-      } else {
-        this.selectedPermission = permission; // Otherwise, set the selected permission
-      }
-    }
-  }
   
   

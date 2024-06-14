@@ -51,6 +51,11 @@ export const navItems: NavItem[] = [
         iconName: '',
         route: 'apps/purchase/invoices',
       },
+      {
+        displayName: 'Suppliers',
+        iconName: '',
+        route: 'apps/purchase/suppliers',
+      },
     ],
   },
   {
@@ -68,6 +73,11 @@ export const navItems: NavItem[] = [
         displayName: 'Sales invoice',
         iconName: '',
         route: 'apps/sale/invoices',
+      },
+      {
+        displayName: 'Customers',
+        iconName: '',
+        route: 'apps/sale/customers',
       },
     ],
   },
@@ -102,11 +112,11 @@ export const navItems: NavItem[] = [
     iconName: 'user-plus',
     route: 'apps/users',
   },
-  {
-    displayName: 'Profile',
-    iconName: 'ticket',
-    route: 'apps/profile',
-  },
+  // {
+  //   displayName: 'Profile',
+  //   iconName: 'ticket',
+  //   route: 'apps/profile',
+  // },
   // {
   //   displayName: 'Admins',
   //   iconName: 'user-plus',

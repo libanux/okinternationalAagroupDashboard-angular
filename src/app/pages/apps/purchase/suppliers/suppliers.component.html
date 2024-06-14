@@ -1,44 +1,19 @@
-<!-- <mat-card class="cardWithShadow">
-    <mat-card-content class="p-24">
-      <div class="row justify-content-between">
-  
-        <div class="col-lg-4">
-          <mat-form-field appearance="outline" class="w-100 hide-hint">
-            <input matInput placeholder="Search Users" (keyup)="APPLY_FILTER($any($event.target).value)"/>
-            <mat-icon matSuffix>
-              <i-tabler name="search" class="icon-20"></i-tabler>
-            </mat-icon>
-          </mat-form-field>
-        </div>
-  
-        <div class="col-lg-4 d-flex align-items-center justify-content-end">
-          <button mat-flat-button (click)="OPEN_DIALOG('Add', {})" color="primary">
-            Add Admin
-          </button>
-        </div>
-  
-      </div>
-    </mat-card-content>
-  </mat-card> -->
-
-
-
-<!-- Add User form -->
-<h4 class="mat-headline-6 m-y-24">Users</h4>
+<!-- Add Supplier form -->
+<h4 class="mat-headline-6 m-y-24">Suppliers</h4>
 <mat-card class="cardWithShadow theme-card">
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
-    <mat-tab label="Add User">
+    <mat-tab label="Add Supplier">
       <mat-card-content>
         <div class="row">
 
 
           <!-- First Name -->
-          <div class="col-md-6 d-flex flex-column">
+          <div class="col-md-4 d-flex flex-column">
             <div class="d-flex align-items-center">
               <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">First Name</mat-label>
             </div>
             <mat-form-field appearance="outline" class="w-100">
-              <input matInput placeholder="FIRST NAME" [(ngModel)]="selectedUser.firstname" />
+              <input matInput placeholder="FIRST NAME" [(ngModel)]="selectedSupplier.firstname"/>
               <mat-icon matPrefix class="op-5">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                   fill="#5f6368">
@@ -50,12 +25,12 @@
           </div>
 
           <!-- last Name-->
-          <div class="col-md-6 d-flex flex-column">
+          <div class="col-md-4 d-flex flex-column">
             <div class="d-flex align-items-center">
               <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Last Name</mat-label>
             </div>
             <mat-form-field appearance="outline" class="w-100">
-              <input matInput placeholder="LAST NAME" [(ngModel)]="selectedUser.lastname" />
+              <input matInput placeholder="LAST NAME" [(ngModel)]="selectedSupplier.lastname"/>
               <mat-icon matPrefix class="op-5">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                   fill="#5f6368">
@@ -65,17 +40,36 @@
               </mat-icon>
             </mat-form-field>
           </div>
+
+
+          <!-- Company name-->
+          <div class="col-md-4 d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Company name (optional)</mat-label>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput placeholder="COMPANY NAME (OPTIONAL)" [(ngModel)]="selectedSupplier.companyname"/>
+              <mat-icon matPrefix class="op-5">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                  fill="#5f6368">
+                  <path
+                    d="M120-120v-560h160v-160h400v320h160v400H520v-160h-80v160H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z" />
+                </svg>
+              </mat-icon>
+            </mat-form-field>
+          </div>
+
+
         </div>
 
         <div class="row">
-
           <!-- Email-->
-          <div class="col-md-6 d-flex flex-column">
+          <div class="col-md-4 d-flex flex-column">
             <div class="d-flex align-items-center">
-              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email</mat-label>
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Email (optional)</mat-label>
             </div>
             <mat-form-field appearance="outline" class="w-100">
-              <input matInput placeholder="EMAIL" [(ngModel)]="selectedUser.email" />
+              <input matInput placeholder="EMAIL (OPTIONAL)" [(ngModel)]="selectedSupplier.email"/>
               <mat-icon matPrefix class="op-5">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                   fill="#5f6368">
@@ -86,33 +80,31 @@
             </mat-form-field>
           </div>
 
-
-          <!--Permission-->
-          <div class="col-md-6 d-flex flex-column">
+          <!-- Phone-->
+          <div class="col-md-4 d-flex flex-column">
             <div class="d-flex align-items-center">
-              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Role</mat-label>
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Phone</mat-label>
             </div>
             <mat-form-field appearance="outline" class="w-100">
-              <mat-select placeholder="ROLE" required [(ngModel)]="selectedUser.type">
-                <mat-option value="Office">Office</mat-option>
-                <mat-option value="Admin">Admin</mat-option>
-              </mat-select>
+              <input matInput placeholder="PHONE" [(ngModel)]="selectedSupplier.phone"/>
               <mat-icon matPrefix class="op-5">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                   fill="#5f6368">
                   <path
-                    d="M160-240v-480 172-12 320Zm0 80q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v131q-18-13-38-22.5T800-548v-92H447l-80-80H160v480h283q3 21 9.5 41t15.5 39H160Zm400 0v-22q0-45 44-71.5T720-280q72 0 116 26.5t44 71.5v22H560Zm160-160q-33 0-56.5-23.5T640-400q0-33 23.5-56.5T720-480q33 0 56.5 23.5T800-400q0 33-23.5 56.5T720-320Z" />
+                    d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
                 </svg>
               </mat-icon>
             </mat-form-field>
           </div>
-        </div>
-        <div class="m-t-12 text-right" *ngIf="showUpdate">
-          <button mat-flat-button class="m-l-8 btn">Cancel</button>
-          <button mat-flat-button color="primary">Update</button>
+
+
         </div>
         <div class="m-t-12 text-right" *ngIf="!showUpdate">
           <button mat-flat-button color="primary">Create</button>
+        </div>
+        <div class="m-t-12 text-right" *ngIf="showUpdate">
+          <button (click)="cancelSelection()" mat-flat-button class="m-l-8 btn">Cancel</button>
+          <button mat-flat-button color="primary">Update</button>
         </div>
       </mat-card-content>
     </mat-tab>
@@ -123,7 +115,7 @@
 <mat-card class="cardWithShadow">
   <mat-card-content class="p-24">
     <div class="table-responsive">
-      <table mat-table [dataSource]="admins" class="w-100">
+      <table mat-table [dataSource]="suppliers" class="w-100">
         <!-- First Name Column -->
         <ng-container matColumnDef="firstname">
           <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">First Name</th>
@@ -142,18 +134,30 @@
           <td mat-cell *matCellDef="let admin" class="f-s-14">{{ admin.email }}</td>
         </ng-container>
 
-        <!-- User Type Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Type</th>
-          <td mat-cell *matCellDef="let admin" class="f-s-14">{{ admin.type }}</td>
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Phone</th>
+          <td mat-cell *matCellDef="let admin" class="f-s-14">{{ admin.phone }}</td>
+        </ng-container>
+
+        <!-- Company name Column -->
+        <ng-container matColumnDef="companyname">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Company Name</th>
+          <td mat-cell *matCellDef="let admin" class="f-s-14">{{ admin.companyname }}</td>
+        </ng-container>
+
+        <!-- Balance Column -->
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Balance</th>
+          <td mat-cell *matCellDef="let admin" class="f-s-14">{{ admin.balance }}</td>
         </ng-container>
 
         <!-- Actions Column -->
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Action</th>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Actions</th>
           <td mat-cell *matCellDef="let admin" class="action-link">
-            <a (click)="UPDATE_USER(admin)" class="m-r-10 cursor-pointer">
-              <i-tabler name="edit" class="icon-18"></i-tabler>
+            <a class="m-r-10 cursor-pointer">
+              <i-tabler (click)="UPDATE_SUPPLIER(admin)" name="edit" class="icon-18"></i-tabler>
             </a>
             <a (click)="OPEN_DIALOG('Delete', admin)" class="m-r-10 cursor-pointer">
               <i-tabler name="trash" class="icon-18"></i-tabler>

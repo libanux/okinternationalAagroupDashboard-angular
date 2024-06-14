@@ -66,6 +66,8 @@ import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component
 import { UsersModule } from './users/users.module';
 import { MatFormField } from "@angular/material/form-field";
 import { AddUserComponent } from './users/add-admin/add.component';
+import { CustomersComponent } from './sale/customers/customers.component';
+import { SuppliersComponent } from './purchase/suppliers/suppliers.component';
 
 @NgModule({
     exports: [TablerIconsModule],
@@ -103,7 +105,9 @@ import { AddUserComponent } from './users/add-admin/add.component';
         AdjustDialogComponent,
         deleteAjustDialogComponent,
         UserDialogComponent,
-        AddUserComponent
+        AddUserComponent,
+        CustomersComponent,
+        SuppliersComponent
     ],
     providers: [DatePipe],
     imports: [
