@@ -51,7 +51,7 @@ import { ProductsComponent, productsDialogComponent } from './products/products.
 
 import { ReportsComponent } from './reports/reports.component';
 import { SettingsComponent } from './settings/settings.component';
-import { UsersComponent } from './users/users.component';
+import { UserDialogComponent, UsersComponent } from './users/users.component';
 import { ChangeLogoImageComponent } from './settings/Account/change-logo-image/change-logo-image.component';
 import { ChangeBusinessInfoComponent } from './settings/Account/change-business-info/change-business-info.component';
 import { PurchaseModule } from './purchase/purchase.module';
@@ -63,66 +63,72 @@ import { AdjustementComponent } from './stock/adjustement/adjustement.component'
 import { SaleModule } from './sale/sale.module';
 import { CreateSaleComponent } from './sale/create-sale/create-sale.component';
 import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component';
+import { UsersModule } from './users/users.module';
+import { MatFormField } from "@angular/material/form-field";
+import { AddUserComponent } from './users/add-admin/add.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AppsRoutes),
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPermissionsModule.forRoot(),
-    NgApexchartsModule,
-    TablerIconsModule.pick(TablerIcons),
-    DragDropModule,
-    NgxPaginationModule,
-    HttpClientModule,
-    AngularEditorModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
-    MatNativeDateModule,
-    NgScrollbarModule,
-    PurchaseModule,
-  SaleModule
-    
-  ],
-  exports: [TablerIconsModule],
-  declarations: [
-    AppPermissionComponent,
-    AppNotesComponent,
-    AppContactComponent,
-    AppContactDialogContentComponent,
-    AppEmployeeComponent,
-    AppEmployeeDialogContentComponent,
-    AppAddEmployeeComponent,
-    AppInvoiceListComponent,
-    AppInvoiceViewComponent,
-    AppAddInvoiceComponent,
-    AppEditInvoiceComponent,
-    AddedDialogComponent,
-    OkDialogComponent,
-    AdminsComponent,
-    AdminDialogContentComponent,
-    AddComponent,
-    ProductsComponent,
-    ReportsComponent,
-    SettingsComponent,
-    UsersComponent,
-    productsDialogComponent,
-    ChangeLogoImageComponent,
-    ChangeBusinessInfoComponent,
-   PurchaseAddComponent,
-   PurchaseInvoicesComponent,
-   StockComponent,
-   AdjustComponent,
-   AdjustementComponent,
-   CreateSaleComponent,
-   SaleInvoiceComponent,
-   AdjustDialogComponent,
-   deleteAjustDialogComponent
-  ],
-  providers: [DatePipe],
+    exports: [TablerIconsModule],
+    declarations: [
+        AppPermissionComponent,
+        AppNotesComponent,
+        AppContactComponent,
+        AppContactDialogContentComponent,
+        AppEmployeeComponent,
+        AppEmployeeDialogContentComponent,
+        AppAddEmployeeComponent,
+        AppInvoiceListComponent,
+        AppInvoiceViewComponent,
+        AppAddInvoiceComponent,
+        AppEditInvoiceComponent,
+        AddedDialogComponent,
+        OkDialogComponent,
+        AdminsComponent,
+        AdminDialogContentComponent,
+        AddComponent,
+        ProductsComponent,
+        ReportsComponent,
+        SettingsComponent,
+        UsersComponent,
+        productsDialogComponent,
+        ChangeLogoImageComponent,
+        ChangeBusinessInfoComponent,
+        PurchaseAddComponent,
+        PurchaseInvoicesComponent,
+        StockComponent,
+        AdjustComponent,
+        AdjustementComponent,
+        CreateSaleComponent,
+        SaleInvoiceComponent,
+        AdjustDialogComponent,
+        deleteAjustDialogComponent,
+        UserDialogComponent,
+        AddUserComponent
+    ],
+    providers: [DatePipe],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AppsRoutes),
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPermissionsModule.forRoot(),
+        NgApexchartsModule,
+        TablerIconsModule.pick(TablerIcons),
+        DragDropModule,
+        NgxPaginationModule,
+        HttpClientModule,
+        AngularEditorModule,
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory,
+        }),
+        MatNativeDateModule,
+        NgScrollbarModule,
+        PurchaseModule,
+        SaleModule,
+        UsersModule,
+        MatFormField
+    ]
 })
 export class AppsModule {}
