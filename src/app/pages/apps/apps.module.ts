@@ -57,7 +57,7 @@ import { ChangeBusinessInfoComponent } from './settings/Account/change-business-
 import { PurchaseModule } from './purchase/purchase.module';
 import { PurchaseAddComponent } from './purchase/purchase-add/purchase-add.component';
 import { PurchaseInvoicesComponent } from './purchase/purchase-invoices/purchase-invoices.component';
-import { StockComponent } from './stock/view/stock.component';
+import { StockComponent, deleteAjustDialogComponent } from './stock/view/stock.component';
 import { AdjustComponent, AdjustDialogComponent } from './stock/adjust/adjust.component';
 import { AdjustementComponent } from './stock/adjustement/adjustement.component';
 import { SaleModule } from './sale/sale.module';
@@ -120,7 +120,8 @@ import { SaleInvoiceComponent } from './sale/sale-invoice/sale-invoice.component
    AdjustementComponent,
    CreateSaleComponent,
    SaleInvoiceComponent,
-   AdjustDialogComponent
+   AdjustDialogComponent,
+   deleteAjustDialogComponent
   ],
   providers: [DatePipe],
 })

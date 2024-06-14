@@ -1,6 +1,7 @@
-import { Component, Inject, Optional } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Adjust } from 'src/app/classes/adjust.class';
 import { Category, categories } from 'src/app/classes/category.class';
 import { Product, products } from 'src/app/classes/products.class';
 
@@ -9,7 +10,7 @@ import { Product, products } from 'src/app/classes/products.class';
   templateUrl: './adjust.component.html',
   styleUrl: './adjust.component.scss'
 })
-export class AdjustComponent {
+export class AdjustComponent implements OnInit{
 
   PRODUCTS_ARRAY = products;
   filteredProducts: any[]
@@ -26,7 +27,7 @@ export class AdjustComponent {
   step = 0;
   panelOpenState = false;
 
-  displayedColumns: string[] = [
+  displayedColumns: string [] = [
     'barcode',
     'itemName',
     'category',
@@ -40,6 +41,10 @@ export class AdjustComponent {
   editRowIndex: number = -1;
 
   constructor( public dialog: MatDialog ) {
+  }
+
+  ngOnInit(): void {
+    console.log(this.ADJUST_ARRAY)
   }
   
 
@@ -63,6 +68,7 @@ export class AdjustComponent {
   //FETCH productsArray FROM API
   FETCH_ADJUSTS(): void {
     this.ADJUST_ARRAY = new MatTableDataSource(this.New_adjust_Array);
+    console.log(this.ADJUST_ARRAY)
   }
 
   ADD_ADUST(object: Product) {

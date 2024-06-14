@@ -34,6 +34,23 @@
   box-shadow: none;
 }
 
+.table-card {
+  .w-100{
+    .no-items-found{
+      background-color: white;
+      border-radius: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+
+    }
+  }
+}
+
+
+
 .mat-table th,
 .mat-table td {
   // border: none;

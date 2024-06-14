@@ -224,23 +224,23 @@ EDIT_STOCK(obj: any): void {
 
 // OPEN UPDATE & DELETE DIALOGS
 OPEN_DIALOG(action: string, delstock: Product): void {
-//     const dialogRef = this.dialog.open(stocksDialogComponent, {
-//       data: { action, delstock }
-//     });
+    const dialogRef = this.dialog.open(deleteAjustDialogComponent, {
+      data: { action, delstock }
+    });
 
-//     dialogRef.afterClosed().subscribe(result => {
-//       if (result && result.event === 'Delete') {
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.event === 'Delete') {
 
-// this.stocksService.DELETE_stock(delstock).subscribe({
-//     next: (response: any) => {
-//         console.log('Response:', response);
-//          this.FETCH_stockS()
-//     },
-//     error: (error: any) => {console.error('Error:', error);},
-//     complete: () => { }
-//       });
-//     }
-//   });
+this.stocksService.DELETE_stock(delstock).subscribe({
+    next: (response: any) => {
+        console.log('Response:', response);
+         this.FETCH_STOCKS()
+    },
+    error: (error: any) => {console.error('Error:', error);},
+    complete: () => { }
+      });
+    }
+  });
 }
 
 //GET THE CATEGORY LENGTH
@@ -273,4 +273,33 @@ getStatusClass(status: string): string {
 interface month {
   value: string;
   viewValue: string;
+}
+
+
+@Component({
+  selector: 'products-dialog-content',
+  templateUrl: 'delete-dialog-content.html',
+  styleUrl: 'delete-dialog-content.scss'
+})
+export class deleteAjustDialogComponent {
+  action: string;
+  local_data: any;
+  PRODUCT: Product
+  categoryArray = categories
+  
+  constructor(
+    public dialogRef: MatDialogRef<deleteAjustDialogComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: Product
+  ) {
+    this.local_data = { ...data };
+    this.action = this.local_data.action;
+  }
+
+  doAction(): void {
+    this.dialogRef.close({ event: this.action, data: this.local_data });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close({ event: 'Cancel' });
+  }
 }
