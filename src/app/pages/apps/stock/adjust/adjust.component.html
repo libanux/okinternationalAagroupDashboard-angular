@@ -87,9 +87,10 @@
 
 
 <!-- MAIN TABLE -->
-<div class="table-card ">
+<div class="table-card">
 
-    <div class="w-100">
+    <div class="w-100 table-responsive">
+        
     @if(ADJUST_ARRAY.filteredData.length > 0){
         <table mat-table [dataSource]="ADJUST_ARRAY" class="mat-table">
             <!-- Item Name Column -->
