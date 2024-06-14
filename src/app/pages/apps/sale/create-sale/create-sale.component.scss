@@ -23,6 +23,11 @@
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
   
   .mat-table {
     width: 100%;
@@ -64,12 +69,11 @@
     outline-color: #618a06;
   }
 
-  .mat-table input:hover {
-    // border: 1px solid #618a06;
-    outline-style: solid;
-    outline-width: 2px; 
-    outline-color: #618a06;
-  }
+  // .mat-table input:hover {
+  //   outline-style: solid;
+  //   outline-width: 2px; 
+  //   outline-color: #618a06;
+  // }
   
   .mat-table .mat-header-cell {
     position: sticky;
@@ -90,5 +94,24 @@
   .btn{
     border: 1px solid #618a06;
     color: #618a06;
+  }
+  .mat-autocomplete-panel {
+    position: relative;
+  }
+  
+  .add-new-customer-option {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .option-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-new-customer-option mat-icon {
+    margin-right: 8px;
   }
   
